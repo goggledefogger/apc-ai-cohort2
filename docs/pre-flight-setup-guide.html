@@ -555,11 +555,10 @@
 
       <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I'm setting up my dev environment for a coding course. I need these tools installed and configured. Check what I already have, install what's missing, and verify each one works.
 
-1. **Node.js** (v18+) — if missing, install via Homebrew on Mac, winget on Windows, or apt/dnf on Linux
+1. **Node.js** (v20+) — if missing, install via Homebrew on Mac, winget on Windows, or apt/dnf on Linux
 2. **Git** — if missing, install via Xcode Command Line Tools on Mac, winget on Windows, or package manager on Linux
 3. **GitHub CLI** (`gh`) — install and then run `gh auth login` (I'll choose GitHub.com > HTTPS > Login with web browser and handle the browser auth)
 4. **Git config** — set my user.name and user.email (ask me for these)
-5. **Claude Code** — run `npm install -g @anthropic-ai/claude-code` then `claude install`
 
 For each step: check first, skip if already installed, install if missing, verify it works.
 If anything needs my password or browser interaction, tell me what to do.</div>
@@ -578,11 +577,10 @@ If anything needs my password or browser interaction, tell me what to do.</div>
 
       <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>Can you verify that all of these are installed and working? Check each one and tell me the result in plain English:
 
-1. Node.js (should be v18 or higher)
+1. Node.js (should be v20 or higher)
 2. Git
 3. GitHub CLI — and am I logged in?
-4. Claude Code
-5. Git config — is my name and email set?
+4. Git config — is my name and email set?
 
 If anything is missing or not working, help me fix it.</div>
 
@@ -600,7 +598,6 @@ If anything is missing or not working, help me fix it.</div>
         <tbody>
           <tr><td><code>brew: command not found</code> (Mac)</td><td>Tell Cursor Chat: "Install Homebrew first, then continue"</td></tr>
           <tr><td><code>winget</code> not found (Windows)</td><td>Tell Cursor Chat: "Use an alternative install method" &mdash; it will adapt</td></tr>
-          <tr><td><code>npm ERR! EACCES</code></td><td>Tell Cursor Chat: "Try with sudo"</td></tr>
           <tr><td><code>gh auth login</code> code expired</td><td>Run <code>gh auth login</code> again &mdash; codes are time-limited</td></tr>
           <tr><td><code>command not found</code> after install</td><td>Fully quit and reopen Cursor, then check again</td></tr>
         </tbody>
@@ -609,30 +606,43 @@ If anything is missing or not working, help me fix it.</div>
       <hr>
 
       <!-- STEP 4 -->
-      <h2><span class="step-badge">4</span> Launch Claude Code</h2>
+      <h2><span class="step-badge">4</span> Install &amp; Launch Claude Code</h2>
 
       <p>Claude Code is another AI assistant &mdash; but instead of living in a chat panel like Cursor's AI, it runs in something called the <strong>terminal</strong>. The terminal is that text-only window that looks a little like a computer from 1986 &mdash; dark background, blinking cursor, no buttons. That's exactly what it's supposed to look like. Don't worry, you'll get comfortable with it quickly.</p>
 
       <p>Think of Claude Code as a second AI helper that's especially good at running commands and building things. You'll use it a lot in the course.</p>
 
-      <h3>Open the terminal</h3>
+      <h3>Install Claude Code</h3>
 
       <ol>
-        <li>Press <strong>Ctrl + backtick</strong> to open the terminal. The backtick key looks like this: <strong><code>`</code></strong> &mdash; it's to the left of the 1 key, shares a key with the tilde (~). A dark panel will appear at the bottom of Cursor.</li>
+        <li>Open Cursor Chat: <strong><code>Cmd+L</code></strong> (Mac) or <strong><code>Ctrl+L</code></strong> (Windows/Linux)</li>
+        <li>Paste this prompt:</li>
+      </ol>
+
+      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I need to install Claude Code. Run the native installer:
+
+curl -fsSL https://claude.ai/install.sh | bash
+
+After it finishes, verify it works by running: claude --version
+
+If `curl` isn't available, try: npm install -g @anthropic-ai/claude-code</div>
+
+      <ol start="3">
+        <li><strong>Approve</strong> when Cursor asks to run the command.</li>
       </ol>
 
       <h3>Launch Claude Code</h3>
 
-      <ol start="2">
-        <li>You'll see a blinking cursor waiting for you to type something. Here's the trick you'll use constantly in this course: whenever you see a command in a dark box like the one below, <strong>just copy the text inside it and paste it into the terminal.</strong> Think of it like an Oreo &mdash; the dark box is the cookie, but the text inside is the cream. That's the part you want. It's fine if you like the cookie too, but AI prefers the filling.</li>
+      <p>Now let's make sure it works. Here's the trick you'll use constantly in this course: whenever you see a command in a dark box, <strong>just copy the text inside it and paste it into Cursor Chat.</strong> Think of it like an Oreo &mdash; the dark box is the cookie, but the text inside is the cream. That's the part you want.</p>
+
+      <ol start="4">
+        <li>Paste this into Cursor Chat:</li>
       </ol>
 
-      <p>Copy and paste this into the terminal, then press Enter:</p>
+      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>Open a terminal and run `claude` to launch Claude Code. It will ask me to log in — just run the command and I'll handle the login prompts.</div>
 
-      <div class="prompt-block"><span class="label">Paste into Terminal</span>claude</div>
-
-      <ol start="3">
-        <li>It will ask you to log in &mdash; follow the prompts to connect it to your Claude Pro subscription</li>
+      <ol start="5">
+        <li>Follow the prompts to connect it to your Claude Pro subscription</li>
         <li>Once it's running, try asking it something simple. Just type: <strong>What folder am I in?</strong> and press Enter.</li>
         <li>When you're done, type <code>/exit</code> and press Enter to close Claude Code for now</li>
       </ol>
@@ -643,7 +653,7 @@ If anything is missing or not working, help me fix it.</div>
           <tr><th>Problem</th><th>Fix</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>claude: command not found</code></td><td>Step 3 didn't complete &mdash; open Cursor Chat and ask it to install Claude Code</td></tr>
+          <tr><td><code>claude: command not found</code></td><td>Fully quit and reopen Cursor, then try again. If it still fails, ask Cursor Chat: "Install Claude Code using npm instead"</td></tr>
           <tr><td>Authentication fails</td><td>Make sure you have an active Claude Pro subscription at <a href="https://claude.ai">claude.ai</a></td></tr>
         </tbody>
       </table>
@@ -660,11 +670,20 @@ If anything is missing or not working, help me fix it.</div>
       <p><a href="https://handy.computer">Handy</a> is a free, open-source voice dictation app. Hold a keyboard shortcut, speak, release &mdash; and your words appear as text wherever your cursor is. It runs entirely on your computer, so your voice never leaves your machine.</p>
 
       <ol>
-        <li><strong>Mac:</strong> Open a terminal in Cursor (<strong>Ctrl + backtick</strong>) and run:
-          <div class="prompt-block"><span class="label">Paste into Terminal</span>brew install --cask handy</div>
-          Or download directly from <a href="https://superwhisper.com/download">handy.computer</a>.
-        </li>
-        <li><strong>Windows:</strong> Download the installer from <a href="https://handy.computer">handy.computer</a> and run it.</li>
+        <li>Open Cursor Chat: <strong><code>Cmd+L</code></strong> (Mac) or <strong><code>Ctrl+L</code></strong> (Windows/Linux)</li>
+        <li>Paste this prompt:</li>
+      </ol>
+
+      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I need to install Handy, a free voice dictation app.
+
+**Mac:** Run `brew install --cask handy` (if brew isn't installed, install Homebrew first). Alternatively, download the .dmg from https://github.com/cjpais/Handy/releases/latest
+
+**Windows:** Download the installer from https://github.com/cjpais/Handy/releases/latest and tell me which file to grab.
+
+After installing, verify Handy is available by checking if the app exists.</div>
+
+      <ol start="3">
+        <li><strong>Approve</strong> when Cursor asks to run the command.</li>
         <li><strong>Grant permissions</strong> when prompted &mdash; Handy needs <strong>Microphone</strong> access (to hear you) and <strong>Accessibility</strong> access (to paste text into other apps).</li>
         <li>Open Handy, hold the keyboard shortcut, say something, and release. Your words should appear wherever your cursor is.</li>
       </ol>
