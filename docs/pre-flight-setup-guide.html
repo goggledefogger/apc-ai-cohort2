@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-Flight Setup Guide — APC AI Builder's Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #16163f;
+      --navy-light: #1e1e52;
+      --orange: #f15a24;
+      --green: #10b981;
+      --blue: #2DA3CB;
+      --text: #111118;
+      --text-secondary: #555568;
+      --border: #e2e2e8;
+      --bg-subtle: #f7f7f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.65;
+      color: var(--text);
+      background: #e4e4ea;
+      font-size: 16px;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      background: white;
+      min-height: 100vh;
+    }
+
+    .top-bar {
+      height: 6px;
+      background: var(--navy);
+    }
+
+    .content {
+      padding: 40px 48px 60px;
+    }
+
+    @media (max-width: 600px) {
+      .content {
+        padding: 28px 20px 40px;
+      }
+    }
+
+    /* ——— TYPOGRAPHY ——— */
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--orange);
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.3px;
+      margin-top: 40px;
+      margin-bottom: 12px;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 8px;
+      margin-left: 5px;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    /* ——— LISTS ——— */
+
+    ol, ul {
+      margin-bottom: 14px;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    /* ——— CALLOUT BOXES ——— */
+
+    .callout {
+      background: var(--bg-subtle);
+      border-left: 3px solid var(--orange);
+      padding: 14px 18px;
+      margin: 16px 0;
+      border-radius: 0 4px 4px 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .callout strong {
+      color: var(--text);
+    }
+
+    .callout.tip {
+      border-left-color: var(--green);
+    }
+
+    .callout.workflow {
+      border-left-color: var(--navy);
+      background: rgba(22, 22, 63, 0.03);
+    }
+
+    /* ——— CODE BLOCKS ——— */
+
+    .prompt-block {
+      background: var(--navy);
+      color: #e0e0e8;
+      padding: 18px 22px;
+      border-radius: 6px;
+      margin: 14px 0;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      position: relative;
+    }
+
+    .prompt-block .label {
+      display: block;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+
+    code {
+      background: var(--bg-subtle);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 14px;
+      color: var(--navy);
+    }
+
+    .inline-command {
+      background: var(--navy);
+      color: #e0e0e8;
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+    }
+
+    /* ——— TABLES ——— */
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+
+    thead th {
+      background: var(--navy);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    thead th:first-child {
+      border-radius: 4px 0 0 0;
+    }
+
+    thead th:last-child {
+      border-radius: 0 4px 0 0;
+    }
+
+    tbody td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--bg-subtle);
+    }
+
+    /* ——— CHECKLIST ——— */
+
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .checklist li {
+      padding: 8px 0 8px 32px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      border-radius: 3px;
+    }
+
+    /* ——— STEP NUMBER BADGES ——— */
+
+    .step-badge {
+      display: inline-block;
+      background: var(--orange);
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      width: 42px;
+      height: 42px;
+      line-height: 42px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+
+    /* ——— DIVIDERS ——— */
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+
+    /* ——— TROUBLESHOOTING ——— */
+
+    .troubleshoot-table td:first-child {
+      font-weight: 600;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    /* ——— HEADER LAYOUT ——— */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      padding-bottom: 18px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .header-right {
+      flex-shrink: 0;
+      padding-top: 4px;
+    }
+
+    .header-right .logo-container img {
+      width: 90px;
+      height: auto;
+    }
+
+    /* ——— FOOTER ——— */
+
+    .footer {
+      background: var(--navy);
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      color: white;
+    }
+
+    .footer-names {
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 2px;
+    }
+
+    .footer-details {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.5;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-logo img {
+      width: 60px;
+      height: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.85;
+    }
+
+    .footer-tag {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="top-bar"></div>
+    <div class="content">
+
+      <div class="header">
+        <div class="header-left">
+          <h1>Pre-Flight Setup Guide</h1>
+          <div class="subtitle">APC AI Builder's Course &mdash; Cohort 2</div>
+          <div class="tagline">Complete Before Session 1</div>
+        </div>
+        <div class="header-right">
+          <div class="logo-container">
+            <img src="https://www.aportlandcareer.com/wp-content/uploads/2020/06/APC-Logo-trans.png"
+              alt="A Portland Career"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <svg style="display:none; width:90px; height:60px;" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+              <text x="60" y="26" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold"
+                fill="#16163f">A PORTLAND</text>
+              <text x="60" y="42" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold"
+                fill="#16163f">CAREER</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <p>Everything you need installed, configured, and verified so you arrive on Day 1 ready to build.</p>
+
+      <hr>
+
+      <!-- BEFORE YOU START -->
+      <h2>Before You Start</h2>
+
+      <p><strong>What you need:</strong></p>
+      <ul>
+        <li>A Mac, Windows, or Linux computer</li>
+        <li>Reliable internet connection</li>
+        <li>A password manager (<a href="https://1password.com">1Password</a> or <a href="https://bitwarden.com">Bitwarden</a>) &mdash; stores passwords, generates OTP codes for two-factor auth, and supports passkeys for passwordless login. Worth setting up if you don't have one already.</li>
+      </ul>
+
+      <div class="callout tip"><strong>Tip:</strong> You'll create several accounts during this guide. Save each one in your password manager as you go &mdash; you'll need them in class.</div>
+
+      <hr>
+
+      <!-- STACK AT A GLANCE -->
+      <h2>Your Stack at a Glance</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>What It Does</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cursor</strong></td>
+            <td>AI-powered code editor &mdash; your primary tool</td>
+            <td>$60/mo (Pro Plus)</td>
+          </tr>
+          <tr>
+            <td><strong>Claude</strong></td>
+            <td>AI assistant + powers Claude Code</td>
+            <td>$20/mo (Pro)</td>
+          </tr>
+          <tr>
+            <td><strong>GitHub</strong></td>
+            <td>Cloud storage for your code</td>
+            <td>Free</td>
+          </tr>
+          <tr>
+            <td><strong>Super Whisper</strong></td>
+            <td>Voice dictation &mdash; talk to AI naturally</td>
+            <td>Free (local model)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout"><strong>Realistic budget:</strong> ~$80/month (Cursor Pro Plus + Claude Pro). Other tools like Supabase (database) and Vercel (deployment) are free &mdash; we'll set those up together in class when we need them.</div>
+
+      <hr>
+
+      <!-- STEP 1 -->
+      <h2><span class="step-badge">1</span> Create Your Accounts</h2>
+
+      <p>You'll need three accounts. Create each one and save the login in your password manager.</p>
+
+      <h3>GitHub</h3>
+      <ol>
+        <li>Go to <a href="https://github.com">github.com</a> and sign up</li>
+        <li>Use a professional email &mdash; this account will be on your portfolio</li>
+        <li>Choose a username you'd be comfortable sharing with an employer</li>
+      </ol>
+
+      <h3>Claude Pro</h3>
+      <ol>
+        <li>Go to <a href="https://claude.ai">claude.ai</a> and create an account</li>
+        <li><strong>Subscribe to Claude Pro ($20/month)</strong> &mdash; required for Claude Code, which we use throughout the course</li>
+      </ol>
+
+      <h3>Cursor</h3>
+      <ol>
+        <li>Go to <a href="https://cursor.com">cursor.com</a> and create an account</li>
+        <li><strong>Subscribe to Cursor Pro Plus ($60/month)</strong> &mdash; you can do this now on the website or during install in the next step. The standard Pro plan ($20) works, but you'll hit usage limits quickly during heavy building sessions. Pro Plus gives you 3x the usage.</li>
+      </ol>
+
+      <hr>
+
+      <!-- STEP 2 -->
+      <h2><span class="step-badge">2</span> Install Cursor and Open Your First Folder</h2>
+
+      <p>Cursor is your primary tool for the entire course &mdash; an AI-powered code editor where you'll do nearly all of your building.</p>
+
+      <h3>Install</h3>
+      <ol>
+        <li>Download from <a href="https://cursor.com/download">cursor.com/download</a></li>
+        <li><strong>Mac:</strong> Drag Cursor to your <strong>Applications</strong> folder (not Downloads). <strong>Windows:</strong> Run the installer. <strong>Linux:</strong> Follow the install instructions for your distro.</li>
+        <li>Open Cursor and <strong>sign in with the Cursor account you just created</strong></li>
+        <li>Confirm your Pro Plus subscription is active &mdash; check Cursor Settings &gt; Account</li>
+      </ol>
+
+      <h3>Your First Folder</h3>
+
+      <p>When Cursor opens for the first time, you'll see an empty window. <strong>Cursor needs a folder open to do anything useful</strong> &mdash; its AI only sees files inside whatever folder you have open. This is the #1 thing to remember:</p>
+
+      <div class="callout"><strong>No folder open = AI can't help you.</strong></div>
+
+      <p>Here's how to get started:</p>
+      <ol start="5">
+        <li><strong>Create your course folder.</strong> Open Finder (Mac), File Explorer (Windows), or your file manager (Linux). Create a new folder on your Desktop called <code>AI-Projects</code>. This is your home base for the course &mdash; all your projects will live inside it.</li>
+        <li><strong>Open it in Cursor:</strong> Back in Cursor, go to <strong>File &gt; Open Folder</strong> and select the <code>AI-Projects</code> folder you just created. You should see the folder name in the Explorer panel on the left side. It'll be empty &mdash; that's fine.</li>
+      </ol>
+
+      <p>You'll use <strong>File &gt; Open Folder</strong> every time you start working. Get used to it now &mdash; it's the first thing you do when you open Cursor.</p>
+
+      <h3>Set Your AI Model</h3>
+      <ol start="7">
+        <li>Open Cursor Settings (gear icon or <code>Cmd+,</code> / <code>Ctrl+,</code>)</li>
+        <li>In the AI model selector, choose <strong>Claude Sonnet 4.6</strong> for everyday coding tasks</li>
+        <li>For complex architecture or debugging, switch to <strong>Claude Opus 4.6</strong> &mdash; noticeably better on difficult problems</li>
+        <li>Don't leave it on "Auto" when you need precision</li>
+      </ol>
+
+      <h3>Troubleshooting</h3>
+      <table class="troubleshoot-table">
+        <thead>
+          <tr><th>Problem</th><th>Fix</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>"App can't be opened" (Mac)</td><td>System Settings &gt; Privacy &amp; Security &gt; "Open Anyway"</td></tr>
+          <tr><td>Cursor feels slow</td><td>Close other heavy apps &mdash; Cursor needs decent RAM</td></tr>
+          <tr><td>AI seems confused</td><td>Check which folder is open in the Explorer panel (left sidebar). File &gt; Open Folder to fix it.</td></tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <!-- STEP 3 -->
+      <h2><span class="step-badge">3</span> Let Cursor Set Up Your Dev Tools</h2>
+
+      <p>Now you're in Cursor with a folder open. This is where it starts to get fun &mdash; instead of manually downloading and installing a bunch of tools yourself, you're going to tell Cursor what you need and let it do the work. This is your first taste of the core course workflow: describe what you need, let AI do it, verify the results.</p>
+
+      <ol>
+        <li>Open Cursor Chat: <strong><code>Cmd+L</code></strong> (Mac) or <strong><code>Ctrl+L</code></strong> (Windows/Linux). A chat panel will open on the right side.</li>
+        <li>Paste this prompt into the chat (don't worry about understanding every line &mdash; Cursor does):</li>
+      </ol>
+
+      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I'm setting up my dev environment for a coding course. I need these tools installed and configured. Check what I already have, install what's missing, and verify each one works.
+
+1. **Node.js** (v18+) — if missing, install via Homebrew on Mac, winget on Windows, or apt/dnf on Linux
+2. **Git** — if missing, install via Xcode Command Line Tools on Mac, winget on Windows, or package manager on Linux
+3. **GitHub CLI** (`gh`) — install and then run `gh auth login` (I'll choose GitHub.com > HTTPS > Login with web browser and handle the browser auth)
+4. **Git config** — set my user.name and user.email (ask me for these)
+5. **Claude Code** — run `npm install -g @anthropic-ai/claude-code` then `claude install`
+
+For each step: check first, skip if already installed, install if missing, verify it works.
+If anything needs my password or browser interaction, tell me what to do.</div>
+
+      <ol start="3">
+        <li><strong>Approve each step</strong> as Cursor runs the commands. It will ask before running anything &mdash; just click to approve.</li>
+        <li>When it asks for your <strong>name and email</strong> for git config, use the same email you used for GitHub.</li>
+        <li>For <strong><code>gh auth login</code></strong>, Cursor will show you a short code. Copy the code, it'll open a browser window &mdash; paste it there, click Authorize, then come back to Cursor.</li>
+      </ol>
+
+      <div class="callout workflow"><strong>Why this way?</strong> You're learning the core workflow of the course right now: describe what you need, let AI do it, verify the results. The tools get installed <em>and</em> you practice the skill. Two birds, one prompt.</div>
+
+      <h3>Verify everything got installed</h3>
+
+      <p>Once Cursor finishes installing, let's make sure everything actually worked. Paste this into Cursor Chat:</p>
+
+      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>Can you verify that all of these are installed and working? Check each one and tell me the result in plain English:
+
+1. Node.js (should be v18 or higher)
+2. Git
+3. GitHub CLI — and am I logged in?
+4. Claude Code
+5. Git config — is my name and email set?
+
+If anything is missing or not working, help me fix it.</div>
+
+      <p>Cursor will check each one and tell you what's good and what (if anything) needs attention.</p>
+
+      <h3>About passwords (Mac/Linux)</h3>
+
+      <p>During this process, some installs may ask for your system password. When you see <code>Password:</code> in the terminal, type your password and press Enter. <strong>The characters won't appear as you type &mdash; no dots, no stars, nothing.</strong> That's completely normal &mdash; it's a security feature. Just type it and hit Enter.</p>
+
+      <h3>Troubleshooting</h3>
+      <table class="troubleshoot-table">
+        <thead>
+          <tr><th>Problem</th><th>Fix</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>brew: command not found</code> (Mac)</td><td>Tell Cursor Chat: "Install Homebrew first, then continue"</td></tr>
+          <tr><td><code>winget</code> not found (Windows)</td><td>Tell Cursor Chat: "Use an alternative install method" &mdash; it will adapt</td></tr>
+          <tr><td><code>npm ERR! EACCES</code></td><td>Tell Cursor Chat: "Try with sudo"</td></tr>
+          <tr><td><code>gh auth login</code> code expired</td><td>Run <code>gh auth login</code> again &mdash; codes are time-limited</td></tr>
+          <tr><td><code>command not found</code> after install</td><td>Fully quit and reopen Cursor, then check again</td></tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <!-- STEP 4 -->
+      <h2><span class="step-badge">4</span> Launch Claude Code</h2>
+
+      <p>Claude Code is another AI assistant &mdash; but instead of living in a chat panel like Cursor's AI, it runs in something called the <strong>terminal</strong>. The terminal is that text-only window that looks a little like a computer from 1986 &mdash; dark background, blinking cursor, no buttons. That's exactly what it's supposed to look like. Don't worry, you'll get comfortable with it quickly.</p>
+
+      <p>Think of Claude Code as a second AI helper that's especially good at running commands and building things. You'll use it a lot in the course.</p>
+
+      <h3>Open the terminal</h3>
+
+      <ol>
+        <li>Press <strong>Ctrl + backtick</strong> to open the terminal. The backtick key looks like this: <strong><code>`</code></strong> &mdash; it's to the left of the 1 key, shares a key with the tilde (~). A dark panel will appear at the bottom of Cursor.</li>
+      </ol>
+
+      <h3>Launch Claude Code</h3>
+
+      <ol start="2">
+        <li>You'll see a blinking cursor waiting for you to type something. Here's the trick you'll use constantly in this course: whenever you see a command in a dark box like the one below, <strong>just copy the text inside it and paste it into the terminal.</strong> Think of it like an Oreo &mdash; the dark box is the cookie, but the text inside is the cream. That's the part you want. It's fine if you like the cookie too, but AI prefers the filling.</li>
+      </ol>
+
+      <p>Copy and paste this into the terminal, then press Enter:</p>
+
+      <div class="prompt-block"><span class="label">Paste into Terminal</span>claude</div>
+
+      <ol start="3">
+        <li>It will ask you to log in &mdash; follow the prompts to connect it to your Claude Pro subscription</li>
+        <li>Once it's running, try asking it something simple. Just type: <strong>What folder am I in?</strong> and press Enter.</li>
+        <li>When you're done, type <code>/exit</code> and press Enter to close Claude Code for now</li>
+      </ol>
+
+      <h3>Troubleshooting</h3>
+      <table class="troubleshoot-table">
+        <thead>
+          <tr><th>Problem</th><th>Fix</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>claude: command not found</code></td><td>Step 3 didn't complete &mdash; open Cursor Chat and ask it to install Claude Code</td></tr>
+          <tr><td>Authentication fails</td><td>Make sure you have an active Claude Pro subscription at <a href="https://claude.ai">claude.ai</a></td></tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <!-- STEP 5 -->
+      <h2><span class="step-badge">5</span> Verify Everything + Set Up Voice Dictation</h2>
+
+      <p>You've got Cursor working and your dev tools installed. Now we're going to do two things: make sure everything is actually set up correctly, and install one more tool &mdash; a voice dictation app that lets you talk to AI instead of typing.</p>
+
+      <div class="callout tip"><strong>Need extra help with Super Whisper?</strong> We have a dedicated <a href="superwhisper-setup-guide.html">Super Whisper Setup Guide</a> with detailed steps for permissions, model download, keyboard shortcuts, and troubleshooting.</div>
+
+      <p>Think of this like a pilot's pre-flight checklist. Before takeoff, the pilot doesn't check every instrument from memory &mdash; they run through a checklist that confirms everything is good to go. That's what we're about to do, and Claude Code is going to run it for you.</p>
+
+      <h3>Install the setup helper skills</h3>
+
+      <p>First, we need to give Claude Code a few "helper skills" &mdash; small files that teach it how to guide you through setup tasks. You already know the drill from Step 3: paste a prompt into Cursor Chat and let it handle the details.</p>
+
+      <ol>
+        <li>Open Cursor Chat: <strong><code>Cmd+L</code></strong> (Mac) or <strong><code>Ctrl+L</code></strong> (Windows/Linux)</li>
+        <li>Paste this prompt:</li>
+      </ol>
+
+      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I need to download three helper skill files for Claude Code and save them to my Claude Code commands folder. Here's what to do:
+
+1. Create the Claude Code commands folder if it doesn't exist: mkdir -p ~/.claude/commands
+2. Download these three files into that folder:
+   - https://raw.githubusercontent.com/goggledefogger/apc-ai-cohort2/main/skills/course-preflight.md
+   - https://raw.githubusercontent.com/goggledefogger/apc-ai-cohort2/main/skills/preflight-check.sh
+   - https://raw.githubusercontent.com/goggledefogger/apc-ai-cohort2/main/skills/superwhisper-setup.md
+
+Tell me what you're doing at each step, and confirm when it's done.</div>
+
+      <ol start="3">
+        <li><strong>Approve each step</strong> as Cursor runs the commands. It will ask before doing anything.</li>
+      </ol>
+
+      <div class="callout"><strong>What just happened?</strong> You just installed three helper skills that teach Claude Code how to guide you through specific setup tasks. Think of it like giving it a playbook &mdash; now when you ask it to check your setup, it knows exactly what to look for and how to help.</div>
+
+      <h3>Run the pre-flight check</h3>
+
+      <p>Now it's time to hand things off to Claude Code. This is the fun part &mdash; you're going to tell it to run through the full setup checklist, and it'll take it from there.</p>
+
+      <ol start="4">
+        <li>Open a terminal in Cursor by pressing <strong>Ctrl + backtick</strong> (the backtick key is to the left of the 1 key, next to the tilde ~)</li>
+        <li>Type <code>claude</code> and press Enter to start Claude Code</li>
+        <li>Once it's running, type this and press Enter:</li>
+      </ol>
+
+      <div class="prompt-block"><span class="label">Type into Claude Code</span>/course-preflight</div>
+
+      <p>That's it. Claude Code will:</p>
+      <ul>
+        <li><strong>Check every tool</strong> you installed in the previous steps and confirm they're working</li>
+        <li><strong>Walk you through setting up Super Whisper</strong> &mdash; a voice dictation tool that lets you talk to AI instead of typing (it'll handle the download, permissions, and testing)</li>
+        <li><strong>Help you fix anything</strong> that isn't right &mdash; just follow along and answer its questions</li>
+      </ul>
+
+      <p>When it's done, you'll get a clear summary of what passed and what (if anything) still needs attention. If something didn't pass, fix what it suggests and run <code>/course-preflight</code> again &mdash; it'll re-check everything.</p>
+
+      <div class="callout workflow"><strong>This is the course workflow.</strong> You just described what you needed, let AI do the work, and verified the results. You'll do this over and over in class &mdash; it never gets old.</div>
+
+      <hr>
+
+      <!-- FINAL CHECKLIST -->
+      <h2>Final Checklist</h2>
+
+      <p>If <code>/course-preflight</code> gave you all green, you're nearly done. There are just a few things it can't check on its own &mdash; confirm these manually:</p>
+
+      <ul class="checklist">
+        <li><strong>Cursor subscription</strong> &mdash; Signed in with Pro Plus ($60/mo) active. Check at Cursor Settings &gt; Account.</li>
+        <li><strong>AI model</strong> &mdash; Set to Claude Sonnet 4.6 in Cursor Settings (gear icon or <code>Cmd+,</code> / <code>Ctrl+,</code>).</li>
+        <li><strong>Claude Pro subscription</strong> &mdash; Active at <a href="https://claude.ai">claude.ai</a> &gt; Settings.</li>
+      </ul>
+
+      <p>That's it. If everything above is checked off and your pre-flight passed, you're ready for Session 1.</p>
+
+      <hr>
+
+      <!-- CHECK-IN -->
+      <h2>Check-In Before Session 1</h2>
+
+      <p>Your instructors will check in with the class <strong>a day or two before Session 1</strong> to make sure everyone is set up and comfortable. If you're stuck on any step &mdash; even if it feels silly &mdash; that's the time to say something. We'd much rather sort it out before class than spend session time troubleshooting.</p>
+
+      <p>If you hit a wall during setup, don't spiral. Just note where you got stuck and let us know. This stuff can be finicky the first time, and that's completely normal. We'll get it sorted.</p>
+
+    </div>
+
+    <footer class="footer">
+      <div class="footer-left">
+        <div class="footer-names">Danny Bauman &nbsp;&bull;&nbsp; Dan Hahn, M.S.</div>
+        <div class="footer-details">dan@aportlandcareer.com &nbsp;&bull;&nbsp; 503-470-9544
+          &nbsp;&bull;&nbsp; A Portland Career</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-logo">
+          <img src="https://www.aportlandcareer.com/wp-content/uploads/2020/06/APC-Logo-trans.png"
+            alt="A Portland Career"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <svg style="display:none; width:55px; height:28px;" viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
+            <text x="40" y="17" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="bold"
+              fill="white">A PORTLAND</text>
+            <text x="40" y="29" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="bold"
+              fill="rgba(255,255,255,0.6)">CAREER</text>
+          </svg>
+        </div>
+        <div class="footer-tag">www.aportlandcareer.com</div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>
