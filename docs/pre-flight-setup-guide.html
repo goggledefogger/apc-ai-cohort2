@@ -457,9 +457,9 @@
             <td>Free</td>
           </tr>
           <tr>
-            <td><strong>Super Whisper</strong></td>
+            <td><strong>Handy</strong></td>
             <td>Voice dictation &mdash; talk to AI naturally</td>
-            <td>Free (local model)</td>
+            <td>Free &amp; open source</td>
           </tr>
         </tbody>
       </table>
@@ -655,7 +655,34 @@ If anything is missing or not working, help me fix it.</div>
 
       <p>You've got Cursor working and your dev tools installed. Now we're going to do two things: make sure everything is actually set up correctly, and install one more tool &mdash; a voice dictation app that lets you talk to AI instead of typing.</p>
 
-      <div class="callout tip"><strong>Need extra help with Super Whisper?</strong> We have a dedicated <a href="superwhisper-setup-guide.html">Super Whisper Setup Guide</a> with detailed steps for permissions, model download, keyboard shortcuts, and troubleshooting.</div>
+      <h3>Install Handy (voice dictation)</h3>
+
+      <p><a href="https://handy.computer">Handy</a> is a free, open-source voice dictation app. Hold a keyboard shortcut, speak, release &mdash; and your words appear as text wherever your cursor is. It runs entirely on your computer, so your voice never leaves your machine.</p>
+
+      <ol>
+        <li><strong>Mac:</strong> Open a terminal in Cursor (<strong>Ctrl + backtick</strong>) and run:
+          <div class="prompt-block"><span class="label">Paste into Terminal</span>brew install --cask handy</div>
+          Or download directly from <a href="https://superwhisper.com/download">handy.computer</a>.
+        </li>
+        <li><strong>Windows:</strong> Download the installer from <a href="https://handy.computer">handy.computer</a> and run it.</li>
+        <li><strong>Grant permissions</strong> when prompted &mdash; Handy needs <strong>Microphone</strong> access (to hear you) and <strong>Accessibility</strong> access (to paste text into other apps).</li>
+        <li>Open Handy, hold the keyboard shortcut, say something, and release. Your words should appear wherever your cursor is.</li>
+      </ol>
+
+      <div class="callout tip"><strong>Why voice?</strong> Talking is faster than typing, especially for describing what you want to build. Once you get comfortable with Handy, you'll use it for everything &mdash; prompts, describing bugs, brainstorming. It becomes second nature.</div>
+
+      <h3>Troubleshooting Handy</h3>
+      <table class="troubleshoot-table">
+        <thead>
+          <tr><th>Problem</th><th>Fix</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>"App can't be opened" (Mac)</td><td>System Settings &gt; Privacy &amp; Security &gt; "Open Anyway"</td></tr>
+          <tr><td>Nothing happens when I speak</td><td>Check System Settings &gt; Privacy &amp; Security &gt; Microphone &mdash; make sure Handy is listed and enabled</td></tr>
+          <tr><td>Text doesn't appear in other apps</td><td>Check System Settings &gt; Privacy &amp; Security &gt; Accessibility &mdash; make sure Handy is listed and enabled</td></tr>
+          <tr><td>Windows SmartScreen warning</td><td>Click "More Info" &gt; "Run Anyway" &mdash; it's an unsigned open-source app, which is normal</td></tr>
+        </tbody>
+      </table>
 
       <p>Think of this like a pilot's pre-flight checklist. Before takeoff, the pilot doesn't check every instrument from memory &mdash; they run through a checklist that confirms everything is good to go. That's what we're about to do, and Claude Code is going to run it for you.</p>
 
@@ -668,13 +695,12 @@ If anything is missing or not working, help me fix it.</div>
         <li>Paste this prompt:</li>
       </ol>
 
-      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I need to download three helper skill files for Claude Code and save them to my Claude Code commands folder. Here's what to do:
+      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I need to download two helper skill files for Claude Code and save them to my Claude Code commands folder. Here's what to do:
 
 1. Create the Claude Code commands folder if it doesn't exist: mkdir -p ~/.claude/commands
-2. Download these three files into that folder:
+2. Download these two files into that folder:
    - https://raw.githubusercontent.com/goggledefogger/apc-ai-cohort2/main/skills/course-preflight.md
    - https://raw.githubusercontent.com/goggledefogger/apc-ai-cohort2/main/skills/preflight-check.sh
-   - https://raw.githubusercontent.com/goggledefogger/apc-ai-cohort2/main/skills/superwhisper-setup.md
 
 Tell me what you're doing at each step, and confirm when it's done.</div>
 
@@ -682,7 +708,7 @@ Tell me what you're doing at each step, and confirm when it's done.</div>
         <li><strong>Approve each step</strong> as Cursor runs the commands. It will ask before doing anything.</li>
       </ol>
 
-      <div class="callout"><strong>What just happened?</strong> You just installed three helper skills that teach Claude Code how to guide you through specific setup tasks. Think of it like giving it a playbook &mdash; now when you ask it to check your setup, it knows exactly what to look for and how to help.</div>
+      <div class="callout"><strong>What just happened?</strong> You just installed helper skills that teach Claude Code how to guide you through setup verification. Think of it like giving it a playbook &mdash; now when you ask it to check your setup, it knows exactly what to look for and how to help.</div>
 
       <h3>Run the pre-flight check</h3>
 
@@ -699,7 +725,7 @@ Tell me what you're doing at each step, and confirm when it's done.</div>
       <p>That's it. Claude Code will:</p>
       <ul>
         <li><strong>Check every tool</strong> you installed in the previous steps and confirm they're working</li>
-        <li><strong>Walk you through setting up Super Whisper</strong> &mdash; a voice dictation tool that lets you talk to AI instead of typing (it'll handle the download, permissions, and testing)</li>
+        <li><strong>Verify Handy is installed</strong> and ready to use</li>
         <li><strong>Help you fix anything</strong> that isn't right &mdash; just follow along and answer its questions</li>
       </ul>
 
