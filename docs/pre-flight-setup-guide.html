@@ -483,7 +483,7 @@
       <h3>Claude Pro</h3>
       <ol>
         <li>Go to <a href="https://claude.ai">claude.ai</a> and create an account</li>
-        <li><strong>Subscribe to Claude Pro ($20/month)</strong> &mdash; required for Claude Code, which we use throughout the course</li>
+        <li><strong>Subscribe to Claude Pro ($20/month)</strong> &mdash; required for Claude Code, which we use throughout the course. Also gives you access to Claude&rsquo;s full suite of tools at claude.ai, including some of the most capable and reliable AI models available.</li>
       </ol>
 
       <h3>Cursor</h3>
@@ -553,7 +553,7 @@
         <li>Paste this prompt into the chat (don't worry about understanding every line &mdash; Cursor does):</li>
       </ol>
 
-      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I'm setting up my dev environment for a coding course. I need these tools installed and configured. Check what I already have, install what's missing, and verify each one works.
+      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I'm a beginner setting up my development environment for a course on building software with AI. I need these tools installed and configured. Check what I already have, install what's missing, and verify each one works.
 
 1. **Node.js** (v20+) — if missing, install via Homebrew on Mac, winget on Windows, or apt/dnf on Linux
 2. **Git** — if missing, install via Xcode Command Line Tools on Mac, winget on Windows, or package manager on Linux
@@ -619,13 +619,15 @@ If anything is missing or not working, help me fix it.</div>
         <li>Paste this prompt:</li>
       </ol>
 
-      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I need to install Claude Code. Run the native installer:
+      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I'm a beginner and I need to install Claude Code (a terminal-based AI assistant). Please install it for me using the official installer:
 
 curl -fsSL https://claude.ai/install.sh | bash
 
-After it finishes, verify it works by running: claude --version
+After it finishes, check that it worked by running: claude --version
 
-If `curl` isn't available, try: npm install -g @anthropic-ai/claude-code</div>
+If that install method doesn't work, try this instead: npm install -g @anthropic-ai/claude-code
+
+Walk me through what's happening in simple terms.</div>
 
       <ol start="3">
         <li><strong>Approve</strong> when Cursor asks to run the command.</li>
@@ -667,20 +669,22 @@ If `curl` isn't available, try: npm install -g @anthropic-ai/claude-code</div>
 
       <h3>Install Handy (voice dictation)</h3>
 
-      <p><a href="https://handy.computer">Handy</a> is a free, open-source voice dictation app. Hold a keyboard shortcut, speak, release &mdash; and your words appear as text wherever your cursor is. It runs entirely on your computer, so your voice never leaves your machine.</p>
+      <p><a href="https://handy.computer">Handy</a> is a free, open-source voice dictation app. It runs entirely on your computer, so your voice never leaves your machine.</p>
+
+      <p><strong>How it works:</strong> By default, Handy uses <strong>push-to-talk</strong> &mdash; you <strong>hold</strong> the keyboard shortcut while you speak, then <strong>release</strong> to stop (like a walkie-talkie). If you prefer <strong>toggle mode</strong> (press once to start, press again to stop), open Handy&rsquo;s settings and turn off Push-to-Talk. Either way works great &mdash; pick whichever feels more natural.</p>
 
       <ol>
         <li>Open Cursor Chat: <strong><code>Cmd+L</code></strong> (Mac) or <strong><code>Ctrl+L</code></strong> (Windows/Linux)</li>
         <li>Paste this prompt:</li>
       </ol>
 
-      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I need to install Handy, a free voice dictation app.
+      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I need help installing Handy, a free voice dictation app that works offline.
 
-**Mac:** Run `brew install --cask handy` (if brew isn't installed, install Homebrew first). Alternatively, download the .dmg from https://github.com/cjpais/Handy/releases/latest
+**Mac:** Run `brew install --cask handy` (if brew isn't installed, install Homebrew first). Or download the .dmg from https://github.com/cjpais/Handy/releases/latest
 
-**Windows:** Download the installer from https://github.com/cjpais/Handy/releases/latest and tell me which file to grab.
+**Windows:** Download the installer from https://github.com/cjpais/Handy/releases/latest &mdash; tell me which file to pick.
 
-After installing, verify Handy is available by checking if the app exists.</div>
+After installing, check that the app is available. Let me know if I need to grant any permissions.</div>
 
       <ol start="3">
         <li><strong>Approve</strong> when Cursor asks to run the command.</li>
@@ -689,6 +693,14 @@ After installing, verify Handy is available by checking if the app exists.</div>
       </ol>
 
       <div class="callout tip"><strong>Why voice?</strong> Talking is faster than typing, especially for describing what you want to build. Once you get comfortable with Handy, you'll use it for everything &mdash; prompts, describing bugs, brainstorming. It becomes second nature.</div>
+
+      <h3>Tips</h3>
+      <ul>
+        <li><strong>Visual indicator:</strong> You&rsquo;ll see a small graphic at the bottom of your screen while Handy is recording &mdash; that&rsquo;s how you know it&rsquo;s listening.</li>
+        <li><strong>Auto-clipboard:</strong> Handy copies each transcription to your clipboard automatically. If your cursor wasn&rsquo;t in the right spot, just click where you meant to be and press <strong>Cmd+V</strong> / <strong>Ctrl+V</strong> to paste. Nothing lost.</li>
+        <li><strong>History:</strong> Handy keeps a history of your dictations with both the text and the original audio. Check Handy&rsquo;s settings to browse it.</li>
+        <li><strong>All local:</strong> Your audio and transcriptions stay on your computer &mdash; nothing is sent to the cloud.</li>
+      </ul>
 
       <h3>Troubleshooting Handy</h3>
       <table class="troubleshoot-table">
@@ -714,14 +726,14 @@ After installing, verify Handy is available by checking if the app exists.</div>
         <li>Paste this prompt:</li>
       </ol>
 
-      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I need to download two helper skill files for Claude Code and save them to my Claude Code commands folder. Here's what to do:
+      <div class="prompt-block"><span class="label">Paste into Cursor Chat</span>I need to set up two helper files for Claude Code. These teach it how to check my setup. Please:
 
-1. Create the Claude Code commands folder if it doesn't exist: mkdir -p ~/.claude/commands
+1. Create this folder if it doesn't exist: ~/.claude/commands
 2. Download these two files into that folder:
    - https://raw.githubusercontent.com/goggledefogger/apc-ai-cohort2/main/skills/course-preflight.md
    - https://raw.githubusercontent.com/goggledefogger/apc-ai-cohort2/main/skills/preflight-check.sh
 
-Tell me what you're doing at each step, and confirm when it's done.</div>
+Tell me what you're doing at each step so I can follow along.</div>
 
       <ol start="3">
         <li><strong>Approve each step</strong> as Cursor runs the commands. It will ask before doing anything.</li>
