@@ -27,7 +27,6 @@ If you get stuck on any step, don't spiral — just note where you stopped and l
 ## Course Resources
 
 - **[Tool Glossary & Links](resources/README.md)** — What each tool does, when you'll use it, and where to find it
-- **[Danny's Demo Projects](resources/demo-showcase-links.md)** — Projects shown in Session 1
 
 ---
 
