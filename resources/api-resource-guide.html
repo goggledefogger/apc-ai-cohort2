@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Resource Guide — BMAD Mastery Program</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #16163f;
+      --navy-light: #1e1e52;
+      --orange: #f15a24;
+      --green: #10b981;
+      --blue: #2DA3CB;
+      --text: #111118;
+      --text-secondary: #555568;
+      --border: #e2e2e8;
+      --bg-subtle: #f7f7f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background: #e4e4ea;
+      font-size: 9.5pt;
+    }
+
+    .document {
+      max-width: 8.5in;
+      margin: 0 auto;
+      background: white;
+      position: relative;
+    }
+
+    .top-bar {
+      height: 8px;
+      background: var(--navy);
+    }
+
+    .content {
+      padding: 0.4in 0.6in 0.5in;
+    }
+
+    /* --- TYPOGRAPHY --- */
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      margin-top: 28px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 4px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    /* --- HEADER --- */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .header-title {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+
+    .header-tagline {
+      font-size: 9pt;
+      font-weight: 500;
+      color: var(--orange);
+      letter-spacing: 0.2px;
+    }
+
+    .header-right {
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .header-meta {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* --- INTRO --- */
+
+    .intro {
+      font-size: 9pt;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      padding: 10px 14px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border-left: 3px solid var(--navy);
+    }
+
+    /* --- API CARDS --- */
+
+    .api-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .api-card {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 14px 16px 12px;
+    }
+
+    .api-card.elevated {
+      border-left: 3px solid var(--orange);
+      background: linear-gradient(135deg, rgba(241, 90, 36, 0.03) 0%, transparent 60%);
+    }
+
+    .api-card.highlight {
+      border-left: 3px solid var(--blue);
+      background: linear-gradient(135deg, rgba(45, 163, 203, 0.03) 0%, transparent 60%);
+    }
+
+    .api-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .api-name {
+      font-size: 9pt;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+    }
+
+    .api-card.elevated .api-name {
+      color: var(--orange);
+    }
+
+    .api-card.highlight .api-name {
+      color: var(--blue);
+    }
+
+    .api-badge {
+      font-size: 6.5pt;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 2px;
+      flex-shrink: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-nokey {
+      color: var(--green);
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    .badge-easykey {
+      color: var(--blue);
+      background: rgba(45, 163, 203, 0.1);
+    }
+
+    .badge-oauth {
+      color: var(--orange);
+      background: rgba(241, 90, 36, 0.08);
+    }
+
+    .api-desc {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .api-bullets {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .api-bullets li {
+      font-size: 7.5pt;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      padding-left: 10px;
+      position: relative;
+      margin-bottom: 1px;
+    }
+
+    .api-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5.5px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .api-url {
+      font-size: 7pt;
+      color: var(--text-secondary);
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      margin-top: 6px;
+      padding: 3px 8px;
+      background: var(--bg-subtle);
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .callout {
+      font-size: 7pt;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 4px;
+      padding: 3px 8px;
+      background: rgba(241, 90, 36, 0.06);
+      border-radius: 2px;
+      line-height: 1.4;
+    }
+
+    .callout-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-blue {
+      color: var(--blue);
+      background: rgba(45, 163, 203, 0.06);
+    }
+
+    /* --- QUICK REF TABLE --- */
+
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      margin-bottom: 8px;
+      font-size: 7.5pt;
+    }
+
+    .ref-table thead {
+      background: var(--navy);
+    }
+
+    .ref-table th {
+      color: white;
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 7px 12px;
+      text-align: left;
+    }
+
+    .ref-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.4;
+      vertical-align: top;
+    }
+
+    .ref-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .ref-table tr:nth-child(even) {
+      background: var(--bg-subtle);
+    }
+
+    .ref-table .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+    }
+
+    /* --- TIPS CHECKLIST --- */
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 24px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+    }
+
+    /* --- FOOTER --- */
+
+    .footer {
+      background: var(--navy);
+      padding: 10px 18px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .footer-left {
+      color: white;
+    }
+
+    .footer-names {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1px;
+    }
+
+    .footer-details {
+      font-size: 7pt;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.5;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-tag {
+      font-size: 6.5pt;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 2px;
+    }
+
+    /* --- PRINT --- */
+
+    @media print {
+      body {
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    @media screen {
+      .document {
+        box-shadow: 0 2px 32px rgba(0, 0, 0, 0.12);
+        margin: 24px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="document">
+
+    <div class="top-bar"></div>
+
+    <div class="content">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-left">
+          <h1 class="header-title">API Resource Guide</h1>
+          <div class="header-subtitle">BMAD Mastery Program</div>
+          <div class="header-tagline">Cohort 2 &nbsp;|&nbsp; Updated Mar 19, 2026</div>
+        </div>
+        <div class="header-right">
+          <div class="header-meta">Student Resource</div>
+        </div>
+      </header>
+
+      <!-- INTRO -->
+      <div class="intro">
+        A curated list of free APIs you can use in your personal projects. These range from zero-setup (no API key at all) to easy-key (one key, instant approval). Each one can turn a simple app into something that feels like real software. Start with the no-key APIs to get comfortable, then level up when you're ready.
+      </div>
+
+      <!-- NO KEY NEEDED -->
+      <div class="section-title">No API Key Needed</div>
+
+      <div class="api-grid">
+
+        <!-- Open-Meteo -->
+        <div class="api-card elevated">
+          <div class="api-header">
+            <span class="api-name">Open-Meteo</span>
+            <span class="api-badge badge-nokey">No Key</span>
+          </div>
+          <div class="api-desc">Hyperlocal weather forecasts, historical weather data, air quality, and UV index. Incredibly rich for a completely free, no-auth API.</div>
+          <ul class="api-bullets">
+            <li>&ldquo;Should I bike to work?&rdquo; widget</li>
+            <li>Outdoor activity planner that makes decisions for you</li>
+            <li>Daily weather dashboard with air quality alerts</li>
+            <li>Pair with Leaflet.js for a geospatial weather map</li>
+          </ul>
+          <div class="api-url">open-meteo.com/en/docs</div>
+          <div class="callout"><span class="callout-label">Why it hits:</span> No auth complexity, and the student ends up with a real weather app that looks like it took weeks to build</div>
+        </div>
+
+        <!-- USGS Earthquake -->
+        <div class="api-card elevated">
+          <div class="api-header">
+            <span class="api-name">USGS Earthquake API</span>
+            <span class="api-badge badge-nokey">No Key</span>
+          </div>
+          <div class="api-desc">Real-time seismic event data from around the world. Returns actual earthquakes happening right now, with magnitude, depth, and coordinates.</div>
+          <ul class="api-bullets">
+            <li>Live earthquake map with Leaflet.js &mdash; genuinely impressive portfolio piece</li>
+            <li>Alert dashboard for earthquakes above a certain magnitude</li>
+            <li>Historical seismic analysis by region</li>
+            <li>Real government data, updated continuously</li>
+          </ul>
+          <div class="api-url">earthquake.usgs.gov/fdsnws/event/1/</div>
+          <div class="callout"><span class="callout-label">Demo day line:</span> &ldquo;I built an app that shows you every earthquake happening on Earth right now&rdquo;</div>
+        </div>
+
+        <!-- Open Trivia Database -->
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-name">Open Trivia Database</span>
+            <span class="api-badge badge-nokey">No Key</span>
+          </div>
+          <div class="api-desc">A full quiz game engine with categories, difficulty levels, and multiple question types. Interactive in a way that static data APIs aren't.</div>
+          <ul class="api-bullets">
+            <li>Build a complete trivia game with scoring</li>
+            <li>Category-based quiz challenges</li>
+            <li>Multiplayer quiz app with difficulty tiers</li>
+            <li>Great for learning state management and user interaction</li>
+          </ul>
+          <div class="api-url">opentdb.com/api_config.php</div>
+        </div>
+
+        <!-- PokeAPI -->
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-name">Pok&eacute;API</span>
+            <span class="api-badge badge-nokey">No Key</span>
+          </div>
+          <div class="api-desc">Way deeper than &ldquo;fetch a Pok&eacute;mon.&rdquo; A rich, deeply nested API that teaches real data modeling &mdash; types, abilities, evolution chains, stats.</div>
+          <ul class="api-bullets">
+            <li>Full Pok&eacute;dex with search and filtering</li>
+            <li>Team builder with type-matchup calculator</li>
+            <li>Stat comparison tool across generations</li>
+            <li>Great for learning nested API calls and data relationships</li>
+          </ul>
+          <div class="api-url">pokeapi.co</div>
+        </div>
+
+        <!-- LibreTranslate -->
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-name">LibreTranslate</span>
+            <span class="api-badge badge-nokey">No Key</span>
+          </div>
+          <div class="api-desc">Open-source translation API with free public instances. Build a real translation app &mdash; way more satisfying than displaying a quote of the day.</div>
+          <ul class="api-bullets">
+            <li>Real-time text translation between languages</li>
+            <li>Language detection from pasted text</li>
+            <li>Translate-and-learn language study tool</li>
+            <li>Add translation to any app as a feature</li>
+          </ul>
+          <div class="api-url">libretranslate.com</div>
+        </div>
+
+        <!-- ZenQuotes -->
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-name">ZenQuotes</span>
+            <span class="api-badge badge-nokey">No Key</span>
+          </div>
+          <div class="api-desc">Random motivational quotes and daily affirmations. Simple, but a great first API to call &mdash; perfect for adding personality to any app.</div>
+          <ul class="api-bullets">
+            <li>Daily quote display on a dashboard</li>
+            <li>Motivational message when completing a task</li>
+            <li>Quote of the day widget for any project</li>
+          </ul>
+          <div class="api-url">zenquotes.io</div>
+        </div>
+
+      </div>
+
+      <!-- EASY KEY REQUIRED -->
+      <div class="section-title">API Key Required (Easy Setup)</div>
+
+      <div class="api-grid">
+
+        <!-- NASA -->
+        <div class="api-card highlight">
+          <div class="api-header">
+            <span class="api-name">NASA APIs</span>
+            <span class="api-badge badge-easykey">Easy Key</span>
+          </div>
+          <div class="api-desc">One simple key, instant approval. Access to Astronomy Picture of the Day, Mars Rover photos, and near-Earth asteroid tracking.</div>
+          <ul class="api-bullets">
+            <li>Astronomy Photo of the Day gallery</li>
+            <li>Mars Rover photo explorer with date and camera filters</li>
+            <li>Near-Earth asteroid tracker &mdash; is one heading our way?</li>
+            <li>Earth imagery from satellite data</li>
+          </ul>
+          <div class="api-url">api.nasa.gov</div>
+          <div class="callout callout-blue"><span class="callout-label">Demo day line:</span> &ldquo;I built an app that tells me if an asteroid is heading toward Earth&rdquo;</div>
+        </div>
+
+        <!-- API Ninjas -->
+        <div class="api-card highlight">
+          <div class="api-header">
+            <span class="api-name">API Ninjas</span>
+            <span class="api-badge badge-easykey">Easy Key</span>
+          </div>
+          <div class="api-desc">One key, dozens of endpoints. A Swiss army knife for small projects &mdash; nutrition lookup, text sentiment, IP geolocation, historical events, and more.</div>
+          <ul class="api-bullets">
+            <li>Nutrition facts lookup for any food</li>
+            <li>Text sentiment analysis</li>
+            <li>IP geolocation and &ldquo;where am I?&rdquo; tools</li>
+            <li>Random historical events, celebrity facts, trivia</li>
+            <li>Great for prototyping fast &mdash; one key unlocks everything</li>
+          </ul>
+          <div class="api-url">api-ninjas.com</div>
+        </div>
+
+        <!-- Hugging Face -->
+        <div class="api-card elevated">
+          <div class="api-header">
+            <span class="api-name">Hugging Face Inference API</span>
+            <span class="api-badge badge-easykey">Easy Key</span>
+          </div>
+          <div class="api-desc">Run real machine learning models &mdash; sentiment analysis, text generation, image classification &mdash; via a simple REST call. No ML knowledge needed.</div>
+          <ul class="api-bullets">
+            <li>Sentiment analysis on user-submitted text</li>
+            <li>Image classification: upload a photo, get labels</li>
+            <li>Text summarization or generation</li>
+            <li>One fetch request = calling a real AI model from your app</li>
+          </ul>
+          <div class="api-url">huggingface.co/docs/api-inference</div>
+          <div class="callout"><span class="callout-label">Secret weapon:</span> Students calling a real AI model from their own app with a single fetch request &mdash; that&rsquo;s an electric classroom moment</div>
+        </div>
+
+        <!-- Unsplash -->
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-name">Unsplash API</span>
+            <span class="api-badge badge-easykey">Easy Key</span>
+          </div>
+          <div class="api-desc">Beautiful, high-quality photos searchable by keyword. A great way to make any project look polished by pulling in dynamic imagery.</div>
+          <ul class="api-bullets">
+            <li>Dynamic background images based on context or mood</li>
+            <li>Photo search integrated into a content app</li>
+            <li>Random image of the day for a dashboard</li>
+          </ul>
+          <div class="api-url">unsplash.com/developers</div>
+        </div>
+
+        <!-- News API -->
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-name">News API</span>
+            <span class="api-badge badge-easykey">Easy Key</span>
+          </div>
+          <div class="api-desc">Top headlines and article search from news sources worldwide. Free tier is dev-only (localhost), but great for learning and demos.</div>
+          <ul class="api-bullets">
+            <li>News dashboard with topic filtering</li>
+            <li>Top headlines widget for a personal portal</li>
+            <li>Search articles by keyword and date range</li>
+          </ul>
+          <div class="api-url">newsapi.org</div>
+        </div>
+
+        <!-- Spotify -->
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-name">Spotify Web API</span>
+            <span class="api-badge badge-oauth">OAuth</span>
+          </div>
+          <div class="api-desc">Search tracks, get audio features (danceability, energy, tempo), and build playlist tools. Requires a Spotify account and OAuth &mdash; a step up in complexity.</div>
+          <ul class="api-bullets">
+            <li>Music recommendation app based on mood or energy</li>
+            <li>Playlist analyzer: what does your music taste look like?</li>
+            <li>Track search with audio feature visualization</li>
+            <li>Best attempted after you&rsquo;re comfortable with simpler APIs</li>
+          </ul>
+          <div class="api-url">developer.spotify.com/documentation/web-api</div>
+          <div class="callout callout-blue"><span class="callout-label">Heads up:</span> OAuth is more complex than a simple API key &mdash; save this one for when you&rsquo;re ready for a challenge</div>
+        </div>
+
+      </div>
+
+      <!-- BONUS: FUN STARTERS -->
+      <div class="section-title">Fun Starter APIs</div>
+
+      <div class="intro">
+        These are simpler APIs that are great for your very first API call or for adding a lighthearted touch to a project. Less &ldquo;wow&rdquo; factor, but zero friction.
+      </div>
+
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th style="width: 22%;">API</th>
+            <th style="width: 14%;">Auth</th>
+            <th style="width: 34%;">What It Does</th>
+            <th style="width: 30%;">Project Idea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>The Dog API</td>
+            <td class="subtle">No key</td>
+            <td>Random dog images by breed</td>
+            <td>Reward image when you complete a task</td>
+          </tr>
+          <tr>
+            <td>The Cat API</td>
+            <td class="subtle">No key</td>
+            <td>Random cat images and facts</td>
+            <td>Cat-of-the-day dashboard widget</td>
+          </tr>
+          <tr>
+            <td>Rick and Morty API</td>
+            <td class="subtle">No key</td>
+            <td>Characters, episodes, locations</td>
+            <td>Character encyclopedia with search and filtering</td>
+          </tr>
+          <tr>
+            <td>OpenFDA</td>
+            <td class="subtle">No key</td>
+            <td>Drug events, food recalls, device data</td>
+            <td>&ldquo;Is my food safe?&rdquo; lookup tool</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- QUICK REFERENCE -->
+      <div class="section-title">Quick Reference</div>
+
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th style="width: 22%;">API</th>
+            <th style="width: 14%;">Auth</th>
+            <th style="width: 22%;">Complexity</th>
+            <th style="width: 42%;">Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Open-Meteo</td>
+            <td class="subtle">None</td>
+            <td class="subtle">Beginner</td>
+            <td>Weather apps, geospatial projects, decision tools</td>
+          </tr>
+          <tr>
+            <td>USGS Earthquake</td>
+            <td class="subtle">None</td>
+            <td class="subtle">Beginner</td>
+            <td>Map visualizations, real-time data dashboards</td>
+          </tr>
+          <tr>
+            <td>Open Trivia DB</td>
+            <td class="subtle">None</td>
+            <td class="subtle">Beginner</td>
+            <td>Interactive games, state management practice</td>
+          </tr>
+          <tr>
+            <td>Pok&eacute;API</td>
+            <td class="subtle">None</td>
+            <td class="subtle">Beginner&ndash;Intermediate</td>
+            <td>Data modeling, nested API calls, search/filter UIs</td>
+          </tr>
+          <tr>
+            <td>LibreTranslate</td>
+            <td class="subtle">None</td>
+            <td class="subtle">Beginner</td>
+            <td>Translation features, language tools</td>
+          </tr>
+          <tr>
+            <td>NASA APIs</td>
+            <td class="subtle">Easy key</td>
+            <td class="subtle">Beginner</td>
+            <td>Image galleries, space data, portfolio wow-factor</td>
+          </tr>
+          <tr>
+            <td>API Ninjas</td>
+            <td class="subtle">Easy key</td>
+            <td class="subtle">Beginner</td>
+            <td>Fast prototyping, adding features to any app</td>
+          </tr>
+          <tr>
+            <td>Hugging Face</td>
+            <td class="subtle">Easy key</td>
+            <td class="subtle">Intermediate</td>
+            <td>AI/ML features, sentiment analysis, image recognition</td>
+          </tr>
+          <tr>
+            <td>Unsplash</td>
+            <td class="subtle">Easy key</td>
+            <td class="subtle">Beginner</td>
+            <td>Dynamic images, making any app look polished</td>
+          </tr>
+          <tr>
+            <td>Spotify</td>
+            <td class="subtle">OAuth</td>
+            <td class="subtle">Intermediate&ndash;Advanced</td>
+            <td>Music apps, data visualization, audio features</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- TIPS -->
+      <div class="section-title">Tips for Working with APIs</div>
+
+      <ul class="checklist">
+        <li>Start with a no-key API to learn the pattern: fetch data, display it, handle errors</li>
+        <li>Always store API keys in a <strong>.env</strong> file and add it to <strong>.gitignore</strong> &mdash; never commit secrets</li>
+        <li>Test API calls in your browser or with <strong>curl</strong> before writing code around them</li>
+        <li>Free tiers have rate limits &mdash; if your app stops working, you may have hit a limit. Check the docs</li>
+        <li>If an API requires OAuth (like Spotify), save it for later &mdash; get comfortable with simpler auth first</li>
+        <li>Combine APIs for more powerful projects: Open-Meteo + Leaflet.js = geospatial weather app</li>
+      </ul>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-left">
+          <div class="footer-names">Danny Bauman &nbsp;&bull;&nbsp; Dan Hahn, M.S.</div>
+          <div class="footer-details">Student resource &nbsp;&bull;&nbsp; BMAD Mastery Program</div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-tag">BMAD Mastery Program &mdash; Cohort 2</div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

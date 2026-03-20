@@ -96,6 +96,13 @@ These are installed in pre-flight but we go deep on them at the right time.
 
 - **Import your ChatGPT memory to Claude** — [claude.com/import-memory](https://claude.com/import-memory) — brings your context over so Claude already knows about you
 
+## Reference Guides
+
+| Guide | Description |
+|-------|-------------|
+| [**API Resource Guide**](https://htmlpreview.github.io/?https://github.com/goggledefogger/apc-ai-cohort2/blob/main/resources/api-resource-guide.html) | Free APIs for your projects — from no-key starters to ML-powered endpoints |
+| [**BMAD v6 Guide**](https://htmlpreview.github.io/?https://github.com/goggledefogger/apc-ai-cohort2/blob/main/resources/bmad-v6-guide.html) | Quick reference for the BMAD Method — agents, commands, workflows, tips |
+
 ## Danny's Demo Projects
 
 See [demo-showcase-links.md](./demo-showcase-links.md) for the full list of projects shown in Session 1.

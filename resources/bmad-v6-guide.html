@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMAD v6 Guide — BMAD Mastery Program</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #16163f;
+      --navy-light: #1e1e52;
+      --orange: #f15a24;
+      --green: #10b981;
+      --blue: #2DA3CB;
+      --text: #111118;
+      --text-secondary: #555568;
+      --border: #e2e2e8;
+      --bg-subtle: #f7f7f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background: #e4e4ea;
+      font-size: 9.5pt;
+    }
+
+    .document {
+      max-width: 8.5in;
+      margin: 0 auto;
+      background: white;
+      position: relative;
+    }
+
+    .top-bar {
+      height: 8px;
+      background: var(--navy);
+    }
+
+    .content {
+      padding: 0.4in 0.6in 0.5in;
+    }
+
+    /* --- TYPOGRAPHY --- */
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      margin-top: 28px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 4px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    /* --- HEADER --- */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .header-title {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+
+    .header-tagline {
+      font-size: 9pt;
+      font-weight: 500;
+      color: var(--orange);
+      letter-spacing: 0.2px;
+    }
+
+    .header-right {
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .header-meta {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* --- INTRO --- */
+
+    .intro {
+      font-size: 9pt;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      padding: 10px 14px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border-left: 3px solid var(--navy);
+    }
+
+    /* --- TABLES --- */
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      margin-bottom: 8px;
+      font-size: 7.5pt;
+    }
+
+    .data-table thead {
+      background: var(--navy);
+    }
+
+    .data-table th {
+      color: white;
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 7px 12px;
+      text-align: left;
+    }
+
+    .data-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.4;
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: var(--bg-subtle);
+    }
+
+    .data-table .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+    }
+
+    /* --- CARDS --- */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 14px 16px 12px;
+    }
+
+    .card.elevated {
+      border-left: 3px solid var(--orange);
+      background: linear-gradient(135deg, rgba(241, 90, 36, 0.03) 0%, transparent 60%);
+    }
+
+    .card.highlight {
+      border-left: 3px solid var(--blue);
+      background: linear-gradient(135deg, rgba(45, 163, 203, 0.03) 0%, transparent 60%);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-label {
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .card.elevated .card-label {
+      color: var(--orange);
+    }
+
+    .card.highlight .card-label {
+      color: var(--blue);
+    }
+
+    .card-title {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .card-desc {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .card-bullets {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .card-bullets li {
+      font-size: 7.5pt;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      padding-left: 10px;
+      position: relative;
+      margin-bottom: 1px;
+    }
+
+    .card-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5.5px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .callout {
+      font-size: 7pt;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 4px;
+      padding: 3px 8px;
+      background: rgba(241, 90, 36, 0.06);
+      border-radius: 2px;
+      line-height: 1.4;
+    }
+
+    .callout-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-blue {
+      color: var(--blue);
+      background: rgba(45, 163, 203, 0.06);
+    }
+
+    /* --- CODE --- */
+
+    .code-block {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 8pt;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 8px 12px;
+      margin: 6px 0 8px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 7.5pt;
+      background: var(--bg-subtle);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* --- FLOW --- */
+
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 16px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--navy);
+      background: white;
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .flow-arrow {
+      font-size: 10pt;
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* --- CHECKLIST --- */
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 24px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+    }
+
+    /* --- NUMBERED LIST --- */
+
+    .numbered-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px;
+      counter-reset: step-counter;
+    }
+
+    .numbered-list li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 28px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      counter-increment: step-counter;
+    }
+
+    .numbered-list li:last-child {
+      border-bottom: none;
+    }
+
+    .numbered-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 18px;
+      height: 18px;
+      background: var(--navy);
+      color: white;
+      font-size: 7pt;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .numbered-list li .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* --- FOOTER --- */
+
+    .footer {
+      background: var(--navy);
+      padding: 10px 18px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .footer-left {
+      color: white;
+    }
+
+    .footer-names {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1px;
+    }
+
+    .footer-details {
+      font-size: 7pt;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.5;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-tag {
+      font-size: 6.5pt;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 2px;
+    }
+
+    /* --- PRINT --- */
+
+    @media print {
+      body {
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    @media screen {
+      .document {
+        box-shadow: 0 2px 32px rgba(0, 0, 0, 0.12);
+        margin: 24px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="document">
+
+    <div class="top-bar"></div>
+
+    <div class="content">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-left">
+          <h1 class="header-title">BMAD v6 Guide</h1>
+          <div class="header-subtitle">BMAD Mastery Program</div>
+          <div class="header-tagline">Cohort 2 &nbsp;|&nbsp; BMAD Method v6.2.0 &nbsp;|&nbsp; March 2026</div>
+        </div>
+        <div class="header-right">
+          <div class="header-meta">Student Resource</div>
+        </div>
+      </header>
+
+      <!-- INTRO -->
+      <div class="intro">
+        A quick reference for getting started with the BMAD Method. This covers what you need for the course &mdash; not everything BMAD can do, just the basics that work well. BMAD stands for <strong>Build More, Architect Dreams</strong>. It gives your AI tools (Cursor, Claude Code) a structured team of specialized agents. Instead of one AI that does everything, you work with agents that each have a specific role &mdash; just like a real team.
+      </div>
+
+      <!-- WHAT'S NEW -->
+      <div class="section-title">What&rsquo;s New in v6</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">What</th>
+            <th style="width: 30%;">Before</th>
+            <th style="width: 45%;">Now (v6)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Install</td>
+            <td class="subtle">Manual file copying</td>
+            <td><code>npx bmad-method install</code></td>
+          </tr>
+          <tr>
+            <td>Folder</td>
+            <td class="subtle"><code>.bmad</code> (hidden)</td>
+            <td><code>_bmad</code> (visible to AI tools)</td>
+          </tr>
+          <tr>
+            <td>Agent tags</td>
+            <td class="subtle">@analyst, @pm, etc.</td>
+            <td>Two-letter trigger codes (BP, CP, etc.)</td>
+          </tr>
+          <tr>
+            <td>James (Dev)</td>
+            <td class="subtle">James</td>
+            <td>Now called <strong>Amelia</strong></td>
+          </tr>
+          <tr>
+            <td>Navigation</td>
+            <td class="subtle">Remember commands</td>
+            <td><code>bmad-help</code> tells you what to do next</td>
+          </tr>
+          <tr>
+            <td>Workflows</td>
+            <td class="subtle">Bundled in agents</td>
+            <td>Individual files, direct slash commands</td>
+          </tr>
+          <tr>
+            <td>Agent memory</td>
+            <td class="subtle">None</td>
+            <td>Persistent memory per agent via sidecars</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout"><span class="callout-label">New agents:</span> Barry (Quick Flow) &mdash; rapid solo dev mode &nbsp;|&nbsp; Paige (Tech Writer) &mdash; documentation &nbsp;|&nbsp; bmad-master &mdash; orchestrator</div>
+
+      <!-- INSTALLATION -->
+      <div class="section-title">Installation</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Install</span>
+            <span class="card-title">2 Minutes to Set Up</span>
+          </div>
+          <div class="card-desc"><strong>Prerequisites:</strong> Node.js 20+ (from pre-flight setup) and an AI tool (Cursor or Claude Code).</div>
+          <div class="code-block">npx bmad-method install</div>
+          <ol class="numbered-list">
+            <li>Where to install &mdash; current directory is fine</li>
+            <li>Which AI tool &mdash; pick Cursor or Claude Code</li>
+            <li>Which module &mdash; pick <strong>BMad Method</strong> (the software development one)</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">What You Get</span>
+            <span class="card-title">After Install</span>
+          </div>
+          <ul class="card-bullets">
+            <li><code>_bmad/</code> &mdash; the framework (don&rsquo;t edit manually)</li>
+            <li><code>_bmad-output/</code> &mdash; where generated plans and artifacts go</li>
+            <li><code>.claude/commands/</code> or <code>.cursor/commands/</code> &mdash; slash commands for your AI tool</li>
+          </ul>
+          <div class="card-desc" style="margin-top: 10px; margin-bottom: 4px;"><strong>Verify it worked:</strong></div>
+          <div class="code-block">/bmad-help</div>
+          <div class="card-desc" style="margin-bottom: 4px;"><strong>Update later:</strong></div>
+          <div class="code-block">npx bmad-method install --action quick-update</div>
+        </div>
+
+      </div>
+
+      <!-- THE AGENTS -->
+      <div class="section-title">The Agents You&rsquo;ll Use</div>
+
+      <div class="intro">
+        You don&rsquo;t need to memorize all of them &mdash; <code>/bmad-help</code> will guide you. These are the ones that matter for this course.
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 18%;">Agent</th>
+            <th style="width: 18%;">Role</th>
+            <th style="width: 64%;">What They Do</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mary</strong> (Analyst)</td>
+            <td class="subtle">Business requirements</td>
+            <td>Brainstorms ideas, defines what the app should do</td>
+          </tr>
+          <tr>
+            <td><strong>John</strong> (PM)</td>
+            <td class="subtle">Product manager</td>
+            <td>Scopes the project, creates the PRD (requirements doc)</td>
+          </tr>
+          <tr>
+            <td><strong>Winston</strong> (Architect)</td>
+            <td class="subtle">Solutions architect</td>
+            <td>Designs the data structure and technical approach</td>
+          </tr>
+          <tr>
+            <td><strong>Amelia</strong> (Dev)</td>
+            <td class="subtle">Developer</td>
+            <td>Writes the code based on the plan</td>
+          </tr>
+          <tr>
+            <td><strong>Sally</strong> (UX)</td>
+            <td class="subtle">UX designer</td>
+            <td>Designs the user experience and interface</td>
+          </tr>
+          <tr>
+            <td><strong>Quinn</strong> (QA)</td>
+            <td class="subtle">Quality assurance</td>
+            <td>Tests the app, finds bugs</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 18%;">Extras</th>
+            <th style="width: 18%;">Role</th>
+            <th style="width: 64%;">When to Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Barry</strong> (Quick Flow)</td>
+            <td class="subtle">Solo rapid dev</td>
+            <td>Skip the full team process and just build fast</td>
+          </tr>
+          <tr>
+            <td><strong>bmad-master</strong></td>
+            <td class="subtle">Orchestrator</td>
+            <td>Not sure which agent to talk to? It coordinates</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-blue"><span class="callout-label">We skip in this course:</span> Bob (Scrum Master &mdash; more for larger teams) and Paige (Tech Writer &mdash; nice but not essential for our projects)</div>
+
+      <!-- WORKFLOWS -->
+      <div class="section-title">Basic Workflows</div>
+
+      <div class="flow">
+        <span class="flow-step">Mary (brainstorm)</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">John (scope &amp; PRD)</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Winston (architecture)</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Amelia (build)</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Quinn (test)</span>
+      </div>
+
+      <div class="intro">
+        You don&rsquo;t always need all of them. For quick projects, use Mary &rarr; Amelia, or just Barry for rapid solo work.
+      </div>
+
+      <div class="card-grid">
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Key Commands</span>
+          </div>
+          <table class="data-table" style="margin-bottom: 0;">
+            <tbody>
+              <tr>
+                <td><code>/bmad-help</code></td>
+                <td class="subtle">Tells you what to do next based on project state</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-bmm-create-prd</code></td>
+                <td class="subtle">Create a product requirements document</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-bmm-create-architecture</code></td>
+                <td class="subtle">Design your app&rsquo;s technical structure</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-bmm-dev-story</code></td>
+                <td class="subtle">Build a feature based on the plan</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-bmm-sprint-planning</code></td>
+                <td class="subtle">Set up sprint tracking</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Load an Agent</span>
+          </div>
+          <table class="data-table" style="margin-bottom: 0;">
+            <tbody>
+              <tr>
+                <td><code>/bmad-agent-bmm-analyst</code></td>
+                <td class="subtle">Loads Mary</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-agent-bmm-pm</code></td>
+                <td class="subtle">Loads John</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-agent-bmm-architect</code></td>
+                <td class="subtle">Loads Winston</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-agent-bmm-dev</code></td>
+                <td class="subtle">Loads Amelia</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="callout" style="margin-top: 8px;"><span class="callout-label">Tip:</span> The agent will show a menu with options &mdash; pick the one you want (like &ldquo;CP&rdquo; for Create PRD with John)</div>
+        </div>
+
+      </div>
+
+      <!-- TIPS -->
+      <div class="section-title">Tips That Actually Matter</div>
+
+      <ol class="numbered-list">
+        <li><strong>Start a fresh chat for each workflow.</strong> Don&rsquo;t reuse a chat from a previous workflow. The AI&rsquo;s context gets muddled. This is <strong>context rot</strong> &mdash; long conversations degrade quality.
+          <span class="subtle">When the AI gets confused, start over. Fresh chat = clean results.</span>
+        </li>
+        <li><strong>Plan before you code.</strong> Run Mary &rarr; John &rarr; Winston before asking Amelia to build. The plans create context that makes the code way better.
+          <span class="subtle">Skipping planning works for small things but falls apart for anything real.</span>
+        </li>
+        <li><strong>Use <code>/bmad-help</code> when you&rsquo;re lost.</strong> Don&rsquo;t memorize commands. It tells you exactly what&rsquo;s available and what to do next.</li>
+        <li><strong>Let the HALT points work.</strong> BMAD workflows pause for your input at HALT points. Don&rsquo;t rush past them &mdash; they keep you in control.
+          <span class="subtle">This is how you stay the conductor, not the apprentice.</span>
+        </li>
+        <li><strong>Your artifacts live in <code>_bmad-output/</code>.</strong> Everything BMAD generates goes there: planning-artifacts, implementation-artifacts, project-knowledge.
+          <span class="subtle">Check these files &mdash; they&rsquo;re your project&rsquo;s memory.</span>
+        </li>
+        <li><strong>Barry is your friend for quick builds.</strong> Skip the full team ceremony when you know what you want. Designed for solo rapid development.</li>
+        <li><strong>Customize agents if needed.</strong> Add files to <code>_bmad/_config/customizations/</code>. But try the defaults first.</li>
+      </ol>
+
+      <!-- GOTCHAS -->
+      <div class="section-title">Common Gotchas</div>
+
+      <ul class="checklist">
+        <li><strong>&ldquo;Agent not found&rdquo;</strong> &mdash; make sure you installed the BMad Method module, not just the core</li>
+        <li><strong>AI can&rsquo;t see _bmad files</strong> &mdash; restart your AI tool after install. It needs to re-index the project</li>
+        <li><strong>Workflows feel slow</strong> &mdash; that&rsquo;s by design. HALT points prevent the AI from running off and building the wrong thing (remember the Sorcerer&rsquo;s Apprentice?)</li>
+        <li><strong>Too many agents</strong> &mdash; you don&rsquo;t need all of them. Start with Mary and Amelia. Add others as you need them</li>
+      </ul>
+
+      <!-- RESOURCES -->
+      <div class="section-title">Resources</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 30%;">Resource</th>
+            <th style="width: 70%;">Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BMAD Method Docs</td>
+            <td class="subtle">docs.bmad-method.org</td>
+          </tr>
+          <tr>
+            <td>BMAD GitHub</td>
+            <td class="subtle">github.com/bmad-code-org/BMAD-METHOD</td>
+          </tr>
+          <tr>
+            <td>BMAD Guide Site</td>
+            <td class="subtle">bmadmethodguide.com</td>
+          </tr>
+          <tr>
+            <td>Getting Started Tutorial</td>
+            <td class="subtle">deepwiki.com/bmad-code-org/BMAD-METHOD/2-getting-started</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-left">
+          <div class="footer-names">Danny Bauman &nbsp;&bull;&nbsp; Dan Hahn, M.S.</div>
+          <div class="footer-details">Student resource &nbsp;&bull;&nbsp; BMAD Mastery Program</div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-tag">BMAD Mastery Program &mdash; Cohort 2</div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
