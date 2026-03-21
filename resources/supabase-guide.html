@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supabase Guide — BMAD Mastery Program</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #16163f;
+      --navy-light: #1e1e52;
+      --orange: #f15a24;
+      --green: #10b981;
+      --blue: #2DA3CB;
+      --text: #111118;
+      --text-secondary: #555568;
+      --border: #e2e2e8;
+      --bg-subtle: #f7f7f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background: #e4e4ea;
+      font-size: 9.5pt;
+    }
+
+    .document {
+      max-width: 8.5in;
+      margin: 0 auto;
+      background: white;
+      position: relative;
+    }
+
+    .top-bar {
+      height: 8px;
+      background: var(--navy);
+    }
+
+    .content {
+      padding: 0.4in 0.6in 0.5in;
+    }
+
+    /* --- TYPOGRAPHY --- */
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      margin-top: 28px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 4px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    /* --- HEADER --- */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .header-title {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+
+    .header-tagline {
+      font-size: 9pt;
+      font-weight: 500;
+      color: var(--orange);
+      letter-spacing: 0.2px;
+    }
+
+    .header-right {
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .header-meta {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* --- INTRO --- */
+
+    .intro {
+      font-size: 9pt;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      padding: 10px 14px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border-left: 3px solid var(--navy);
+    }
+
+    /* --- TABLES --- */
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      margin-bottom: 8px;
+      font-size: 7.5pt;
+    }
+
+    .data-table thead {
+      background: var(--navy);
+    }
+
+    .data-table th {
+      color: white;
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 7px 12px;
+      text-align: left;
+    }
+
+    .data-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.4;
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: var(--bg-subtle);
+    }
+
+    .data-table .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+    }
+
+    /* --- CARDS --- */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 14px 16px 12px;
+    }
+
+    .card.elevated {
+      border-left: 3px solid var(--orange);
+      background: linear-gradient(135deg, rgba(241, 90, 36, 0.03) 0%, transparent 60%);
+    }
+
+    .card.highlight {
+      border-left: 3px solid var(--blue);
+      background: linear-gradient(135deg, rgba(45, 163, 203, 0.03) 0%, transparent 60%);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-label {
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .card.elevated .card-label {
+      color: var(--orange);
+    }
+
+    .card.highlight .card-label {
+      color: var(--blue);
+    }
+
+    .card-title {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .card-desc {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .card-bullets {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .card-bullets li {
+      font-size: 7.5pt;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      padding-left: 10px;
+      position: relative;
+      margin-bottom: 1px;
+    }
+
+    .card-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5.5px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .callout {
+      font-size: 7pt;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 4px;
+      padding: 3px 8px;
+      background: rgba(241, 90, 36, 0.06);
+      border-radius: 2px;
+      line-height: 1.4;
+    }
+
+    .callout-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-blue {
+      color: var(--blue);
+      background: rgba(45, 163, 203, 0.06);
+    }
+
+    /* --- CODE --- */
+
+    .code-block {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 8pt;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 8px 12px;
+      margin: 6px 0 8px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 7.5pt;
+      background: var(--bg-subtle);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* --- FLOW --- */
+
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 16px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--navy);
+      background: white;
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .flow-arrow {
+      font-size: 10pt;
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* --- CHECKLIST --- */
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 24px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+    }
+
+    /* --- NUMBERED LIST --- */
+
+    .numbered-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px;
+      counter-reset: step-counter;
+    }
+
+    .numbered-list li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 28px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      counter-increment: step-counter;
+    }
+
+    .numbered-list li:last-child {
+      border-bottom: none;
+    }
+
+    .numbered-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 18px;
+      height: 18px;
+      background: var(--navy);
+      color: white;
+      font-size: 7pt;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .numbered-list li .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* --- FOOTER --- */
+
+    .footer {
+      background: var(--navy);
+      padding: 10px 18px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .footer-left {
+      color: white;
+    }
+
+    .footer-names {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1px;
+    }
+
+    .footer-details {
+      font-size: 7pt;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.5;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-tag {
+      font-size: 6.5pt;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 2px;
+    }
+
+    /* --- PRINT --- */
+
+    @media print {
+      body {
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    @media screen {
+      .document {
+        box-shadow: 0 2px 32px rgba(0, 0, 0, 0.12);
+        margin: 24px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="document">
+
+    <div class="top-bar"></div>
+
+    <div class="content">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-left">
+          <h1 class="header-title">Supabase Guide</h1>
+          <div class="header-subtitle">BMAD Mastery Program</div>
+          <div class="header-tagline">Cohort 2 &nbsp;|&nbsp; March 2026</div>
+        </div>
+        <div class="header-right">
+          <div class="header-meta">Student Resource</div>
+        </div>
+      </header>
+
+      <!-- INTRO -->
+      <div class="intro">
+        Supabase is an open-source backend that gives your app a database, authentication, file storage, and more. We use it in this course to make your Todo++ app persist data across devices and users. This guide covers setup, features, and how to use it well with Cursor.
+      </div>
+
+      <!-- GETTING STARTED -->
+      <div class="section-title">Getting Started</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Setup</span>
+            <span class="card-title">Create Your Project</span>
+          </div>
+          <ol class="numbered-list">
+            <li>Go to <strong>supabase.com</strong> and log in with GitHub</li>
+            <li>Click <strong>New Project</strong></li>
+            <li>Name your project (e.g. &ldquo;todo-plus-plus&rdquo;)</li>
+            <li>Generate a database password and <strong>save it somewhere safe</strong></li>
+            <li>Pick the closest region to you</li>
+            <li>Wait for the green light &mdash; your project is ready</li>
+          </ol>
+          <div class="callout"><span class="callout-label">Note:</span> Provisioning can take 1&ndash;2 minutes. Wait for the dashboard to fully load before moving on.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Connect</span>
+            <span class="card-title">Connect to Cursor via MCP</span>
+          </div>
+          <div class="card-desc">Paste this prompt into Cursor Chat to get set up:</div>
+          <div class="code-block">Help me set up the Supabase MCP connection in Cursor so I can work with my database directly from Chat. Walk me through finding my project reference ID and API key in the Supabase dashboard.</div>
+          <div class="card-desc" style="margin-top: 10px; margin-bottom: 4px;"><strong>Verify it worked:</strong></div>
+          <div class="card-desc">Ask Cursor Chat to list your tables. If it can see your database, you&rsquo;re connected.</div>
+          <div class="callout callout-blue" style="margin-top: 8px;"><span class="callout-label">Tip:</span> Supabase now has a hosted MCP endpoint at mcp.supabase.com with dynamic auth. The AI may use this newer approach instead of manual key setup.</div>
+        </div>
+
+      </div>
+
+      <!-- WHAT SUPABASE CAN DO -->
+      <div class="section-title">What Supabase Can Do</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Feature</th>
+            <th style="width: 38%;">What It Does</th>
+            <th style="width: 40%;">Example for Todo++</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Database (Postgres)</strong></td>
+            <td>Stores your data in tables with rows and columns</td>
+            <td class="subtle">Your tasks, categories, completion status</td>
+          </tr>
+          <tr>
+            <td><strong>Auth</strong></td>
+            <td>User sign-in and accounts</td>
+            <td class="subtle">Each person has their own task list</td>
+          </tr>
+          <tr>
+            <td><strong>Row Level Security (RLS)</strong></td>
+            <td>Controls who can read/write what data</td>
+            <td class="subtle">Users can only see their own tasks</td>
+          </tr>
+          <tr>
+            <td><strong>Realtime</strong></td>
+            <td>Live updates via WebSockets and Broadcast</td>
+            <td class="subtle">See tasks update when someone else adds one</td>
+          </tr>
+          <tr>
+            <td><strong>File Storage</strong></td>
+            <td>Upload and serve files</td>
+            <td class="subtle">Attach images or documents to tasks</td>
+          </tr>
+          <tr>
+            <td><strong>Image Transformations</strong></td>
+            <td>Resize, crop, convert images on the fly</td>
+            <td class="subtle">Generate thumbnails for task attachments</td>
+          </tr>
+          <tr>
+            <td><strong>Edge Functions</strong></td>
+            <td>Run server-side code</td>
+            <td class="subtle">Send a notification when a task is due</td>
+          </tr>
+          <tr>
+            <td><strong>Webhooks</strong></td>
+            <td>Trigger actions when data changes</td>
+            <td class="subtle">Post to Slack when a task is completed</td>
+          </tr>
+          <tr>
+            <td><strong>Vector Buckets</strong></td>
+            <td>Store and search by meaning (AI search). Currently in Public Alpha</td>
+            <td class="subtle">Find similar tasks or smart search across your data</td>
+          </tr>
+          <tr>
+            <td><strong>Full-Text Search</strong></td>
+            <td>Search text content in your database</td>
+            <td class="subtle">Search across all task names and notes</td>
+          </tr>
+          <tr>
+            <td><strong>Database Triggers</strong></td>
+            <td>Run automatic actions when data changes</td>
+            <td class="subtle">Auto-set timestamps, update counters</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- SECURITY MODEL -->
+      <div class="section-title">Security Model</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Important</span>
+            <span class="card-title">How Supabase Security Works</span>
+          </div>
+          <div class="card-desc">The <strong>anon key</strong> is designed to be public-facing. It&rsquo;s safe to include in your client-side code.</div>
+          <div class="card-desc"><strong>Row Level Security (RLS)</strong> policies are the real security layer &mdash; they control what the anon key can actually do.</div>
+          <div class="card-desc" style="margin-bottom: 0;">This is different from most API keys where exposure = danger. With Supabase, the anon key is meant to be exposed. RLS is what keeps your data safe.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Best Practice</span>
+            <span class="card-title">.env Files</span>
+          </div>
+          <div class="card-desc">Your <code>.env</code> file keeps your keys organized and out of your code. For Supabase, the anon key could technically be public, but <code>.env</code> is still good practice:</div>
+          <ul class="card-bullets">
+            <li>Keeps your code clean and readable</li>
+            <li>Makes it easy to switch between environments (dev vs production)</li>
+            <li>Some keys (like the <strong>service_role key</strong>) absolutely must stay private</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="callout"><span class="callout-label">Rule of thumb:</span> anon key + RLS = your primary security. &nbsp;.env = good organization. &nbsp;service_role key = never expose.</div>
+
+      <div class="callout callout-blue"><span class="callout-label">2026 update:</span> Supabase is rolling out publishable keys and revocable secret keys, replacing the old JWT-based anon/service_role model. Keys can now be scoped and rotated individually. Supabase also auto-revokes secret keys detected in public GitHub repos via GitHub Secret Scanning.</div>
+
+      <!-- COMMON PROMPTS -->
+      <div class="section-title">Common Prompts</div>
+
+      <div class="code-block">Create a table in my Supabase database for [describe what you need]. Use the MCP connection
+
+Set up Row Level Security on my todos table so users can only see their own tasks
+
+Help me add Supabase Auth to my app so users can sign in with email or GitHub
+
+My app can&rsquo;t connect to Supabase. Can you check my configuration and add error logging to figure out what&rsquo;s wrong?
+
+Show me what&rsquo;s in my Supabase database right now. List all tables and their row counts
+
+Help me set up Supabase file storage so users can upload images</div>
+
+      <!-- TIPS -->
+      <div class="section-title">Tips</div>
+
+      <ol class="numbered-list">
+        <li><strong>Test with a private browser window.</strong> If your app shows data after refresh, it might be local storage, not the database. Open a private/incognito window or different browser to verify the database connection is real.
+          <span class="subtle">This catches the most common &ldquo;it works on my machine&rdquo; issue with persistence.</span>
+        </li>
+        <li><strong>RLS before deployment.</strong> Enable Row Level Security before you share your app. Without it, anyone with the URL could read or modify your data.
+          <span class="subtle">An unprotected Supabase database is fully accessible via the anon key.</span>
+        </li>
+        <li><strong>Start simple.</strong> You don&rsquo;t need auth, realtime, and storage on day one. Get basic CRUD working first, then add features.
+          <span class="subtle">Database &rarr; RLS &rarr; Auth &rarr; everything else.</span>
+        </li>
+        <li><strong>Check the dashboard.</strong> The Supabase Table Editor shows your data in real time. Use it to verify things are working before debugging code.
+          <span class="subtle">If the data looks right in the dashboard, the problem is in your app code.</span>
+        </li>
+        <li><strong>The MCP connection is your superpower.</strong> Once connected, you can create tables, query data, and manage your database all from Cursor Chat without switching to the Supabase dashboard.
+          <span class="subtle">Ask Chat to show your tables, run queries, or create new schemas &mdash; no SQL knowledge needed.</span>
+        </li>
+      </ol>
+
+      <!-- RELATIONAL VS DOCUMENT -->
+      <div class="section-title">Relational vs Document Databases</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">What We Use</span>
+            <span class="card-title">Relational (Supabase/Postgres)</span>
+          </div>
+          <div class="card-desc">Tables with rows and columns, like a spreadsheet. Data is structured and connected through relationships.</div>
+          <ul class="card-bullets">
+            <li>Good for structured data with clear relationships</li>
+            <li>Good for complex queries across related data</li>
+            <li>Good when you know your data shape ahead of time</li>
+            <li><strong>This is what we use in the course</strong></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Alternative</span>
+            <span class="card-title">Document (Firebase/MongoDB)</span>
+          </div>
+          <div class="card-desc">Collections of documents, like folders of JSON files. Data is flexible and can vary per document.</div>
+          <ul class="card-bullets">
+            <li>Good for unstructured or semi-structured data</li>
+            <li>Good for rapid prototyping</li>
+            <li>Good when your data shape changes frequently</li>
+            <li>More flexible, less structured</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="callout callout-blue"><span class="callout-label">Bottom line:</span> Both work. We use relational because it&rsquo;s the most common pattern and Supabase gives us a lot of built-in features on top of it.</div>
+
+      <!-- RESOURCES -->
+      <div class="section-title">Resources</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 30%;">Resource</th>
+            <th style="width: 70%;">Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Supabase Docs</td>
+            <td class="subtle">supabase.com/docs</td>
+          </tr>
+          <tr>
+            <td>Supabase Dashboard</td>
+            <td class="subtle">supabase.com/dashboard</td>
+          </tr>
+          <tr>
+            <td>Supabase GitHub</td>
+            <td class="subtle">github.com/supabase/supabase</td>
+          </tr>
+          <tr>
+            <td>MCP Setup Guide</td>
+            <td class="subtle">Docs on connecting Cursor to Supabase via MCP</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-left">
+          <div class="footer-names">Danny Bauman &nbsp;&bull;&nbsp; Dan Hahn, M.S.</div>
+          <div class="footer-details">Student resource &nbsp;&bull;&nbsp; BMAD Mastery Program</div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-tag">BMAD Mastery Program &mdash; Cohort 2</div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
