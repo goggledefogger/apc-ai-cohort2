@@ -666,6 +666,24 @@
 
       <div class="callout callout-blue"><span class="callout-label">2026 update:</span> Supabase is rolling out publishable keys and revocable secret keys, replacing the old JWT-based anon/service_role model. Keys can now be scoped and rotated individually. Supabase also auto-revokes secret keys detected in public GitHub repos via GitHub Secret Scanning.</div>
 
+      <!-- PRICING -->
+      <div class="section-title">Pricing: What to Know</div>
+
+      <div class="card elevated">
+        <div class="card-header">
+          <span class="card-label">Free Tier</span>
+          <span class="card-title">Generous but Not Unlimited</span>
+        </div>
+        <div class="card-desc">Supabase starts free and the free tier is plenty for this course. But costs can increase:</div>
+        <ul class="card-bullets">
+          <li><strong>Gradual increases:</strong> more users, more data, more storage, more edge function invocations. You'll see usage approaching limits in the dashboard before anything changes</li>
+          <li><strong>Sudden spikes:</strong> a leaked API key without RLS can let bots hit your database thousands of times. File storage costs can jump if you allow large uploads without limits. Realtime connections scale with concurrent users</li>
+          <li><strong>Pausing:</strong> free projects pause after 1 week of inactivity. Your data is preserved but the project needs to be unpaused to work again</li>
+          <li><strong>Limits to watch:</strong> 500 MB database, 1 GB file storage, 2 GB bandwidth, 500K edge function invocations, 200 concurrent Realtime connections on the free tier</li>
+        </ul>
+        <div class="callout"><span class="callout-label">For this course:</span> the free tier is more than enough. Just enable RLS, don't store large files unnecessarily, and keep an eye on the usage dashboard. If you deploy publicly later, review the Pro plan ($25/mo) for production use.</div>
+      </div>
+
       <!-- COMMON PROMPTS -->
       <div class="section-title">Common Prompts</div>
 
