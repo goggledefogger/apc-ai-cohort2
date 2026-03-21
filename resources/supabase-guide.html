@@ -547,11 +547,12 @@
             <span class="card-label">Connect</span>
             <span class="card-title">Connect to Cursor via MCP</span>
           </div>
-          <div class="card-desc">Paste this prompt into Cursor Chat to get set up:</div>
-          <div class="code-block">Help me set up the Supabase MCP connection in Cursor so I can work with my database directly from Chat. Walk me through finding my project reference ID and API key in the Supabase dashboard.</div>
+          <div class="card-desc">Supabase MCP uses OAuth: Cursor opens your browser, you log in to Supabase and approve access. No manual tokens needed.</div>
+          <div class="card-desc" style="margin-top: 8px;">Paste this prompt into Cursor Chat to get set up:</div>
+          <div class="code-block">Help me connect Cursor to my Supabase project using the MCP server. Use the hosted endpoint at mcp.supabase.com. It should open my browser to log in and approve access.</div>
           <div class="card-desc" style="margin-top: 10px; margin-bottom: 4px;"><strong>Verify it worked:</strong></div>
           <div class="card-desc">Ask Cursor Chat to list your tables. If it can see your database, you&rsquo;re connected.</div>
-          <div class="callout callout-blue" style="margin-top: 8px;"><span class="callout-label">Tip:</span> Supabase now has a hosted MCP endpoint at mcp.supabase.com with dynamic auth. The AI may use this newer approach instead of manual key setup.</div>
+          <div class="callout callout-blue" style="margin-top: 8px;"><span class="callout-label">How it works:</span> The MCP server uses OAuth 2.1 with dynamic client registration. You just log in through your browser, no personal access tokens or manual API keys needed.</div>
         </div>
 
       </div>
@@ -622,6 +623,11 @@
             <td><strong>Database Triggers</strong></td>
             <td>Run automatic actions when data changes</td>
             <td class="subtle">Auto-set timestamps, update counters</td>
+          </tr>
+          <tr>
+            <td><strong>CAPTCHA / Bot Protection</strong></td>
+            <td>Protect auth flows and forms from automated abuse</td>
+            <td class="subtle">Block bots from creating fake accounts or spamming sign-ups</td>
           </tr>
         </tbody>
       </table>
