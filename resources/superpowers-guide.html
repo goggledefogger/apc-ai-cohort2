@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superpowers Guide — BMAD Mastery Program</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #16163f;
+      --navy-light: #1e1e52;
+      --orange: #f15a24;
+      --green: #10b981;
+      --blue: #2DA3CB;
+      --text: #111118;
+      --text-secondary: #555568;
+      --border: #e2e2e8;
+      --bg-subtle: #f7f7f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background: #e4e4ea;
+      font-size: 9.5pt;
+    }
+
+    .document {
+      max-width: 8.5in;
+      margin: 0 auto;
+      background: white;
+      position: relative;
+    }
+
+    .top-bar {
+      height: 8px;
+      background: var(--navy);
+    }
+
+    .content {
+      padding: 0.4in 0.6in 0.5in;
+    }
+
+    /* --- TYPOGRAPHY --- */
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      margin-top: 28px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 4px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    /* --- HEADER --- */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .header-title {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+
+    .header-tagline {
+      font-size: 9pt;
+      font-weight: 500;
+      color: var(--orange);
+      letter-spacing: 0.2px;
+    }
+
+    .header-right {
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .header-meta {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* --- INTRO --- */
+
+    .intro {
+      font-size: 9pt;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      padding: 10px 14px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border-left: 3px solid var(--navy);
+    }
+
+    /* --- TABLES --- */
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      margin-bottom: 8px;
+      font-size: 7.5pt;
+    }
+
+    .data-table thead {
+      background: var(--navy);
+    }
+
+    .data-table th {
+      color: white;
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 7px 12px;
+      text-align: left;
+    }
+
+    .data-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.4;
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: var(--bg-subtle);
+    }
+
+    .data-table .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+    }
+
+    /* --- CARDS --- */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 14px 16px 12px;
+    }
+
+    .card.elevated {
+      border-left: 3px solid var(--orange);
+      background: linear-gradient(135deg, rgba(241, 90, 36, 0.03) 0%, transparent 60%);
+    }
+
+    .card.highlight {
+      border-left: 3px solid var(--blue);
+      background: linear-gradient(135deg, rgba(45, 163, 203, 0.03) 0%, transparent 60%);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-label {
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .card.elevated .card-label {
+      color: var(--orange);
+    }
+
+    .card.highlight .card-label {
+      color: var(--blue);
+    }
+
+    .card-title {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .card-desc {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .card-bullets {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .card-bullets li {
+      font-size: 7.5pt;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      padding-left: 10px;
+      position: relative;
+      margin-bottom: 1px;
+    }
+
+    .card-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5.5px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .callout {
+      font-size: 7pt;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 4px;
+      padding: 3px 8px;
+      background: rgba(241, 90, 36, 0.06);
+      border-radius: 2px;
+      line-height: 1.4;
+    }
+
+    .callout-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-blue {
+      color: var(--blue);
+      background: rgba(45, 163, 203, 0.06);
+    }
+
+    /* --- CODE --- */
+
+    .code-block {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 8pt;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 8px 12px;
+      margin: 6px 0 8px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 7.5pt;
+      background: var(--bg-subtle);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* --- FLOW --- */
+
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 16px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--navy);
+      background: white;
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .flow-arrow {
+      font-size: 10pt;
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* --- CHECKLIST --- */
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 24px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+    }
+
+    /* --- NUMBERED LIST --- */
+
+    .numbered-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px;
+      counter-reset: step-counter;
+    }
+
+    .numbered-list li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 28px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      counter-increment: step-counter;
+    }
+
+    .numbered-list li:last-child {
+      border-bottom: none;
+    }
+
+    .numbered-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 18px;
+      height: 18px;
+      background: var(--navy);
+      color: white;
+      font-size: 7pt;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .numbered-list li .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* --- FOOTER --- */
+
+    .footer {
+      background: var(--navy);
+      padding: 10px 18px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .footer-left {
+      color: white;
+    }
+
+    .footer-names {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1px;
+    }
+
+    .footer-details {
+      font-size: 7pt;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.5;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-tag {
+      font-size: 6.5pt;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 2px;
+    }
+
+    /* --- PRINT --- */
+
+    @media print {
+      body {
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    @media screen {
+      .document {
+        box-shadow: 0 2px 32px rgba(0, 0, 0, 0.12);
+        margin: 24px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="document">
+
+    <div class="top-bar"></div>
+
+    <div class="content">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-left">
+          <h1 class="header-title">Superpowers Guide</h1>
+          <div class="header-subtitle">BMAD Mastery Program</div>
+          <div class="header-tagline">Cohort 2 &nbsp;|&nbsp; v5.0.5 &nbsp;|&nbsp; March 2026</div>
+        </div>
+        <div class="header-right">
+          <div class="header-meta">Student Resource</div>
+        </div>
+      </header>
+
+      <!-- INTRO -->
+      <div class="intro">
+        Superpowers is the most popular Claude Code plugin (93,000+ GitHub stars). Created by Jesse Vincent, it turns best practices &mdash; TDD, code review, planning, verification &mdash; from suggestions into mandatory gates. The tradeoff: more time and tokens for higher quality output and fewer bugs. Available in the official Anthropic marketplace and also works with Cursor and Gemini CLI.
+      </div>
+
+      <!-- INSTALLATION -->
+      <div class="section-title">Installation</div>
+
+      <div class="card elevated">
+        <div class="card-header">
+          <span class="card-label">Install</span>
+          <span class="card-title">Claude Code Plugin</span>
+        </div>
+        <div class="code-block">/plugin install superpowers@claude-plugins-official<br>/reload-plugins</div>
+        <div class="card-desc" style="margin-top: 8px;"><strong>Update:</strong> <code>/plugin update superpowers</code></div>
+        <div class="callout callout-blue"><span class="callout-label">Note:</span> Also works with Cursor (<code>/add-plugin superpowers</code>) and Gemini CLI.</div>
+      </div>
+
+      <!-- CORE PHILOSOPHY -->
+      <div class="section-title">Core Philosophy</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Principle 1</span>
+            <span class="card-title">Test-Driven Development</span>
+          </div>
+          <div class="card-desc">Write tests first, always. No production code without a failing test.</div>
+        </div>
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Principle 2</span>
+            <span class="card-title">Systematic over Ad-Hoc</span>
+          </div>
+          <div class="card-desc">Process-driven, not guesswork. Every skill enforces a procedure.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Principle 3</span>
+            <span class="card-title">Complexity Reduction</span>
+          </div>
+          <div class="card-desc">YAGNI ruthlessly. Simplicity is the primary goal.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Principle 4</span>
+            <span class="card-title">Evidence over Claims</span>
+          </div>
+          <div class="card-desc">Verify success before declaring completion. Skills are mandatory, not suggestions.</div>
+        </div>
+
+      </div>
+
+      <div class="callout"><span class="callout-label">Note:</span> Skills include explicit anti-rationalization patterns &mdash; 11 common excuses the AI might use to skip steps, with counters for each.</div>
+
+      <!-- THE 7-PHASE WORKFLOW -->
+      <div class="section-title">The 7-Phase Workflow</div>
+
+      <div class="flow">
+        <span class="flow-step">Brainstorm</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Worktree</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Plan</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Implement</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Test</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Review</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Finish</span>
+      </div>
+
+      <div class="card elevated" style="margin-bottom: 14px;">
+        <div class="card-header">
+          <span class="card-label">Phase 1</span>
+          <span class="card-title">Brainstorming</span>
+        </div>
+        <div class="card-desc"><code>superpowers:brainstorming</code></div>
+        <div class="card-desc">Triggers before any creative work. Hard gate: no code until design is approved.</div>
+        <ul class="card-bullets">
+          <li>Asks clarifying questions one at a time</li>
+          <li>Proposes 2&ndash;3 approaches with trade-offs</li>
+          <li>Writes spec to <code>docs/superpowers/specs/</code></li>
+          <li>Runs automated spec review loop via subagent</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-bottom: 14px;">
+        <div class="card-header">
+          <span class="card-label">Phase 2</span>
+          <span class="card-title">Git Worktrees</span>
+        </div>
+        <div class="card-desc"><code>superpowers:using-git-worktrees</code></div>
+        <div class="card-desc">Creates isolated workspace on a new branch.</div>
+        <ul class="card-bullets">
+          <li>Smart directory selection</li>
+          <li>Verifies worktree dir is gitignored</li>
+          <li>Runs project setup</li>
+          <li>Verifies clean test baseline</li>
+        </ul>
+      </div>
+
+      <div class="card elevated" style="margin-bottom: 14px;">
+        <div class="card-header">
+          <span class="card-label">Phase 3</span>
+          <span class="card-title">Writing Plans</span>
+        </div>
+        <div class="card-desc"><code>superpowers:writing-plans</code></div>
+        <div class="card-desc">Breaks implementation into bite-sized tasks (2&ndash;5 minutes each). Each step is one action.</div>
+        <ul class="card-bullets">
+          <li>Plans include exact file paths, complete code, exact commands with expected output</li>
+          <li>Runs plan review loop via subagent</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-bottom: 14px;">
+        <div class="card-header">
+          <span class="card-label">Phase 4</span>
+          <span class="card-title">Implementation</span>
+        </div>
+        <div class="card-desc">Two options:</div>
+        <ul class="card-bullets">
+          <li><strong>Option A (recommended):</strong> <code>superpowers:subagent-driven-development</code> &mdash; Fresh subagent per task with curated context. Two-stage review after each task. Never dispatch multiple implementation subagents in parallel.</li>
+          <li><strong>Option B:</strong> <code>superpowers:executing-plans</code> &mdash; Same-session execution with human checkpoints. Simpler but less quality control.</li>
+        </ul>
+      </div>
+
+      <div class="card elevated" style="margin-bottom: 14px;">
+        <div class="card-header">
+          <span class="card-label">Phase 5</span>
+          <span class="card-title">Test-Driven Development</span>
+        </div>
+        <div class="card-desc"><code>superpowers:test-driven-development</code></div>
+        <div class="card-desc">The &ldquo;Iron Law&rdquo;: no production code without a failing test. If code written before tests: delete it, start over.</div>
+        <div class="callout"><span class="callout-label">Anti-rationalization:</span> Includes 11 rationalization patterns with counters to prevent the AI from skipping test-first discipline.</div>
+      </div>
+
+      <div class="card" style="margin-bottom: 14px;">
+        <div class="card-header">
+          <span class="card-label">Phase 6</span>
+          <span class="card-title">Code Review</span>
+        </div>
+        <div class="card-desc"><code>superpowers:requesting-code-review</code></div>
+        <div class="card-desc">Reviews against implementation plan. Issues by severity, critical issues block progress.</div>
+        <div class="card-desc">Receiving review: <code>superpowers:receiving-code-review</code></div>
+      </div>
+
+      <div class="card elevated" style="margin-bottom: 14px;">
+        <div class="card-header">
+          <span class="card-label">Phase 7</span>
+          <span class="card-title">Finishing</span>
+        </div>
+        <div class="card-desc"><code>superpowers:finishing-a-development-branch</code></div>
+        <div class="card-desc">Verifies all tests pass. Exactly 4 options: merge locally, create PR, keep as-is, discard. Handles worktree cleanup.</div>
+      </div>
+
+      <!-- ADDITIONAL SKILLS -->
+      <div class="section-title">Additional Skills</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 35%;">Skill</th>
+            <th style="width: 65%;">When to Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>systematic-debugging</code></td>
+            <td class="subtle">Any bug or unexpected behavior. 4-phase root cause analysis</td>
+          </tr>
+          <tr>
+            <td><code>verification-before-completion</code></td>
+            <td class="subtle">Before claiming done. Must run verification and show output</td>
+          </tr>
+          <tr>
+            <td><code>dispatching-parallel-agents</code></td>
+            <td class="subtle">2+ independent tasks without shared state</td>
+          </tr>
+          <tr>
+            <td><code>writing-skills</code></td>
+            <td class="subtle">Creating new skills. Applies TDD to documentation</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- HOW TO USE IT -->
+      <div class="section-title">How to Use It</div>
+
+      <div class="intro">
+        You don&rsquo;t need slash commands to trigger skills. Just describe what you want and the relevant skill activates naturally. Superpowers listens to your intent and engages the right workflow.
+      </div>
+
+      <div class="code-block">I want to add a dark mode toggle to the settings page</div>
+      <div class="code-block">There&rsquo;s a bug where the login form submits twice &mdash; help me debug it</div>
+      <div class="code-block">Let&rsquo;s plan out the notification system before we start building</div>
+      <div class="code-block">Review the changes I made to the auth module</div>
+
+      <!-- PRACTICAL TIPS -->
+      <div class="section-title">Practical Tips</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Recommendations</span>
+            <span class="card-title">What Works Well</span>
+          </div>
+          <ol class="numbered-list">
+            <li>Lean into brainstorming &mdash; the spec it produces is genuinely useful</li>
+            <li>Spec and plan docs are the real artifacts &mdash; code is the byproduct</li>
+            <li>Subagent development preserves context window in the main session</li>
+            <li>Review the spec before moving to the plan &mdash; catch design issues early</li>
+            <li>Use worktrees to keep your main branch clean while experimenting</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Watch Out</span>
+            <span class="card-title">Gotchas</span>
+          </div>
+          <ol class="numbered-list">
+            <li>5&ndash;10x token consumption compared to vanilla Claude Code</li>
+            <li>Slows things down by design &mdash; that&rsquo;s the point, not a bug</li>
+            <li>Overkill for simple tasks like renaming a variable or fixing a typo</li>
+            <li>Verbose output &mdash; expect long responses with detailed reasoning</li>
+            <li>Long sessions cause drift &mdash; start fresh when quality degrades</li>
+            <li>Context window management &mdash; subagent mode helps but monitor usage</li>
+          </ol>
+        </div>
+
+      </div>
+
+      <!-- SUPERPOWERS VS VANILLA -->
+      <div class="section-title">Superpowers vs Vanilla Claude Code</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Aspect</th>
+            <th style="width: 37%;">Vanilla Claude Code</th>
+            <th style="width: 38%;">With Superpowers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Planning</strong></td>
+            <td class="subtle">Optional, ad-hoc</td>
+            <td class="subtle">Mandatory specs and plans with review loops</td>
+          </tr>
+          <tr>
+            <td><strong>Testing</strong></td>
+            <td class="subtle">Suggested, often skipped</td>
+            <td class="subtle">Iron Law: failing test before any production code</td>
+          </tr>
+          <tr>
+            <td><strong>Code Review</strong></td>
+            <td class="subtle">Manual, when you remember</td>
+            <td class="subtle">Built-in review phase with severity levels</td>
+          </tr>
+          <tr>
+            <td><strong>Branch Management</strong></td>
+            <td class="subtle">Manual git commands</td>
+            <td class="subtle">Automated worktree creation and cleanup</td>
+          </tr>
+          <tr>
+            <td><strong>Verification</strong></td>
+            <td class="subtle">Trust the AI&rsquo;s claim</td>
+            <td class="subtle">Must run verification and show output</td>
+          </tr>
+          <tr>
+            <td><strong>Task Granularity</strong></td>
+            <td class="subtle">Large, loosely defined</td>
+            <td class="subtle">2&ndash;5 minute bite-sized steps</td>
+          </tr>
+          <tr>
+            <td><strong>Context Management</strong></td>
+            <td class="subtle">Single session, context degrades</td>
+            <td class="subtle">Subagents with curated context per task</td>
+          </tr>
+          <tr>
+            <td><strong>Debugging</strong></td>
+            <td class="subtle">Ad-hoc, pattern-matching</td>
+            <td class="subtle">Systematic 4-phase root cause analysis</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- SUPERPOWERS VS BMAD -->
+      <div class="section-title">Superpowers vs BMAD</div>
+
+      <div class="callout callout-blue"><span class="callout-label">Comparison:</span> Superpowers is focused on Claude Code and enforces engineering discipline (TDD, code review). BMAD is a broader framework that works with many AI tools and focuses on the full product lifecycle (brainstorming through deployment). They solve different problems and can complement each other.</div>
+
+      <!-- RESOURCES -->
+      <div class="section-title">Resources</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 30%;">Resource</th>
+            <th style="width: 70%;">Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GitHub Repository</td>
+            <td class="subtle">github.com/superpowers-ai/superpowers</td>
+          </tr>
+          <tr>
+            <td>Blog Post (Jesse Vincent)</td>
+            <td class="subtle">blog.fsck.com/superpowers-for-claude-code</td>
+          </tr>
+          <tr>
+            <td>Community Guide</td>
+            <td class="subtle">superpowers.dev/guide</td>
+          </tr>
+          <tr>
+            <td>Anthropic Plugin Marketplace</td>
+            <td class="subtle">claude.ai/plugins</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-left">
+          <div class="footer-names">Danny Bauman &nbsp;&bull;&nbsp; Dan Hahn, M.S.</div>
+          <div class="footer-details">Student resource &nbsp;&bull;&nbsp; BMAD Mastery Program</div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-tag">BMAD Mastery Program &mdash; Cohort 2</div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
