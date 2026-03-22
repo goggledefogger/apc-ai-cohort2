@@ -518,7 +518,7 @@
 
       <!-- INTRO -->
       <div class="intro">
-        Superpowers is the most popular Claude Code plugin (93,000+ GitHub stars). Created by Jesse Vincent, it turns best practices &mdash; TDD, code review, planning, verification &mdash; from suggestions into mandatory gates. The tradeoff: more time and tokens for higher quality output and fewer bugs. Available in the official Anthropic marketplace and also works with Cursor and Gemini CLI.
+        Superpowers is the most popular Claude Code plugin (93,000+ GitHub stars). It makes the AI more disciplined: instead of just building whatever you ask for and hoping it works, Superpowers forces it to plan first, test as it goes, and verify before calling anything done. The result is higher quality code with fewer surprises. It uses more tokens and takes more time, but you spend less time fixing things later. Originally built for developers, but the concepts &mdash; plan before you build, test before you ship, verify before you celebrate &mdash; apply to anyone building software with AI.
       </div>
 
       <!-- INSTALLATION -->
@@ -544,7 +544,7 @@
             <span class="card-label">Principle 1</span>
             <span class="card-title">Test-Driven Development</span>
           </div>
-          <div class="card-desc">Write tests first, always. No production code without a failing test.</div>
+          <div class="card-desc">Before building anything, write a test that checks if it works. This catches problems immediately instead of discovering them later when they&rsquo;re harder to fix.</div>
         </div>
 
         <div class="card elevated">
@@ -552,7 +552,7 @@
             <span class="card-label">Principle 2</span>
             <span class="card-title">Systematic over Ad-Hoc</span>
           </div>
-          <div class="card-desc">Process-driven, not guesswork. Every skill enforces a procedure.</div>
+          <div class="card-desc">Follow a repeatable process instead of improvising. The AI can&rsquo;t skip steps or cut corners, which means consistent results every time.</div>
         </div>
 
         <div class="card">
@@ -560,7 +560,7 @@
             <span class="card-label">Principle 3</span>
             <span class="card-title">Complexity Reduction</span>
           </div>
-          <div class="card-desc">YAGNI ruthlessly. Simplicity is the primary goal.</div>
+          <div class="card-desc">Build only what you need right now. The AI tends to overbuild &mdash; Superpowers keeps it focused on the simplest solution that works.</div>
         </div>
 
         <div class="card">
@@ -568,7 +568,7 @@
             <span class="card-label">Principle 4</span>
             <span class="card-title">Evidence over Claims</span>
           </div>
-          <div class="card-desc">Verify success before declaring completion. Skills are mandatory, not suggestions.</div>
+          <div class="card-desc">Don&rsquo;t trust &ldquo;done&rdquo; &mdash; prove it. The AI must run the code and show you it works before moving on. No more &ldquo;it should work&rdquo; without evidence.</div>
         </div>
 
       </div>
@@ -600,12 +600,12 @@
           <span class="card-title">Brainstorming</span>
         </div>
         <div class="card-desc"><code>superpowers:brainstorming</code></div>
-        <div class="card-desc">Triggers before any creative work. Hard gate: no code until design is approved.</div>
+        <div class="card-desc">Before building anything, the AI talks through what you want. This catches misunderstandings before any code is written, which saves a lot of time.</div>
         <ul class="card-bullets">
-          <li>Asks clarifying questions one at a time</li>
-          <li>Proposes 2&ndash;3 approaches with trade-offs</li>
-          <li>Writes spec to <code>docs/superpowers/specs/</code></li>
-          <li>Runs automated spec review loop via subagent</li>
+          <li>Asks you questions one at a time to understand what you need</li>
+          <li>Proposes 2-3 approaches with trade-offs so you can pick</li>
+          <li>Writes a design spec that becomes the source of truth</li>
+          <li>Reviews its own spec for quality before moving on</li>
         </ul>
       </div>
 
@@ -615,12 +615,11 @@
           <span class="card-title">Git Worktrees</span>
         </div>
         <div class="card-desc"><code>superpowers:using-git-worktrees</code></div>
-        <div class="card-desc">Creates isolated workspace on a new branch.</div>
+        <div class="card-desc">Creates a separate workspace so your experiments don't affect your main code. If something goes wrong, you can throw it away without losing your working version.</div>
         <ul class="card-bullets">
-          <li>Smart directory selection</li>
-          <li>Verifies worktree dir is gitignored</li>
-          <li>Runs project setup</li>
-          <li>Verifies clean test baseline</li>
+          <li>Sets up an isolated copy of your project on a new branch</li>
+          <li>Makes sure everything is working before you start changing things</li>
+          <li>Easy to discard if the experiment doesn't work out</li>
         </ul>
       </div>
 
@@ -630,10 +629,10 @@
           <span class="card-title">Writing Plans</span>
         </div>
         <div class="card-desc"><code>superpowers:writing-plans</code></div>
-        <div class="card-desc">Breaks implementation into bite-sized tasks (2&ndash;5 minutes each). Each step is one action.</div>
+        <div class="card-desc">Breaks the work into small, clear tasks (2-5 minutes each). Instead of one big "build the feature" instruction, you get a step-by-step checklist where each step does exactly one thing.</div>
         <ul class="card-bullets">
-          <li>Plans include exact file paths, complete code, exact commands with expected output</li>
-          <li>Runs plan review loop via subagent</li>
+          <li>Each step has exact files, code, and commands so nothing is ambiguous</li>
+          <li>Reviews its own plan for quality before starting to build</li>
         </ul>
       </div>
 
@@ -642,10 +641,10 @@
           <span class="card-label">Phase 4</span>
           <span class="card-title">Implementation</span>
         </div>
-        <div class="card-desc">Two options:</div>
+        <div class="card-desc">Two ways to build. Both follow your plan, but with different levels of quality control:</div>
         <ul class="card-bullets">
-          <li><strong>Option A (recommended):</strong> <code>superpowers:subagent-driven-development</code> &mdash; Fresh subagent per task with curated context. Two-stage review after each task. Never dispatch multiple implementation subagents in parallel.</li>
-          <li><strong>Option B:</strong> <code>superpowers:executing-plans</code> &mdash; Same-session execution with human checkpoints. Simpler but less quality control.</li>
+          <li><strong>Option A (recommended):</strong> <code>superpowers:subagent-driven-development</code>. Launches a fresh AI for each task, so each one starts with clean context and focused instructions. Reviews each task twice before moving on. More thorough.</li>
+          <li><strong>Option B:</strong> <code>superpowers:executing-plans</code>. Builds everything in one session with checkpoints where you approve before continuing. Simpler and faster, but less quality control.</li>
         </ul>
       </div>
 
@@ -655,8 +654,8 @@
           <span class="card-title">Test-Driven Development</span>
         </div>
         <div class="card-desc"><code>superpowers:test-driven-development</code></div>
-        <div class="card-desc">The &ldquo;Iron Law&rdquo;: no production code without a failing test. If code written before tests: delete it, start over.</div>
-        <div class="callout"><span class="callout-label">Anti-rationalization:</span> Includes 11 rationalization patterns with counters to prevent the AI from skipping test-first discipline.</div>
+        <div class="card-desc">The core rule: write a test that checks if the feature works, then write the code to make it pass. This means you always know if something breaks. If the AI writes code before writing a test, it has to start over.</div>
+        <div class="callout"><span class="callout-label">Why this matters:</span> Without tests, you only find out something is broken when a user hits it. With tests, you find out immediately. Superpowers makes this non-negotiable.</div>
       </div>
 
       <div class="card" style="margin-bottom: 14px;">
@@ -665,8 +664,7 @@
           <span class="card-title">Code Review</span>
         </div>
         <div class="card-desc"><code>superpowers:requesting-code-review</code></div>
-        <div class="card-desc">Reviews against implementation plan. Issues by severity, critical issues block progress.</div>
-        <div class="card-desc">Receiving review: <code>superpowers:receiving-code-review</code></div>
+        <div class="card-desc">The AI reviews its own work against the original plan. It flags issues by how serious they are. Critical issues have to be fixed before moving on. Think of it as a second pair of eyes that never gets tired.</div>
       </div>
 
       <div class="card elevated" style="margin-bottom: 14px;">
@@ -675,7 +673,7 @@
           <span class="card-title">Finishing</span>
         </div>
         <div class="card-desc"><code>superpowers:finishing-a-development-branch</code></div>
-        <div class="card-desc">Verifies all tests pass. Exactly 4 options: merge locally, create PR, keep as-is, discard. Handles worktree cleanup.</div>
+        <div class="card-desc">Makes sure everything works, then gives you four choices: merge into your main code, create a pull request for review, keep the branch for later, or discard it. Cleans up the workspace after.</div>
       </div>
 
       <!-- ADDITIONAL SKILLS -->
@@ -745,12 +743,12 @@
             <span class="card-title">Gotchas</span>
           </div>
           <ol class="numbered-list">
-            <li>5&ndash;10x token consumption compared to vanilla Claude Code</li>
-            <li>Slows things down by design &mdash; that&rsquo;s the point, not a bug</li>
-            <li>Overkill for simple tasks like renaming a variable or fixing a typo</li>
-            <li>Verbose output &mdash; expect long responses with detailed reasoning</li>
-            <li>Long sessions cause drift &mdash; start fresh when quality degrades</li>
-            <li>Context window management &mdash; subagent mode helps but monitor usage</li>
+            <li>Uses 5-10x more tokens than regular Claude Code. The thoroughness costs more</li>
+            <li>Deliberately slower. More steps means more time, but fewer bugs to fix later</li>
+            <li>Too much for simple tasks. Renaming a variable doesn't need a 7-phase process</li>
+            <li>Verbose output. Expect detailed reasoning and long responses</li>
+            <li>Long sessions cause drift. Start fresh when the quality starts dropping</li>
+            <li>Monitor your usage. The subagent approach helps with context but uses more tokens overall</li>
           </ol>
         </div>
 
