@@ -605,106 +605,95 @@
       <!-- THE TEAM -->
       <div class="section-title">The Team &mdash; All 12 Domain Experts</div>
 
+      <div class="callout"><span class="callout-label">How you actually interact:</span> You load agents via slash commands like <code>/bmad-agent-bmm-analyst</code>. The agent shows a menu of options (trigger codes). You pick one and follow the workflow. You never type the agent's name &mdash; the names (Mary, John, etc.) are just labels in the BMAD docs.</div>
+
       <table class="data-table">
         <thead>
           <tr>
-            <th style="width: 14%;">Agent</th>
-            <th style="width: 14%;">Role</th>
-            <th style="width: 32%;">What They Do</th>
+            <th style="width: 25%;">Role &amp; Command</th>
+            <th style="width: 35%;">What They Do</th>
             <th style="width: 40%;">When to Use</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Mary</strong></td>
-            <td class="subtle">Analyst</td>
+            <td><strong>Analyst</strong> <span class="subtle">(Mary)</span><br><code style="font-size: 6.5pt;">/bmad-agent-bmm-analyst</code></td>
             <td>Brainstorms ideas, interviews you about needs, defines requirements</td>
             <td class="subtle">Starting a new project or feature. When you need to think through what to build and why</td>
           </tr>
           <tr>
-            <td><strong>John</strong></td>
-            <td class="subtle">PM</td>
+            <td><strong>PM</strong> <span class="subtle">(John)</span><br><code style="font-size: 6.5pt;">/bmad-agent-bmm-pm</code></td>
             <td>Scopes the project, writes the PRD, prioritizes features</td>
             <td class="subtle">After brainstorming, to turn ideas into a structured plan with clear scope</td>
           </tr>
           <tr>
-            <td><strong>Winston</strong></td>
-            <td class="subtle">Architect</td>
+            <td><strong>Architect</strong> <span class="subtle">(Winston)</span><br><code style="font-size: 6.5pt;">/bmad-agent-bmm-architect</code></td>
             <td>Designs data structure, technical approach, makes technology decisions</td>
             <td class="subtle">Before building, to plan how things connect and what the data looks like</td>
           </tr>
           <tr>
-            <td><strong>Amelia</strong></td>
-            <td class="subtle">Developer</td>
+            <td><strong>Developer</strong> <span class="subtle">(Amelia)</span><br><code style="font-size: 6.5pt;">/bmad-agent-bmm-dev</code></td>
             <td>Writes code based on the plan, implements features</td>
-            <td class="subtle">When you&rsquo;re ready to build. Give her the PRD and architecture docs</td>
+            <td class="subtle">When you&rsquo;re ready to build. Give it the PRD and architecture docs</td>
           </tr>
           <tr>
-            <td><strong>Sally</strong></td>
-            <td class="subtle">UX Designer</td>
+            <td><strong>UX Designer</strong> <span class="subtle">(Sally)</span><br><code style="font-size: 6.5pt;">/bmad-agent-bmm-ux</code></td>
             <td>Designs user experience, interface layout, interaction patterns</td>
             <td class="subtle">When functionality works and you want to make it intuitive and polished</td>
           </tr>
           <tr>
-            <td><strong>Quinn</strong></td>
-            <td class="subtle">QA</td>
+            <td><strong>QA</strong> <span class="subtle">(Quinn)</span><br><code style="font-size: 6.5pt;">/bmad-agent-bmm-qa</code></td>
             <td>Tests the app, finds bugs, writes test cases</td>
             <td class="subtle">After building, to catch problems before users do</td>
           </tr>
           <tr>
-            <td><strong>Bob</strong></td>
-            <td class="subtle">Scrum Master</td>
+            <td><strong>Scrum Master</strong> <span class="subtle">(Bob)</span><br><code style="font-size: 6.5pt;">/bmad-agent-bmm-scrum</code></td>
             <td>Manages sprints, tracks progress, coordinates work</td>
             <td class="subtle">For larger projects with multiple features to sequence</td>
           </tr>
           <tr>
-            <td><strong>Barry</strong></td>
-            <td class="subtle">Quick Flow</td>
+            <td><strong>Quick Flow</strong> <span class="subtle">(Barry)</span><br><code style="font-size: 6.5pt;">/bmad-agent-bmm-quickflow</code></td>
             <td>Solo rapid development, streamlined workflow</td>
-            <td class="subtle">When you know what you want and just need to build fast. Skips the full team ceremony</td>
+            <td class="subtle">When you know what you want and just need to build fast</td>
           </tr>
           <tr>
-            <td><strong>Paige</strong></td>
-            <td class="subtle">Tech Writer</td>
+            <td><strong>Tech Writer</strong> <span class="subtle">(Paige)</span><br><code style="font-size: 6.5pt;">/bmad-agent-bmm-techwriter</code></td>
             <td>Generates documentation, user guides, API docs</td>
             <td class="subtle">When you need to document what you built for others</td>
           </tr>
           <tr>
-            <td><strong>bmad-master</strong></td>
-            <td class="subtle">Orchestrator</td>
+            <td><strong>Orchestrator</strong><br><code style="font-size: 6.5pt;">/bmad-master</code></td>
             <td>Coordinates between agents, manages handoffs</td>
-            <td class="subtle">When you&rsquo;re not sure which agent to use, or when you need to coordinate a complex workflow</td>
+            <td class="subtle">When you&rsquo;re not sure which agent to use next</td>
           </tr>
           <tr>
-            <td><strong>Brainstormer</strong></td>
-            <td class="subtle">Ideation</td>
+            <td><strong>Brainstormer</strong><br><code style="font-size: 6.5pt;">(accessed via Analyst &rarr; BP)</code></td>
             <td>Creative brainstorming from multiple angles</td>
-            <td class="subtle">When you want to explore ideas before committing to a direction</td>
+            <td class="subtle">When you want to explore ideas before committing</td>
           </tr>
           <tr>
-            <td><strong>Data Integrity Analyst</strong></td>
-            <td class="subtle">Data QA</td>
+            <td><strong>Data Integrity</strong><br><code style="font-size: 6.5pt;">(accessed via workflows)</code></td>
             <td>Validates data models, checks for inconsistencies</td>
-            <td class="subtle">When your database schema needs review or you&rsquo;re seeing data issues</td>
+            <td class="subtle">When your database schema needs review</td>
           </tr>
         </tbody>
       </table>
 
-      <div class="callout callout-blue"><span class="callout-label">For this course:</span> you&rsquo;ll mainly use Mary, John, Winston, Amelia, and Quinn. The others are there when you need them.</div>
+      <div class="callout callout-blue"><span class="callout-label">For this course:</span> you&rsquo;ll mainly use the Analyst, PM, Architect, Developer, and QA. The others are there when you need them.</div>
 
       <!-- THE TYPICAL FLOW -->
       <div class="section-title">The Typical Flow</div>
 
       <div class="flow">
-        <span class="flow-step">Mary (brainstorm)</span>
+        <span class="flow-step">Analyst (brainstorm)</span>
         <span class="flow-arrow">&rarr;</span>
-        <span class="flow-step">John (scope &amp; PRD)</span>
+        <span class="flow-step">PM (scope &amp; PRD)</span>
         <span class="flow-arrow">&rarr;</span>
-        <span class="flow-step">Winston (architecture)</span>
+        <span class="flow-step">Architect (design)</span>
         <span class="flow-arrow">&rarr;</span>
-        <span class="flow-step">Amelia (build)</span>
+        <span class="flow-step">Developer (build)</span>
         <span class="flow-arrow">&rarr;</span>
-        <span class="flow-step">Quinn (test)</span>
+        <span class="flow-step">QA (test)</span>
       </div>
 
       <div class="intro">
@@ -715,7 +704,7 @@
         <li><strong>Quick project:</strong> Mary &rarr; Amelia (skip formal architecture)</li>
         <li><strong>Rapid solo:</strong> just Barry</li>
         <li><strong>Design-focused:</strong> add Sally after Amelia, before Quinn</li>
-        <li><strong>Full process:</strong> Mary &rarr; John &rarr; Winston &rarr; Amelia &rarr; Quinn</li>
+        <li><strong>Full process:</strong> Analyst &rarr; PM &rarr; Architect &rarr; Developer &rarr; QA</li>
       </ul>
 
       <!-- COMMON PROMPTS -->
@@ -731,24 +720,23 @@
 
       <p style="font-size: 9pt; color: var(--text-secondary); margin-bottom: 2px; margin-top: 12px; font-weight: 600;">Working with Agents</p>
 
-      <div class="code-block">/bmad-agent-bmm-analyst
-(Then select BP for brainstorming, or MR for market research)</div>
+      <div class="code-block">bmad-brainstorming</div>
 
-      <div class="code-block">I want to create a PRD for my project. Load the PM agent and walk me through it</div>
+      <div class="code-block">bmad-create-prd</div>
 
-      <div class="code-block">I have a PRD. Now I need Winston to design the architecture. Load the architect</div>
+      <div class="code-block">bmad-create-architecture</div>
 
-      <div class="code-block">The PRD and architecture are ready. Load Amelia to start building. Begin with the most important feature</div>
+      <div class="code-block">bmad-dev-story</div>
 
       <p style="font-size: 9pt; color: var(--text-secondary); margin-bottom: 2px; margin-top: 12px; font-weight: 600;">Intermediate Tips</p>
 
       <div class="code-block">Review my current _bmad-output folder. What artifacts do I have? What's missing before I start building?</div>
 
-      <div class="code-block">I want to compare what Mary suggested vs what John scoped. Are we missing anything important?</div>
+      <div class="code-block">I want to compare what the Analyst suggested vs what the PM scoped. Are we missing anything important?</div>
 
-      <div class="code-block">Start a fresh chat. Here's my PRD: @_bmad-output/planning-artifacts/PRD.md &mdash; continue from where we left off with the architecture</div>
+      <div class="code-block">Start a fresh chat. Here's my PRD: @_bmad-output/planning-artifacts/PRD.md &mdash; continue with bmad-create-architecture</div>
 
-      <div class="code-block">I'm stuck and not sure which agent to use next. Load bmad-master and help me figure out the right next step</div>
+      <div class="code-block">bmad-help</div>
 
       <!-- KEY COMMANDS -->
       <div class="section-title">Key Commands</div>
@@ -762,40 +750,54 @@
         </thead>
         <tbody>
           <tr>
-            <td><code>/bmad-help</code></td>
-            <td>Smart routing &mdash; tells you what to do next</td>
+            <td><code>bmad-help</code></td>
+            <td>Smart routing &mdash; tells you what to do next based on project state</td>
           </tr>
           <tr>
-            <td><code>/bmad-bmm-create-prd</code></td>
-            <td>Create a product requirements document</td>
+            <td colspan="2" style="background: var(--bg-subtle); font-size: 6.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy);">Workflow Commands (run these directly)</td>
           </tr>
           <tr>
-            <td><code>/bmad-bmm-create-architecture</code></td>
-            <td>Design your app&rsquo;s technical structure</td>
+            <td><code>bmad-brainstorming</code></td>
+            <td>Guided ideation with the Analyst</td>
           </tr>
           <tr>
-            <td><code>/bmad-bmm-dev-story</code></td>
-            <td>Implement a development story</td>
+            <td><code>bmad-create-prd</code></td>
+            <td>Create a product requirements document (PM)</td>
           </tr>
           <tr>
-            <td><code>/bmad-bmm-sprint-planning</code></td>
-            <td>Set up sprint tracking</td>
+            <td><code>bmad-create-architecture</code></td>
+            <td>Design your app&rsquo;s technical structure (Architect)</td>
+          </tr>
+          <tr>
+            <td><code>bmad-dev-story</code></td>
+            <td>Implement a development story (Developer)</td>
+          </tr>
+          <tr>
+            <td><code>bmad-sprint-planning</code></td>
+            <td>Initialize sprint tracking (Scrum Master)</td>
+          </tr>
+          <tr>
+            <td><code>bmad-quick-dev</code></td>
+            <td>Quick Flow &mdash; planning + implementation in one step</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="background: var(--bg-subtle); font-size: 6.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy);">Agent Commands (load an agent&rsquo;s menu)</td>
           </tr>
           <tr>
             <td><code>/bmad-agent-bmm-analyst</code></td>
-            <td>Load Mary directly</td>
+            <td>Load Analyst agent &mdash; pick from brainstorming, research, product brief</td>
           </tr>
           <tr>
             <td><code>/bmad-agent-bmm-pm</code></td>
-            <td>Load John directly</td>
+            <td>Load PM agent &mdash; pick from create PRD, validate PRD, etc.</td>
           </tr>
           <tr>
             <td><code>/bmad-agent-bmm-architect</code></td>
-            <td>Load Winston directly</td>
+            <td>Load Architect agent &mdash; architecture, readiness checks</td>
           </tr>
           <tr>
             <td><code>/bmad-agent-bmm-dev</code></td>
-            <td>Load Amelia directly</td>
+            <td>Load Developer agent &mdash; implementation, code review</td>
           </tr>
         </tbody>
       </table>
