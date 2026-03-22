@@ -684,28 +684,70 @@
       <!-- THE TYPICAL FLOW -->
       <div class="section-title">The Typical Flow</div>
 
-      <div class="flow">
-        <span class="flow-step">Analyst (brainstorm)</span>
-        <span class="flow-arrow">&rarr;</span>
-        <span class="flow-step">PM (scope &amp; PRD)</span>
-        <span class="flow-arrow">&rarr;</span>
-        <span class="flow-step">Architect (design)</span>
-        <span class="flow-arrow">&rarr;</span>
-        <span class="flow-step">Developer (build)</span>
-        <span class="flow-arrow">&rarr;</span>
-        <span class="flow-step">QA (test)</span>
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Phase 1</span>
+            <span class="card-title">Analysis (optional)</span>
+          </div>
+          <table class="data-table" style="margin-bottom: 0;">
+            <tbody>
+              <tr><td><code>bmad-brainstorming</code></td><td class="subtle">Guided ideation</td></tr>
+              <tr><td><code>bmad-research</code></td><td class="subtle">Market and technical research</td></tr>
+              <tr><td><code>bmad-create-product-brief</code></td><td class="subtle">Foundation document</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Phase 2</span>
+            <span class="card-title">Planning (required)</span>
+          </div>
+          <table class="data-table" style="margin-bottom: 0;">
+            <tbody>
+              <tr><td><code>bmad-create-prd</code></td><td class="subtle">Product Requirements Document</td></tr>
+              <tr><td><code>bmad-create-ux-design</code></td><td class="subtle">Interface design (optional)</td></tr>
+              <tr><td><code>bmad-quick-dev</code></td><td class="subtle">Planning + implementation in one step</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Phase 3</span>
+            <span class="card-title">Solutioning (recommended)</span>
+          </div>
+          <table class="data-table" style="margin-bottom: 0;">
+            <tbody>
+              <tr><td><code>bmad-create-architecture</code></td><td class="subtle">Technical design decisions</td></tr>
+              <tr><td><code>bmad-create-epics-and-stories</code></td><td class="subtle">Break requirements into work items</td></tr>
+              <tr><td><code>bmad-check-implementation-readiness</code></td><td class="subtle">Validate cohesion across docs</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Phase 4</span>
+            <span class="card-title">Implementation</span>
+          </div>
+          <table class="data-table" style="margin-bottom: 4px;">
+            <tbody>
+              <tr><td><code>bmad-sprint-planning</code></td><td class="subtle">Initialize sprint tracking</td></tr>
+              <tr><td><code>bmad-create-story</code></td><td class="subtle">Create story file from epic</td></tr>
+              <tr><td><code>bmad-dev-story</code></td><td class="subtle">Implement the story</td></tr>
+              <tr><td><code>bmad-code-review</code></td><td class="subtle">Quality validation</td></tr>
+              <tr><td><code>bmad-retrospective</code></td><td class="subtle">Review after each epic</td></tr>
+            </tbody>
+          </table>
+          <div class="callout"><span class="callout-label">Build cycle:</span> For each story: create-story &rarr; dev-story &rarr; code-review. Repeat. Fresh chat each time.</div>
+        </div>
+
       </div>
 
-      <div class="intro">
-        You don&rsquo;t always need all of them. Start simple, add roles when you feel the need:
-      </div>
-
-      <ul class="card-bullets" style="margin-bottom: 8px;">
-        <li><strong>Quick project:</strong> Mary &rarr; Amelia (skip formal architecture)</li>
-        <li><strong>Rapid solo:</strong> just Barry</li>
-        <li><strong>Design-focused:</strong> add Sally after Amelia, before Quinn</li>
-        <li><strong>Full process:</strong> Analyst &rarr; PM &rarr; Architect &rarr; Developer &rarr; QA</li>
-      </ul>
+      <div class="callout callout-blue"><span class="callout-label">Shortcuts:</span> Quick project: Analyst &rarr; PM &rarr; Developer (skip architecture). Rapid solo: just <code>bmad-quick-dev</code>. Full process: all four phases.</div>
 
       <!-- COMMON PROMPTS -->
       <div class="section-title">Common Prompts &mdash; From Beginner to Intermediate</div>
