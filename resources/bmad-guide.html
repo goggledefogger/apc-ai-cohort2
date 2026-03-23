@@ -573,15 +573,16 @@
             <span class="card-title">2 Minutes to Set Up</span>
           </div>
           <div class="card-desc"><strong>Prerequisites:</strong> Node.js 20+ and an AI tool (Cursor, Claude Code, Google Antigravity, ChatGPT Codex, or others).</div>
-          <div class="callout"><span class="callout-label">Important:</span> This is one of the few things you can't ask Cursor Chat to do for you. You have to run this in a terminal yourself.</div>
+          <div class="callout"><span class="callout-label">Always use the terminal.</span> Run this in your terminal, not Cursor Chat. The installer has interactive menus you need to see and select from. This is also good practice for the terminal, which is where you'll run Claude Code later.</div>
           <div class="code-block">npx bmad-method install</div>
           <ol class="numbered-list">
-            <li>Where to install &mdash; current directory is fine</li>
-            <li>Which AI tools &mdash; scroll up/down and press <strong>Space</strong> to select all the ones you use (Cursor, Claude Code, etc.). BMAD supports 28+ tools</li>
-            <li>Which module &mdash; pick <strong>BMad Method</strong> (the software development one)</li>
+            <li>Where to install: current directory is fine</li>
+            <li>Which AI tools: scroll up/down and press <strong>Space</strong> to select all the ones you use (Cursor, Claude Code, etc.)</li>
+            <li>Which modules: <strong>select the first three modules</strong> using Space. The first handles planning (PRDs, brainstorming). The second and third handle the actual building (AI-assisted development and the builder). You need all three for the full workflow</li>
           </ol>
-          <div class="card-desc" style="margin-top: 8px;"><strong>Non-interactive install</strong> (for automation or if you know what you want):</div>
-          <div class="code-block">npx bmad-method install --directory . --modules bmm --tools cursor,claude-code --yes</div>
+          <div class="callout callout-blue"><span class="callout-label">Why three modules?</span> Module 1 (BMad Method) does planning: brainstorming, PRDs, architecture. Module 2 (Agent AI-Assisted Development) handles the implementation workflows. Module 3 (Builder) gives you the tools to actually build. Without all three, you can plan but not build.</div>
+          <div class="card-desc" style="margin-top: 8px;"><strong>Non-interactive install</strong> (if you know what you want):</div>
+          <div class="code-block">npx bmad-method install --directory . --modules bmm,bmad,bmb --tools cursor,claude-code --yes</div>
         </div>
 
         <div class="card">
