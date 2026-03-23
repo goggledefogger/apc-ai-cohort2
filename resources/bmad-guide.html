@@ -750,6 +750,48 @@
 
       <div class="callout callout-blue"><span class="callout-label">Shortcuts:</span> Quick project: Analyst &rarr; PM &rarr; Developer (skip architecture). Rapid solo: just <code>/bmad-quick-dev</code>. Full process: all four phases.</div>
 
+      <!-- NAVIGATING -->
+      <div class="section-title">Navigating Between Steps</div>
+
+      <div class="intro">
+        After completing a workflow, BMAD tells you where you are and what to do next. Here's what that looks like so you're not surprised:
+      </div>
+
+      <div class="card elevated" style="margin-bottom: 10px;">
+        <div class="card-header">
+          <span class="card-label">Example</span>
+          <span class="card-title">After Creating Architecture</span>
+        </div>
+        <div class="card-desc">BMAD will show you something like this:</div>
+        <div class="code-block">Phase 3 (Solutioning) — Progress:
+- Create Architecture (CA) — just completed
+- Create Epics and Stories (CE) — next required step
+- Check Implementation Readiness (IR) — required before implementation
+
+Optional steps you could do first:
+- /bmad-create-ux-design — UX Design (if your project has a user interface)
+- /bmad-validate-prd — verify the PRD is solid before building epics from it
+
+Recommended next: /bmad-create-epics-and-stories
+
+Each workflow should be run in a fresh context window for best results.</div>
+      </div>
+
+      <div class="card" style="margin-bottom: 10px;">
+        <div class="card-header">
+          <span class="card-label">Key Concepts</span>
+          <span class="card-title">Required vs Optional Steps</span>
+        </div>
+        <ul class="card-bullets">
+          <li><strong>Required steps</strong> must be done before moving to the next phase. BMAD won't let you skip them</li>
+          <li><strong>Optional steps</strong> (like UX design or PRD validation) can make the output better but aren't blocking</li>
+          <li><strong>Fresh context window</strong> means start a new chat for each workflow. This prevents context rot and gives each step clean, focused attention</li>
+          <li><strong>/bmad-help</strong> always tells you where you are and what's next if you're unsure</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-blue"><span class="callout-label">Tip:</span> Don't skip the optional steps on your first project. Things like UX design and PRD validation are where subtle issues get caught. On later projects you'll know which optional steps matter for your situation.</div>
+
       <!-- PRD STEPS -->
       <div class="section-title">What Happens During Create PRD</div>
 
