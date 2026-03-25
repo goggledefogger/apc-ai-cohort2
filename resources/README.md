@@ -57,7 +57,7 @@ Everything you need before, during, and after the course — in one place.
 
 | What | Link | Why |
 |------|------|-----|
-| **Setup Guide** | [Pre-Flight Setup Guide](../docs/pre-flight-setup-guide.md) | Step-by-step setup — accounts, Cursor, dev tools, Handy |
+| **Setup Guide** | [Pre-Flight Setup Guide](./pre-flight-setup-guide.html) | Step-by-step setup — accounts, Cursor, dev tools, Handy |
 | **Setup Skill** | Run `/course-preflight` in Claude Code | Checks what's installed, installs what's missing, verifies everything |
 | **Handy Help** | Run `/handy-setup` in Claude Code | Interactive help with Handy setup and troubleshooting |
 

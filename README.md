@@ -10,7 +10,7 @@ Welcome! This repo is your home base for course resources, setup guides, and mat
 
 Complete this before our first class. Everything you need — accounts, tools, and verification — is in the guide:
 
-**[Pre-Flight Setup Guide](https://goggledefogger.github.io/apc-ai-cohort2/docs/pre-flight-setup-guide.html)**
+**[Pre-Flight Setup Guide](https://goggledefogger.github.io/apc-ai-cohort2/resources/pre-flight-setup-guide.html)**
 
 The guide walks you through:
 1. Creating your accounts (GitHub, Claude Pro, Cursor)
