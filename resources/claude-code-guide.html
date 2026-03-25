@@ -800,7 +800,7 @@
       <ol class="numbered-list">
         <li><strong>Single chat.</strong> One conversation, one task. You describe what you want, Claude builds it. This is where everyone starts</li>
         <li><strong>Multi-chat.</strong> You learn to start fresh chats for new tasks. Managing multiple conversations and knowing when to start over becomes a skill itself</li>
-        <li><strong>Parallel agents + worktrees.</strong> You dispatch multiple Claude Code instances working simultaneously on different branches. This is increasingly built into Claude Code itself, with additional config, plugins, and community projects to extend it further</li>
+        <li><strong>Parallel agents + worktrees.</strong> You dispatch multiple Claude Code instances working simultaneously on different branches. Agent teams are being built into Claude Code (currently experimental, enable via <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS</code> in settings). Community plugins like Superpowers also offer this. This is a key part of our curriculum</li>
       </ol>
 
       <div class="callout callout-blue"><span class="callout-label">Don&rsquo;t rush the progression.</span> Start with single chat. Get comfortable. The multi-chat and parallel patterns will feel natural when you need them.</div>
@@ -841,7 +841,7 @@
           <span class="subtle">Worktrees are cheap. Failed experiments cost nothing when they&rsquo;re isolated.</span>
         </li>
         <li><strong>Dispatch parallel agents for independent tasks.</strong> If you have tasks that don&rsquo;t depend on each other, Claude Code can work on them simultaneously in separate worktrees.
-          <span class="subtle">This is one of Claude Code&rsquo;s biggest advantages over other tools.</span>
+          <span class="subtle">Agent teams are experimental but becoming core. BMAD workflows can run inside Claude Code agents, so you can have one agent doing brainstorming while another builds from an existing PRD.</span>
         </li>
         <li><strong>Check /cost regularly.</strong> Claude Code uses tokens. The Max plan gives you more, but it&rsquo;s good to be aware of usage, especially during long sessions.
           <span class="subtle">Keeping an eye on cost helps you develop efficient prompting habits.</span>
@@ -865,7 +865,8 @@
           <span class="card-label">Integration</span>
           <span class="card-title">BMAD Workflows in the Terminal</span>
         </div>
-        <div class="card-desc" style="margin-bottom: 0;">BMAD installs slash commands into your <code>.claude/commands/</code> folder. This means all BMAD workflows (<code>/bmad-brainstorming</code>, <code>/bmad-create-prd</code>, etc.) work directly in Claude Code. The terminal is actually BMAD&rsquo;s natural home &mdash; it&rsquo;s where the interactive installer runs and where workflows feel most fluid.</div>
+        <div class="card-desc">BMAD installs slash commands into your <code>.claude/commands/</code> folder. All BMAD workflows (<code>/bmad-brainstorming</code>, <code>/bmad-create-prd</code>, etc.) work directly in Claude Code. The terminal is BMAD&rsquo;s natural home.</div>
+        <div class="card-desc" style="margin-bottom: 0;">BMAD slash commands work inside Claude Code agent teams. Teammates can invoke commands like <code>/bmad-create-story</code> in parallel, each with independent context. One agent can brainstorm while another builds from an existing PRD. Agent teams are experimental (enable via <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS</code>) but this integration is already working. We&rsquo;ll explore this in the course.</div>
       </div>
 
       <!-- CLAUDE CODE + MCP -->
@@ -921,6 +922,10 @@
           <tr>
             <td><a href="https://github.com/hesreallyhim/awesome-claude-code" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Awesome Claude Code</a></td>
             <td class="subtle">Community-curated list of tools, plugins, and resources</td>
+          </tr>
+          <tr>
+            <td><a href="https://claude-world.com/articles/agents-guide/" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Agents Guide</a></td>
+            <td class="subtle">Guide to Claude Code agents, subagents, and parallel patterns</td>
           </tr>
           <tr>
             <td><a href="https://github.com/Pimzino/claude-code-spec-workflow" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Spec Workflow</a></td>
