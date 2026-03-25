@@ -793,6 +793,56 @@
       <div class="code-block">Create a skill that [describe what you want it to do] and save it to .claude/commands/</div>
 
       <!-- TIPS THAT MATTER -->
+      <!-- CONVERSATION FLOW -->
+      <div class="section-title">Conversation Flow</div>
+
+      <div class="intro">
+        Claude Code&rsquo;s input works differently from a chat app. Understanding the flow makes it much less confusing:
+      </div>
+
+      <div class="card elevated" style="margin-bottom: 10px;">
+        <div class="card-header">
+          <span class="card-label">While Claude is Working</span>
+          <span class="card-title">You Can Type, Interrupt, or Background</span>
+        </div>
+        <ul class="card-bullets">
+          <li><strong>Type ahead:</strong> start typing your next message while Claude is still responding. It queues up and Claude reads it when it finishes</li>
+          <li><strong>Ctrl+B:</strong> background the current task. Claude keeps working while you write your next prompt. When it finishes, it picks up what you typed</li>
+          <li><strong>/btw:</strong> ask a side question without interrupting or adding to the conversation history. Claude answers from what it already knows, then goes back to work</li>
+          <li><strong>Esc (single):</strong> stops Claude mid-response so you can redirect before it finishes going the wrong way</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-bottom: 10px;">
+        <div class="card-header">
+          <span class="card-label">Going Back</span>
+          <span class="card-title">Rewind: Undo for Your Whole Session</span>
+        </div>
+        <div class="card-desc">Press <strong>Esc Esc</strong> (double-tap) or type <code>/rewind</code> to open the rewind menu. You see every conversation turn with what changed. Pick one and choose:</div>
+        <ul class="card-bullets">
+          <li><strong>Restore conversation only:</strong> roll back what Claude thinks happened, but keep file changes</li>
+          <li><strong>Restore code only:</strong> undo file changes, but keep the conversation</li>
+          <li><strong>Restore both:</strong> full rewind of conversation and code to that point</li>
+          <li><strong>Summarize from here:</strong> keep everything but condense older messages to free up context</li>
+        </ul>
+        <div class="callout"><span class="callout-label">Limitation:</span> Rewind can&rsquo;t undo external actions like git push, npm publish, database changes, or API calls. Those happened in the real world.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-label">Other Useful Inputs</span>
+          <span class="card-title">Quick Reference</span>
+        </div>
+        <ul class="card-bullets">
+          <li><strong>! command:</strong> run a bash command directly without Claude interpreting it. Output goes into conversation context</li>
+          <li><strong>@filename:</strong> autocomplete file paths to reference specific files</li>
+          <li><strong>Hold Space:</strong> push-to-talk voice dictation (if enabled)</li>
+          <li><strong>Tab:</strong> accept prompt suggestions that appear based on your conversation</li>
+          <li><strong>Ctrl+R:</strong> reverse search through your command history</li>
+          <li><strong>/rename:</strong> name your session so you can find it later. Essential when running multiple sessions or using remote control from your phone</li>
+        </ul>
+      </div>
+
       <!-- THE PROGRESSION -->
       <div class="section-title">The Progression</div>
 
