@@ -624,6 +624,46 @@
 
       </div>
 
+      <!-- MODELS -->
+      <div class="section-title">Claude Models</div>
+
+      <div class="intro">
+        Claude Code can use different models. Switch with <code>/model</code> during a session. Each has different strengths:
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 20%;">Model</th>
+            <th style="width: 25%;">Best For</th>
+            <th style="width: 20%;">Speed</th>
+            <th style="width: 35%;">Thinking Effort</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Opus 4.6</strong></td>
+            <td class="subtle">Complex architecture, multi-file changes, difficult debugging</td>
+            <td class="subtle">Slowest, most capable</td>
+            <td class="subtle">Low, Medium, High, Max</td>
+          </tr>
+          <tr>
+            <td><strong>Sonnet 4.6</strong></td>
+            <td class="subtle">Most tasks. Good balance of speed and quality</td>
+            <td class="subtle">Fast, very capable</td>
+            <td class="subtle">Low, Medium (recommended), High</td>
+          </tr>
+          <tr>
+            <td><strong>Haiku 4.5</strong></td>
+            <td class="subtle">Quick questions, simple edits, mechanical tasks</td>
+            <td class="subtle">Fastest, most affordable</td>
+            <td class="subtle">No extended thinking</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-blue"><span class="callout-label">Thinking effort</span> controls how much reasoning the model does before responding. Higher effort = better results on hard problems, but slower and more tokens. For most work, Sonnet 4.6 at medium effort is the sweet spot. Use Opus at high/max effort for architecture decisions or tricky bugs.</div>
+
       <!-- ESSENTIAL COMMANDS -->
       <div class="section-title">Essential Commands</div>
 
@@ -803,6 +843,9 @@
         </li>
         <li><strong>Continue from your phone.</strong> Claude Code has a mobile app where you can monitor progress and continue conversations remotely. Great for checking on long-running tasks or making quick follow-ups when you&rsquo;re away from your desk.
           <span class="subtle">Available on iOS and Android.</span>
+        </li>
+        <li><strong>Paste images from clipboard.</strong> You can paste screenshots directly into Claude Code. Great for showing UI bugs, design references, or error messages. Just copy an image and paste it into the prompt.
+          <span class="subtle">Useful for &ldquo;make it look like this&rdquo; or &ldquo;fix what you see in this screenshot.&rdquo;</span>
         </li>
       </ol>
 
