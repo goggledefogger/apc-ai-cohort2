@@ -668,12 +668,54 @@
             <td>See what Claude Code is allowed to do</td>
           </tr>
           <tr>
+            <td><code>/doctor</code></td>
+            <td>Check installation health and diagnose issues</td>
+          </tr>
+          <tr>
+            <td><code>claude --continue</code></td>
+            <td>Resume your most recent session (if terminal crashed or you closed it)</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="background: var(--bg-subtle); font-size: 6.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy);">Keyboard Shortcuts</td>
+          </tr>
+          <tr>
             <td><strong>Ctrl+C</strong></td>
             <td>Stop Claude from running</td>
           </tr>
           <tr>
+            <td><strong>Esc Esc</strong> (double-tap)</td>
+            <td>Undo: restore code and conversation to a previous point. Better than Ctrl+C when you want to revert, not just stop</td>
+          </tr>
+          <tr>
+            <td><strong>Shift+Tab</strong></td>
+            <td>Toggle Plan Mode before asking Claude to make changes</td>
+          </tr>
+          <tr>
+            <td><strong>Ctrl+G</strong></td>
+            <td>Open your system text editor for writing longer prompts (multi-paragraph)</td>
+          </tr>
+          <tr>
             <td><strong>Up arrow</strong></td>
             <td>Recall previous prompts</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="background: var(--bg-subtle); font-size: 6.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy);">CLI Flags (when launching)</td>
+          </tr>
+          <tr>
+            <td><code>claude -c</code></td>
+            <td>Continue previous conversation</td>
+          </tr>
+          <tr>
+            <td><code>claude -p &quot;prompt&quot;</code></td>
+            <td>Run a single prompt and exit (great for scripting)</td>
+          </tr>
+          <tr>
+            <td><code>cat file | claude -p &quot;...&quot;</code></td>
+            <td>Pipe content into Claude Code for analysis</td>
+          </tr>
+          <tr>
+            <td><code>claude --add-dir ../other</code></td>
+            <td>Include additional directories in context</td>
           </tr>
         </tbody>
       </table>
@@ -700,6 +742,44 @@
       <div class="code-block">Create a skill that [describe what you want it to do] and save it to .claude/commands/</div>
 
       <!-- TIPS THAT MATTER -->
+      <!-- THE PROGRESSION -->
+      <div class="section-title">The Progression</div>
+
+      <div class="intro">
+        Most people go through these stages as they get more comfortable:
+      </div>
+
+      <ol class="numbered-list">
+        <li><strong>Single chat.</strong> One conversation, one task. You describe what you want, Claude builds it. This is where everyone starts</li>
+        <li><strong>Multi-chat.</strong> You learn to start fresh chats for new tasks. Managing multiple conversations and knowing when to start over becomes a skill itself</li>
+        <li><strong>Parallel agents + worktrees.</strong> You dispatch multiple Claude Code instances working simultaneously on different branches. This is increasingly built into Claude Code itself, with additional config, plugins, and community projects to extend it further</li>
+      </ol>
+
+      <div class="callout callout-blue"><span class="callout-label">Don&rsquo;t rush the progression.</span> Start with single chat. Get comfortable. The multi-chat and parallel patterns will feel natural when you need them.</div>
+
+      <!-- GOOD TO KNOW -->
+      <div class="section-title">Good to Know</div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Pricing</span>
+            <span class="card-title">Max Plan Recommended</span>
+          </div>
+          <div class="card-desc">Claude Code works with Pro ($20/mo) but the Max plan ($100/mo) gives you significantly more usage for heavier work. For this course, Pro is fine to start. If you find yourself hitting limits during longer sessions, Max is worth it.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Context Tradeoff</span>
+            <span class="card-title">MCPs vs CLIs</span>
+          </div>
+          <div class="card-desc">MCP connections (like Supabase) are convenient because the AI calls them automatically. But they consume more of the context window, which can cause context rot faster. CLI tools (like <code>gh</code> for GitHub) are lighter on context but require explicit commands. Use MCPs when you need seamless integration, CLIs when context is tight.</div>
+        </div>
+      </div>
+
+      <div class="callout"><span class="callout-label">Same model, different behavior.</span> Claude behaves differently in different tools. Claude in Cursor, Claude at claude.ai, and Claude Code are the same model but the harness changes how it works. Each tool shapes the interaction differently.</div>
+
       <div class="section-title">Tips That Matter</div>
 
       <ol class="numbered-list">
