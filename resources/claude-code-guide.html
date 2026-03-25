@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Guide — BMAD Mastery Program</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #16163f;
+      --navy-light: #1e1e52;
+      --orange: #f15a24;
+      --green: #10b981;
+      --blue: #2DA3CB;
+      --text: #111118;
+      --text-secondary: #555568;
+      --border: #e2e2e8;
+      --bg-subtle: #f7f7f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background: #e4e4ea;
+      font-size: 9.5pt;
+    }
+
+    .document {
+      max-width: 8.5in;
+      margin: 0 auto;
+      background: white;
+      position: relative;
+    }
+
+    .top-bar {
+      height: 8px;
+      background: var(--navy);
+    }
+
+    .content {
+      padding: 0.4in 0.6in 0.5in;
+    }
+
+    /* --- TYPOGRAPHY --- */
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      margin-top: 28px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 4px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    /* --- HEADER --- */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .header-title {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+
+    .header-tagline {
+      font-size: 9pt;
+      font-weight: 500;
+      color: var(--orange);
+      letter-spacing: 0.2px;
+    }
+
+    .header-right {
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .header-meta {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* --- INTRO --- */
+
+    .intro {
+      font-size: 9pt;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      padding: 10px 14px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border-left: 3px solid var(--navy);
+    }
+
+    /* --- TABLES --- */
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      margin-bottom: 8px;
+      font-size: 7.5pt;
+    }
+
+    .data-table thead {
+      background: var(--navy);
+    }
+
+    .data-table th {
+      color: white;
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 7px 12px;
+      text-align: left;
+    }
+
+    .data-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.4;
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: var(--bg-subtle);
+    }
+
+    .data-table .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+    }
+
+    /* --- CARDS --- */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 14px 16px 12px;
+    }
+
+    .card.elevated {
+      border-left: 3px solid var(--orange);
+      background: linear-gradient(135deg, rgba(241, 90, 36, 0.03) 0%, transparent 60%);
+    }
+
+    .card.highlight {
+      border-left: 3px solid var(--blue);
+      background: linear-gradient(135deg, rgba(45, 163, 203, 0.03) 0%, transparent 60%);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-label {
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .card.elevated .card-label {
+      color: var(--orange);
+    }
+
+    .card.highlight .card-label {
+      color: var(--blue);
+    }
+
+    .card-title {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .card-desc {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .card-bullets {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .card-bullets li {
+      font-size: 7.5pt;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      padding-left: 10px;
+      position: relative;
+      margin-bottom: 1px;
+    }
+
+    .card-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5.5px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .callout {
+      font-size: 7pt;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 4px;
+      padding: 3px 8px;
+      background: rgba(241, 90, 36, 0.06);
+      border-radius: 2px;
+      line-height: 1.4;
+    }
+
+    .callout-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-blue {
+      color: var(--blue);
+      background: rgba(45, 163, 203, 0.06);
+    }
+
+    /* --- CODE --- */
+
+    .code-block {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 8pt;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 8px 12px;
+      margin: 6px 0 8px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 7.5pt;
+      background: var(--bg-subtle);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* --- FLOW --- */
+
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 16px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--navy);
+      background: white;
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .flow-arrow {
+      font-size: 10pt;
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* --- CHECKLIST --- */
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 24px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+    }
+
+    /* --- NUMBERED LIST --- */
+
+    .numbered-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px;
+      counter-reset: step-counter;
+    }
+
+    .numbered-list li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 28px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      counter-increment: step-counter;
+    }
+
+    .numbered-list li:last-child {
+      border-bottom: none;
+    }
+
+    .numbered-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 18px;
+      height: 18px;
+      background: var(--navy);
+      color: white;
+      font-size: 7pt;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .numbered-list li .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* --- FOOTER --- */
+
+    .footer {
+      background: var(--navy);
+      padding: 10px 18px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .footer-left {
+      color: white;
+    }
+
+    .footer-names {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1px;
+    }
+
+    .footer-details {
+      font-size: 7pt;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.5;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-tag {
+      font-size: 6.5pt;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 2px;
+    }
+
+    /* --- PRINT --- */
+
+    @media print {
+      body {
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    @media screen {
+      .document {
+        box-shadow: 0 2px 32px rgba(0, 0, 0, 0.12);
+        margin: 24px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="document">
+
+    <div class="top-bar"></div>
+
+    <div class="content">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-left">
+          <h1 class="header-title">Claude Code Guide</h1>
+          <div class="header-subtitle">BMAD Mastery Program</div>
+          <div class="header-tagline">Cohort 2 &nbsp;|&nbsp; March 2026</div>
+        </div>
+        <div class="header-right">
+          <div class="header-meta">Student Resource</div>
+        </div>
+      </header>
+
+      <!-- INTRO -->
+      <div class="intro">
+        Claude Code is a terminal-based AI tool from Anthropic. While Cursor is like pair programming (you work side by side with the AI), Claude Code is more like delegation (you describe what you want and the AI goes and builds it). Both are powerful. You&rsquo;ll develop an instinct for when to reach for each one.
+      </div>
+
+      <!-- GETTING STARTED -->
+      <div class="section-title">Getting Started</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Install</span>
+          </div>
+          <div class="card-desc">Claude Code requires a Claude Pro or Max subscription. Install via terminal:</div>
+          <div class="code-block">curl -fsSL https://claude.ai/install.sh | bash</div>
+          <div class="card-desc">Verify: <code>claude --version</code></div>
+          <div class="card-desc">If curl isn&rsquo;t available: <code>npm install -g @anthropic-ai/claude-code</code></div>
+          <div class="callout"><span class="callout-label">Note:</span> You already have this from pre-flight setup.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Launch</span>
+          </div>
+          <div class="card-desc">Open your terminal, navigate to your project folder, and type <code>claude</code>. That&rsquo;s it. Claude Code reads your project files and is ready to work.</div>
+          <div class="card-desc">Type <code>/help</code> to see available commands.</div>
+        </div>
+
+      </div>
+
+      <!-- CURSOR VS CLAUDE CODE -->
+      <div class="section-title">Cursor vs Claude Code &mdash; When to Use Which</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Use Cursor When...</span>
+          </div>
+          <ul class="card-bullets">
+            <li>You want to see code as it&rsquo;s written</li>
+            <li>You&rsquo;re learning how something works</li>
+            <li>You want to iterate visually</li>
+            <li>You&rsquo;re making targeted edits to specific files</li>
+            <li>You want inline suggestions as you type</li>
+          </ul>
+        </div>
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Use Claude Code When...</span>
+          </div>
+          <ul class="card-bullets">
+            <li>You want to delegate a task and let it run</li>
+            <li>You need to work across many files at once</li>
+            <li>You want to use worktrees for isolated experiments</li>
+            <li>You&rsquo;re running BMAD workflows</li>
+            <li>You want to dispatch parallel agents</li>
+            <li>You&rsquo;re comfortable with the terminal</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="callout callout-blue"><span class="callout-label">Bottom line:</span> You don&rsquo;t have to choose one. Many developers switch between them constantly. Some tasks are better suited to one, some to the other.</div>
+
+      <!-- KEY CONCEPTS -->
+      <div class="section-title">Key Concepts</div>
+
+      <div class="card-grid">
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Concept</span>
+            <span class="card-title">CLAUDE.md</span>
+          </div>
+          <div class="card-desc">Your project&rsquo;s memory. Claude Code reads this file when it starts. Put project conventions, architecture decisions, and instructions here. Keep it lean &mdash; if it gets bloated, it becomes less effective.</div>
+          <div class="card-desc" style="margin-bottom: 0;">Better alternatives for some things: <code>AGENTS.md</code> for agent-specific instructions, <code>.claude/</code> folder for structured context.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Concept</span>
+            <span class="card-title">Skills</span>
+          </div>
+          <div class="card-desc">Packaged instructions for repeatable workflows. Like recipes the AI follows. You can create your own, install from marketplaces, or use ones that come with frameworks like BMAD.</div>
+          <div class="card-desc" style="margin-bottom: 0;">Skills live in <code>.claude/commands/</code> (Claude Code) or <code>.cursor/commands/</code> (Cursor). Format: markdown files with specific structure.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Concept</span>
+            <span class="card-title">Worktrees</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">Isolated copies of your project on separate branches. Start an experiment without affecting your main code. If it works, merge it in. If it doesn&rsquo;t, throw it away. Claude Code can create and manage these for you.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Concept</span>
+            <span class="card-title">Context Window</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">Claude Code has a limit on how much it can &ldquo;see&rdquo; at once. Long conversations degrade quality (context rot). Start fresh chats for new tasks. Use <code>/compact</code> to summarize and free up space.</div>
+        </div>
+
+      </div>
+
+      <!-- ESSENTIAL COMMANDS -->
+      <div class="section-title">Essential Commands</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 30%;">Command</th>
+            <th style="width: 70%;">What It Does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>claude</code></td>
+            <td>Start Claude Code in the current directory</td>
+          </tr>
+          <tr>
+            <td><code>/help</code></td>
+            <td>See all available commands</td>
+          </tr>
+          <tr>
+            <td><code>/compact</code></td>
+            <td>Summarize conversation to free up context</td>
+          </tr>
+          <tr>
+            <td><code>/clear</code></td>
+            <td>Start a fresh conversation</td>
+          </tr>
+          <tr>
+            <td><code>/cost</code></td>
+            <td>See how many tokens you&rsquo;ve used</td>
+          </tr>
+          <tr>
+            <td><code>/model</code></td>
+            <td>Switch between models (Opus, Sonnet, Haiku)</td>
+          </tr>
+          <tr>
+            <td><code>/memory</code></td>
+            <td>View and edit Claude&rsquo;s memory for this project</td>
+          </tr>
+          <tr>
+            <td><code>/permissions</code></td>
+            <td>See what Claude Code is allowed to do</td>
+          </tr>
+          <tr>
+            <td><strong>Ctrl+C</strong></td>
+            <td>Stop Claude from running</td>
+          </tr>
+          <tr>
+            <td><strong>Up arrow</strong></td>
+            <td>Recall previous prompts</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- COMMON PROMPTS -->
+      <div class="section-title">Common Prompts</div>
+
+      <p style="font-size: 9pt; color: var(--text-secondary); margin-bottom: 6px;"><strong>Getting Started:</strong></p>
+
+      <div class="code-block">Look at this project and tell me what it does, how it's structured, and what technologies it uses</div>
+
+      <div class="code-block">Help me understand the code in [filename]. Explain it like I'm new to this</div>
+
+      <p style="font-size: 9pt; color: var(--text-secondary); margin-bottom: 6px; margin-top: 10px;"><strong>Building:</strong></p>
+
+      <div class="code-block">I want to add [feature]. Plan it out first, then implement it. Test it before telling me it's done</div>
+
+      <div class="code-block">Fix the bug where [describe what's wrong]. Add error logging so we can see what's happening</div>
+
+      <p style="font-size: 9pt; color: var(--text-secondary); margin-bottom: 6px; margin-top: 10px;"><strong>Project Management:</strong></p>
+
+      <div class="code-block">Review my CLAUDE.md file. Is it clear and useful, or is it getting bloated? Suggest improvements</div>
+
+      <div class="code-block">Create a skill that [describe what you want it to do] and save it to .claude/commands/</div>
+
+      <!-- TIPS THAT MATTER -->
+      <div class="section-title">Tips That Matter</div>
+
+      <ol class="numbered-list">
+        <li><strong>Start fresh for new tasks.</strong> Long conversations cause context rot. Each new task deserves a clean slate. Use /clear or just start a new session.
+          <span class="subtle">Context rot means Claude&rsquo;s responses get worse as the conversation gets longer.</span>
+        </li>
+        <li><strong>CLAUDE.md is your leverage.</strong> A good CLAUDE.md makes every conversation better. A bloated one makes them worse. Review it regularly.
+          <span class="subtle">Think of it like a briefing document &mdash; concise and actionable beats long and exhaustive.</span>
+        </li>
+        <li><strong>Use worktrees for experiments.</strong> Don&rsquo;t risk your working code. Create a worktree, try something wild, merge if it works.
+          <span class="subtle">Worktrees are cheap. Failed experiments cost nothing when they&rsquo;re isolated.</span>
+        </li>
+        <li><strong>Dispatch parallel agents for independent tasks.</strong> If you have tasks that don&rsquo;t depend on each other, Claude Code can work on them simultaneously in separate worktrees.
+          <span class="subtle">This is one of Claude Code&rsquo;s biggest advantages over other tools.</span>
+        </li>
+        <li><strong>Check /cost regularly.</strong> Claude Code uses tokens. The Max plan gives you more, but it&rsquo;s good to be aware of usage, especially during long sessions.
+          <span class="subtle">Keeping an eye on cost helps you develop efficient prompting habits.</span>
+        </li>
+        <li><strong>Skills are your superpower.</strong> Once you find a workflow you repeat, turn it into a skill. Future you will thank you.
+          <span class="subtle">Skills compound &mdash; each one you create makes your next project faster.</span>
+        </li>
+        <li><strong>Continue from your phone.</strong> Claude Code has a mobile app where you can monitor progress and continue conversations remotely. Great for checking on long-running tasks or making quick follow-ups when you&rsquo;re away from your desk.
+          <span class="subtle">Available on iOS and Android.</span>
+        </li>
+      </ol>
+
+      <!-- CLAUDE CODE + BMAD -->
+      <div class="section-title">Claude Code + BMAD</div>
+
+      <div class="card elevated">
+        <div class="card-header">
+          <span class="card-label">Integration</span>
+          <span class="card-title">BMAD Workflows in the Terminal</span>
+        </div>
+        <div class="card-desc" style="margin-bottom: 0;">BMAD installs slash commands into your <code>.claude/commands/</code> folder. This means all BMAD workflows (<code>/bmad-brainstorming</code>, <code>/bmad-create-prd</code>, etc.) work directly in Claude Code. The terminal is actually BMAD&rsquo;s natural home &mdash; it&rsquo;s where the interactive installer runs and where workflows feel most fluid.</div>
+      </div>
+
+      <!-- CLAUDE CODE + MCP -->
+      <div class="section-title">Claude Code + MCP</div>
+
+      <div class="card highlight">
+        <div class="card-header">
+          <span class="card-label">Integration</span>
+          <span class="card-title">MCP Connections</span>
+        </div>
+        <div class="card-desc" style="margin-bottom: 0;">MCP connections work in Claude Code just like in Cursor. Connect to Supabase, GitHub, context7, and other services. The difference: Claude Code can use these connections autonomously while working on tasks you&rsquo;ve delegated, making them even more powerful.</div>
+      </div>
+
+      <!-- RESOURCES -->
+      <!-- COMING SOON -->
+      <div class="section-title">Coming Soon</div>
+
+      <div class="callout callout-blue"><span class="callout-label">Security layer:</span> A connection through our network is building a Claude Code command-control separation layer for security. It&rsquo;s an MCP server that proxies all write operations through a separate process. Not yet public, but we&rsquo;ll share it when it&rsquo;s ready.</div>
+
+      <div class="callout"><span class="callout-label">Claude Code + Obsidian:</span> We&rsquo;ll cover this separately as a dedicated workflow. Combining Claude Code with Obsidian for personal knowledge management and project tracking is a key part of later sessions.</div>
+
+      <!-- RESOURCES -->
+      <div class="section-title">Resources</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 35%;">Resource</th>
+            <th style="width: 65%;">What It Is</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://www.exploreclaudecode.com/" target="_blank" rel="noopener noreferrer" style="color: var(--blue); font-weight: 600;">Explore Claude Code</a></td>
+            <td class="subtle">Interactive way to learn Claude Code. Start here</td>
+          </tr>
+          <tr>
+            <td><a href="https://docs.anthropic.com/claude-code" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Anthropic Docs</a></td>
+            <td class="subtle">Official documentation</td>
+          </tr>
+          <tr>
+            <td><a href="https://youtu.be/TUKYbUIXLOE" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">&ldquo;6 Levels of Claude Code&rdquo;</a></td>
+            <td class="subtle">Video walkthrough from beginner to advanced</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Claude Code GitHub</a></td>
+            <td class="subtle">Source code and official plugins</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/anthropics/claude-code/tree/main/plugins" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Official Plugins</a></td>
+            <td class="subtle">Anthropic&rsquo;s curated plugin directory</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/hesreallyhim/awesome-claude-code" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Awesome Claude Code</a></td>
+            <td class="subtle">Community-curated list of tools, plugins, and resources</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/Pimzino/claude-code-spec-workflow" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Spec Workflow</a></td>
+            <td class="subtle">Example of a structured Claude Code development workflow</td>
+          </tr>
+          <tr>
+            <td>Claude Code Mobile</td>
+            <td class="subtle">Continue conversations from your phone (iOS and Android)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout"><span class="callout-label">Don&rsquo;t get overwhelmed.</span> Start with Explore Claude Code and the basics. Everything else is there when you need it.</div>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-left">
+          <div class="footer-names">Danny Bauman &nbsp;&bull;&nbsp; Dan Hahn, M.S.</div>
+          <div class="footer-details">Student resource &nbsp;&bull;&nbsp; BMAD Mastery Program</div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-tag">BMAD Mastery Program &mdash; Cohort 2</div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
