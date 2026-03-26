@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills Guide — BMAD Mastery Program</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #16163f;
+      --navy-light: #1e1e52;
+      --orange: #f15a24;
+      --green: #10b981;
+      --blue: #2DA3CB;
+      --text: #111118;
+      --text-secondary: #555568;
+      --border: #e2e2e8;
+      --bg-subtle: #f7f7f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background: #e4e4ea;
+      font-size: 9.5pt;
+    }
+
+    .document {
+      max-width: 8.5in;
+      margin: 0 auto;
+      background: white;
+      position: relative;
+    }
+
+    .top-bar {
+      height: 8px;
+      background: var(--navy);
+    }
+
+    .content {
+      padding: 0.4in 0.6in 0.5in;
+    }
+
+    /* --- TYPOGRAPHY --- */
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      margin-top: 28px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 4px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    /* --- HEADER --- */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .header-title {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+
+    .header-tagline {
+      font-size: 9pt;
+      font-weight: 500;
+      color: var(--orange);
+      letter-spacing: 0.2px;
+    }
+
+    .header-right {
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .header-meta {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* --- INTRO --- */
+
+    .intro {
+      font-size: 9pt;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      padding: 10px 14px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border-left: 3px solid var(--navy);
+    }
+
+    /* --- TABLES --- */
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      margin-bottom: 8px;
+      font-size: 7.5pt;
+    }
+
+    .data-table thead {
+      background: var(--navy);
+    }
+
+    .data-table th {
+      color: white;
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 7px 12px;
+      text-align: left;
+    }
+
+    .data-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.4;
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: var(--bg-subtle);
+    }
+
+    .data-table .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+    }
+
+    /* --- CARDS --- */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 14px 16px 12px;
+    }
+
+    .card.elevated {
+      border-left: 3px solid var(--orange);
+      background: linear-gradient(135deg, rgba(241, 90, 36, 0.03) 0%, transparent 60%);
+    }
+
+    .card.highlight {
+      border-left: 3px solid var(--blue);
+      background: linear-gradient(135deg, rgba(45, 163, 203, 0.03) 0%, transparent 60%);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-label {
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .card.elevated .card-label {
+      color: var(--orange);
+    }
+
+    .card.highlight .card-label {
+      color: var(--blue);
+    }
+
+    .card-title {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .card-desc {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .card-bullets {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .card-bullets li {
+      font-size: 7.5pt;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      padding-left: 10px;
+      position: relative;
+      margin-bottom: 1px;
+    }
+
+    .card-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5.5px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .callout {
+      font-size: 7pt;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 4px;
+      padding: 3px 8px;
+      background: rgba(241, 90, 36, 0.06);
+      border-radius: 2px;
+      line-height: 1.4;
+    }
+
+    .callout-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-blue {
+      color: var(--blue);
+      background: rgba(45, 163, 203, 0.06);
+    }
+
+    /* --- CODE --- */
+
+    .code-block {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 8pt;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 8px 12px;
+      margin: 6px 0 8px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 7.5pt;
+      background: var(--bg-subtle);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* --- FLOW --- */
+
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 16px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--navy);
+      background: white;
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .flow-arrow {
+      font-size: 10pt;
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* --- CHECKLIST --- */
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 24px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+    }
+
+    /* --- NUMBERED LIST --- */
+
+    .numbered-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px;
+      counter-reset: step-counter;
+    }
+
+    .numbered-list li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 28px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      counter-increment: step-counter;
+    }
+
+    .numbered-list li:last-child {
+      border-bottom: none;
+    }
+
+    .numbered-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 18px;
+      height: 18px;
+      background: var(--navy);
+      color: white;
+      font-size: 7pt;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .numbered-list li .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* --- FOOTER --- */
+
+    .footer {
+      background: var(--navy);
+      padding: 10px 18px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .footer-left {
+      color: white;
+    }
+
+    .footer-names {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1px;
+    }
+
+    .footer-details {
+      font-size: 7pt;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.5;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-tag {
+      font-size: 6.5pt;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 2px;
+    }
+
+    /* --- PRINT --- */
+
+    @media print {
+      body {
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    @media screen {
+      .document {
+        box-shadow: 0 2px 32px rgba(0, 0, 0, 0.12);
+        margin: 24px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="document">
+
+    <div class="top-bar"></div>
+
+    <div class="content">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-left">
+          <h1 class="header-title">Skills Guide</h1>
+          <div class="header-subtitle">Give your AI a specialty &mdash; reusable text files that turn a generalist into an expert</div>
+          <div class="header-tagline">Cohort 2 &nbsp;|&nbsp; March 2026</div>
+        </div>
+        <div class="header-right">
+          <div class="header-meta">Student Resource</div>
+        </div>
+      </header>
+
+      <!-- INTRO -->
+      <div class="intro">
+        Every time you type instructions into Cursor or Claude Code, you are teaching your AI how to do a job. A skill makes those instructions permanent. Instead of retyping the same guidance every session, you save it as a text file and invoke it with a single command. This guide covers how skills work in both Cursor and Claude Code, how they differ from rules, and how to start building your own.
+      </div>
+
+      <!-- WHAT IS A SKILL? -->
+      <div class="section-title">What Is a Skill?</div>
+
+      <div class="card elevated">
+        <div class="card-header">
+          <span class="card-label">Concept</span>
+          <span class="card-title">The Recipe Card Analogy</span>
+        </div>
+        <div class="card-desc">Think of a skill as a recipe card for your AI. A recipe card tells a cook exactly what ingredients to use, what steps to follow, and what the finished dish should look like. Without it, the cook can still make food &mdash; but the results will vary every time.</div>
+        <div class="card-desc">A skill does the same thing for your AI assistant. It is a plain text file that gives the AI a specific job, a point of view, and step-by-step instructions. Instead of explaining what you want every time you start a conversation, you hand the AI a recipe card and say &ldquo;follow this.&rdquo;</div>
+        <ul class="card-bullets">
+          <li><strong>Without a skill:</strong> you retype the same instructions every session and hope the AI remembers your preferences</li>
+          <li><strong>With a skill:</strong> you type one command, and the AI already knows the job, the format, and the standards</li>
+          <li>Skills are just text files &mdash; nothing proprietary, nothing complicated</li>
+          <li>They live in your project folder, so they travel with your code</li>
+        </ul>
+      </div>
+
+      <!-- SKILLS IN CURSOR -->
+      <div class="section-title">Skills in Cursor</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Setup</span>
+            <span class="card-title">How Cursor Skills Work</span>
+          </div>
+          <div class="card-desc"><strong>Location:</strong> Each skill lives in its own folder inside your project:</div>
+          <div class="code-block">.cursor/skills/skill-name/SKILL.md</div>
+          <div class="card-desc"><strong>Format:</strong> Plain markdown with step-by-step instructions. Write it the same way you would explain a task to a colleague.</div>
+          <div class="card-desc"><strong>Global skills:</strong> Put them in <code>~/.cursor/skills/</code> to make them available across all your projects.</div>
+          <div class="callout callout-blue"><span class="callout-label">Source:</span> cursor.com/help/customization/skills</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Usage</span>
+            <span class="card-title">Creating and Invoking Skills</span>
+          </div>
+          <div class="card-desc"><strong>Create automatically:</strong> Type <code>/create-skill</code> in Cursor Chat. Cursor will walk you through it and generate the folder and file for you.</div>
+          <div class="card-desc"><strong>Create manually:</strong> Make the folder <code>.cursor/skills/your-skill-name/</code> and add a <code>SKILL.md</code> file with your instructions.</div>
+          <div class="card-desc"><strong>Invoke:</strong> Type <code>/skill-name</code> in Cursor Chat to run the skill.</div>
+          <div class="card-desc"><strong>Attach as context:</strong> Use <code>@skill-name</code> to add the skill as background context without running it directly.</div>
+        </div>
+
+      </div>
+
+      <!-- SKILLS VS RULES IN CURSOR -->
+      <div class="section-title">Skills vs Rules in Cursor</div>
+
+      <div class="intro">
+        Cursor has two systems for guiding your AI: rules and skills. They serve different purposes. Rules are the house rules &mdash; always in effect, always enforced. Skills are recipes you pull out when you need them.
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 18%;">Feature</th>
+            <th style="width: 41%;">Rules</th>
+            <th style="width: 41%;">Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Location</strong></td>
+            <td><code>.cursor/rules/*.mdc</code></td>
+            <td><code>.cursor/skills/name/SKILL.md</code></td>
+          </tr>
+          <tr>
+            <td><strong>Format</strong></td>
+            <td>MDC (markdown with frontmatter)</td>
+            <td>Plain markdown</td>
+          </tr>
+          <tr>
+            <td><strong>Activation</strong></td>
+            <td>Automatic &mdash; always on, or triggered by file patterns</td>
+            <td>On-demand &mdash; invoked with <code>/name</code></td>
+          </tr>
+          <tr>
+            <td><strong>Purpose</strong></td>
+            <td>Guidelines, conventions, coding standards</td>
+            <td>Workflows, multi-step tasks, specialized jobs</td>
+          </tr>
+          <tr>
+            <td><strong>Typical length</strong></td>
+            <td>Short &mdash; a few lines to a paragraph</td>
+            <td>Longer &mdash; detailed steps, examples, expected output</td>
+          </tr>
+          <tr>
+            <td><strong>Analogy</strong></td>
+            <td>House rules posted on the wall</td>
+            <td>Recipe card pulled from a drawer</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout"><span class="callout-label">Rule of thumb:</span> If the AI should follow it in every conversation, make it a rule. If you only need it for a specific task, make it a skill.</div>
+
+      <!-- SKILLS IN CLAUDE CODE -->
+      <div class="section-title">Skills in Claude Code</div>
+
+      <div class="card-grid">
+
+        <div class="card highlight">
+          <div class="card-header">
+            <span class="card-label">Setup</span>
+            <span class="card-title">How Claude Code Skills Work</span>
+          </div>
+          <div class="card-desc"><strong>Project skills:</strong> Save a markdown file in your project&rsquo;s commands folder:</div>
+          <div class="code-block">.claude/commands/skill-name.md</div>
+          <div class="card-desc"><strong>Global skills:</strong> Save to your home directory to use across all projects:</div>
+          <div class="code-block">~/.claude/commands/skill-name.md</div>
+          <div class="card-desc"><strong>Format:</strong> Plain markdown. You can include a <code>$ARGUMENTS</code> placeholder anywhere in the file, and Claude Code will replace it with whatever text you type after the command.</div>
+          <div class="callout callout-blue"><span class="callout-label">Source:</span> docs.anthropic.com/en/docs/claude-code/skills</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Usage</span>
+            <span class="card-title">Invoking Claude Code Skills</span>
+          </div>
+          <div class="card-desc"><strong>Invoke:</strong> Type <code>/skill-name</code> in Claude Code. If your skill uses <code>$ARGUMENTS</code>, add your input after the command:</div>
+          <div class="code-block">/review-code src/components/Header.tsx</div>
+          <div class="card-desc">Claude Code replaces <code>$ARGUMENTS</code> with <code>src/components/Header.tsx</code> and runs the skill.</div>
+          <div class="card-desc" style="margin-top: 10px;"><strong>Example skill file</strong> (<code>.claude/commands/review-code.md</code>):</div>
+          <div class="code-block">Review the following file for accessibility issues,
+performance problems, and security concerns.
+
+File: $ARGUMENTS
+
+For each issue found, explain the problem and
+suggest a fix. Be specific and cite line numbers.</div>
+        </div>
+
+      </div>
+
+      <!-- EXAMPLE SKILLS -->
+      <div class="section-title">Example Skills</div>
+
+      <p style="font-size: 9pt; color: var(--text-secondary); margin-bottom: 10px;">Here are practical skills you might create for your own projects. Each one turns a repetitive task into a single command.</p>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Quality</span>
+            <span class="card-title">Code Reviewer</span>
+          </div>
+          <div class="card-desc">A skill that reviews code with a specific focus &mdash; accessibility, performance, or security. You define what matters most for your project.</div>
+          <ul class="card-bullets">
+            <li>Check for missing alt text, ARIA labels, keyboard navigation</li>
+            <li>Flag expensive re-renders or unnecessary API calls</li>
+            <li>Spot unvalidated user input or exposed secrets</li>
+          </ul>
+        </div>
+
+        <div class="card highlight">
+          <div class="card-header">
+            <span class="card-label">Workflow</span>
+            <span class="card-title">Commit Message Writer</span>
+          </div>
+          <div class="card-desc">A skill that looks at your staged changes and writes a commit message following your team&rsquo;s convention (Conventional Commits, a specific format, etc.).</div>
+          <ul class="card-bullets">
+            <li>Reads the git diff to understand what changed</li>
+            <li>Writes a concise summary that matches your style</li>
+            <li>Consistent messages across the whole team</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Scaffolding</span>
+            <span class="card-title">Component Builder</span>
+          </div>
+          <div class="card-desc">A skill that generates new components matching your project&rsquo;s patterns &mdash; file structure, naming conventions, default props, and test files.</div>
+          <ul class="card-bullets">
+            <li>Creates the component, styles, and test file together</li>
+            <li>Follows the same patterns as your existing code</li>
+            <li>Saves 10 minutes of boilerplate every time</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Documentation</span>
+            <span class="card-title">Bug Report Generator</span>
+          </div>
+          <div class="card-desc">A skill that creates structured bug reports from a brief description &mdash; steps to reproduce, expected vs actual behavior, environment details.</div>
+          <ul class="card-bullets">
+            <li>Consistent format every time</li>
+            <li>Prompts you for the information that matters</li>
+            <li>Saves time for you and whoever fixes the bug</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- SKILLS AND BMAD -->
+      <div class="section-title">Skills and BMAD</div>
+
+      <div class="card elevated">
+        <div class="card-header">
+          <span class="card-label">Connection</span>
+          <span class="card-title">From Personal Skills to Professional Agents</span>
+        </div>
+        <div class="card-desc">If a skill is a recipe card, then BMAD agents are an entire cookbook written by a professional chef. Each BMAD agent is a specialist with deep domain expertise &mdash; a product manager, a tech lead, an architect &mdash; packaged as a skill that knows exactly how to do its job.</div>
+        <div class="card-desc">The commands you have already used &mdash; <code>/bmad-brainstorming</code>, <code>/bmad-create-prd</code>, <code>/bmad-architect</code> &mdash; are slash-command skills under the hood. They follow the exact same pattern: a text file with instructions that the AI follows when invoked.</div>
+        <ul class="card-bullets">
+          <li><strong>Your skills:</strong> personal, written by you, focused on your specific workflow</li>
+          <li><strong>BMAD skills:</strong> professional-grade, written by experts, battle-tested across many projects</li>
+          <li>The difference is scope and polish, not the underlying mechanism</li>
+          <li>Building your own skills helps you understand how BMAD works at a deeper level</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-blue"><span class="callout-label">Key insight:</span> When you create your own skills, you are doing exactly what the BMAD framework does &mdash; giving an AI a specialty. The skills you build now are the foundation for understanding (and eventually customizing) professional agent workflows.</div>
+
+      <!-- TIPS -->
+      <div class="section-title">Tips</div>
+
+      <ol class="numbered-list">
+        <li><strong>Start simple &mdash; one skill, one job.</strong> A skill that does one thing well is more useful than one that tries to handle everything.
+          <span class="subtle">Your first skill should take less than five minutes to write.</span>
+        </li>
+        <li><strong>Name skills by what they do, not what they are.</strong> <code>review-accessibility</code> is better than <code>my-checker</code>. <code>write-commit</code> is better than <code>git-helper</code>.
+          <span class="subtle">Clear names mean you (and your teammates) can find the right skill without reading every file.</span>
+        </li>
+        <li><strong>Skills are just text files &mdash; version control them.</strong> Commit your skills alongside your code. They are part of your project, not separate from it.
+          <span class="subtle">This also means anyone who clones your repo gets your skills automatically.</span>
+        </li>
+        <li><strong>Share skills with your team.</strong> If you write a skill that works well, commit it. Your teammates can use it, improve it, and build on it.
+          <span class="subtle">Skills get better when more people use and refine them.</span>
+        </li>
+        <li><strong>Iterate based on results.</strong> If a skill produces output that needs the same corrections every time, update the skill. Treat it like code &mdash; refactor when it&rsquo;s not working.
+          <span class="subtle">The best skills evolve over a few rounds of use.</span>
+        </li>
+      </ol>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-left">
+          <div class="footer-names">Danny Bauman &nbsp;&bull;&nbsp; Dan Hahn, M.S.</div>
+          <div class="footer-details">Student resource &nbsp;&bull;&nbsp; BMAD Mastery Program</div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-tag">BMAD Mastery Program &mdash; Cohort 2</div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
