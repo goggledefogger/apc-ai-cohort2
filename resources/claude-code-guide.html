@@ -627,6 +627,42 @@
 
       </div>
 
+      <!-- PERMISSION MODES -->
+      <div class="section-title">Permission Modes</div>
+
+      <div class="intro">
+        Claude Code asks for permission before making changes. You can control how much it asks. Cycle through modes with <strong>Shift+Tab</strong> before sending a message:
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Mode</th>
+            <th style="width: 75%;">What It Does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Default</strong></td>
+            <td>Asks before file writes and most commands. Where everyone starts</td>
+          </tr>
+          <tr>
+            <td><strong>Accept Edits</strong></td>
+            <td>Auto-approves file changes but still asks before running commands</td>
+          </tr>
+          <tr>
+            <td><strong>Plan Mode</strong></td>
+            <td>Claude describes what it would do without actually doing it. Good for reviewing strategy before committing</td>
+          </tr>
+          <tr>
+            <td><strong>Auto Mode</strong></td>
+            <td>Claude handles permissions on its own using an AI safety classifier. Two defensive layers filter out risky operations (destructive commands, secrets exposure, etc.) while allowing routine development work to flow without interruption</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout"><span class="callout-label">Auto mode is powerful but not magic.</span> It blocks destructive commands (like <code>rm -rf</code> or force pushes) automatically. It works well for focused development sessions where you trust the task. Start with Default mode and work your way up as you get comfortable.</div>
+
       <!-- MODELS -->
       <div class="section-title">Claude Models</div>
 
@@ -739,7 +775,7 @@
           </tr>
           <tr>
             <td><strong>Shift+Tab</strong></td>
-            <td>Toggle Plan Mode before asking Claude to make changes</td>
+            <td>Cycle permission modes: Default &rarr; Accept Edits &rarr; Plan &rarr; Auto. Press before sending to change how much Claude asks for approval</td>
           </tr>
           <tr>
             <td><strong>Ctrl+G</strong></td>
@@ -963,6 +999,10 @@
           <tr>
             <td><a href="https://youtu.be/TUKYbUIXLOE" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">&ldquo;6 Levels of Claude Code&rdquo;</a></td>
             <td class="subtle">Video walkthrough from beginner to advanced</td>
+          </tr>
+          <tr>
+            <td><a href="https://www.anthropic.com/engineering/claude-code-auto-mode" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Auto Mode Deep Dive</a></td>
+            <td class="subtle">Anthropic engineering blog on how auto mode&rsquo;s safety classifier works</td>
           </tr>
           <tr>
             <td><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Claude Code GitHub</a></td>
