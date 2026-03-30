@@ -730,6 +730,37 @@
       <!-- WORKFLOWS -->
       <div class="section-title">Basic Workflows</div>
 
+      <div class="card elevated" style="margin-bottom: 14px;">
+        <div class="card-header">
+          <span class="card-label" style="color: var(--orange);">The Core Path</span>
+        </div>
+        <div class="card-desc">This is the recommended flow for most projects. Start a new chat for each step.</div>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin: 10px 0; padding: 12px; background: var(--bg-subtle); border-radius: 6px; flex-wrap: wrap;">
+          <span style="background: var(--orange); color: white; padding: 6px 10px; border-radius: 5px; font-weight: 700; font-size: 7.5pt;"><code style="background: transparent; color: white; padding: 0;">/bmad-brainstorming</code></span>
+          <span style="color: var(--orange); font-size: 10pt; font-weight: 700;">&rarr;</span>
+          <span style="background: var(--blue); color: white; padding: 6px 10px; border-radius: 5px; font-weight: 700; font-size: 7.5pt;"><code style="background: transparent; color: white; padding: 0;">/bmad-create-prd</code></span>
+          <span style="color: var(--blue); font-size: 10pt; font-weight: 700;">&rarr;</span>
+          <span style="background: var(--navy); color: white; padding: 6px 10px; border-radius: 5px; font-weight: 700; font-size: 7.5pt;"><code style="background: transparent; color: white; padding: 0;">/bmad-create-architecture</code></span>
+          <span style="color: var(--navy); font-size: 10pt; font-weight: 700;">&rarr;</span>
+          <span style="background: var(--green); color: white; padding: 6px 10px; border-radius: 5px; font-weight: 700; font-size: 7.5pt;"><code style="background: transparent; color: white; padding: 0;">/bmad-dev-story</code></span>
+        </div>
+        <div class="card-desc" style="font-size: 7.5pt; color: var(--text-secondary);">Brainstorm your idea &rarr; turn it into a PRD &rarr; design the architecture &rarr; build features one story at a time. For bigger projects, add <code>/bmad-create-epics-and-stories</code> and <code>/bmad-sprint-planning</code> between architecture and dev.</div>
+      </div>
+
+      <div class="card" style="margin-bottom: 14px; border-left: 3px solid var(--green);">
+        <div class="card-header">
+          <span class="card-label" style="color: var(--green);">The Shortcut (For Smaller Work)</span>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin: 10px 0; padding: 10px; background: var(--bg-subtle); border-radius: 6px;">
+          <span style="background: var(--green); color: white; padding: 5px 10px; border-radius: 5px; font-weight: 700; font-size: 7.5pt;"><code style="background: transparent; color: white; padding: 0;">/bmad-brainstorming</code></span>
+          <span style="color: var(--green); font-size: 10pt; font-weight: 700;">&rarr;</span>
+          <span style="background: var(--green); color: white; padding: 5px 10px; border-radius: 5px; font-weight: 700; font-size: 7.5pt;"><code style="background: transparent; color: white; padding: 0;">/bmad-create-prd</code></span>
+          <span style="color: var(--green); font-size: 10pt; font-weight: 700;">&rarr;</span>
+          <span style="background: var(--green); color: white; padding: 5px 10px; border-radius: 5px; font-weight: 700; font-size: 7.5pt;"><code style="background: transparent; color: white; padding: 0;">/bmad-quick-dev</code></span>
+        </div>
+        <div class="card-desc"><code>/bmad-quick-dev</code> (Barry) skips architecture and sprint planning &mdash; goes straight from your PRD to building. Good for simple apps, one-off tasks, and small features. Not recommended for complex projects.</div>
+      </div>
+
       <div class="flow">
         <span class="flow-step">Mary (brainstorm)</span>
         <span class="flow-arrow">&rarr;</span>
@@ -743,14 +774,14 @@
       </div>
 
       <div class="intro">
-        You don&rsquo;t always need all of them. For quick projects, use Mary &rarr; Amelia, or just Barry for rapid solo work.
+        The full team above shows every role. In practice, most projects use the core path (brainstorm &rarr; PRD &rarr; architecture &rarr; dev story). <code>/bmad-help</code> tells you what to do next at any point.
       </div>
 
       <div class="card-grid">
 
         <div class="card">
           <div class="card-header">
-            <span class="card-label">Key Commands</span>
+            <span class="card-label">All Workflow Commands</span>
           </div>
           <table class="data-table" style="margin-bottom: 0;">
             <tbody>
@@ -758,21 +789,41 @@
                 <td><code>/bmad-help</code></td>
                 <td class="subtle">Tells you what to do next based on project state</td>
               </tr>
-              <tr>
-                <td><code>/bmad-bmm-create-prd</code></td>
-                <td class="subtle">Create a product requirements document</td>
+              <tr style="background: rgba(241, 90, 36, 0.06);">
+                <td><code>/bmad-brainstorming</code></td>
+                <td class="subtle">Brainstorm and explore your idea</td>
+              </tr>
+              <tr style="background: rgba(45, 163, 203, 0.06);">
+                <td><code>/bmad-create-prd</code></td>
+                <td class="subtle">Create a product requirements document <strong>(required)</strong></td>
+              </tr>
+              <tr style="background: rgba(22, 22, 63, 0.06);">
+                <td><code>/bmad-create-architecture</code></td>
+                <td class="subtle">Design your app&rsquo;s technical structure <strong>(required)</strong></td>
               </tr>
               <tr>
-                <td><code>/bmad-bmm-create-architecture</code></td>
-                <td class="subtle">Design your app&rsquo;s technical structure</td>
+                <td><code>/bmad-create-epics-and-stories</code></td>
+                <td class="subtle">Break requirements into work items <strong>(required for big projects)</strong></td>
               </tr>
               <tr>
-                <td><code>/bmad-bmm-dev-story</code></td>
-                <td class="subtle">Build a feature based on the plan</td>
+                <td><code>/bmad-sprint-planning</code></td>
+                <td class="subtle">Set up sprint tracking <strong>(required for big projects)</strong></td>
+              </tr>
+              <tr style="background: rgba(16, 185, 129, 0.06);">
+                <td><code>/bmad-dev-story</code></td>
+                <td class="subtle">Build a single feature based on the plan <strong>(required)</strong></td>
               </tr>
               <tr>
-                <td><code>/bmad-bmm-sprint-planning</code></td>
-                <td class="subtle">Set up sprint tracking</td>
+                <td><code>/bmad-quick-dev</code></td>
+                <td class="subtle">Shortcut: build from PRD without full architecture (Barry)</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-quick-spec</code></td>
+                <td class="subtle">Shortcut: quick spec without full planning (Barry)</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-code-review</code></td>
+                <td class="subtle">Review implemented code for issues</td>
               </tr>
             </tbody>
           </table>
@@ -786,19 +837,35 @@
             <tbody>
               <tr>
                 <td><code>/bmad-agent-bmm-analyst</code></td>
-                <td class="subtle">Loads Mary</td>
+                <td class="subtle">Mary (brainstorming &amp; research)</td>
               </tr>
               <tr>
                 <td><code>/bmad-agent-bmm-pm</code></td>
-                <td class="subtle">Loads John</td>
+                <td class="subtle">John (PRD, scope &amp; epics)</td>
               </tr>
               <tr>
                 <td><code>/bmad-agent-bmm-architect</code></td>
-                <td class="subtle">Loads Winston</td>
+                <td class="subtle">Winston (architecture)</td>
               </tr>
               <tr>
                 <td><code>/bmad-agent-bmm-dev</code></td>
-                <td class="subtle">Loads Amelia</td>
+                <td class="subtle">Amelia (development)</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-agent-bmm-ux-designer</code></td>
+                <td class="subtle">Sally (UX design)</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-agent-bmm-quinn</code></td>
+                <td class="subtle">Quinn (QA &amp; testing)</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-agent-bmm-sm</code></td>
+                <td class="subtle">Bob (Scrum Master)</td>
+              </tr>
+              <tr>
+                <td><code>/bmad-agent-bmm-quick-flow-solo-dev</code></td>
+                <td class="subtle">Barry (quick flow solo dev)</td>
               </tr>
             </tbody>
           </table>
