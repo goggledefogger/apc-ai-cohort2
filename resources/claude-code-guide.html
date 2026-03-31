@@ -582,9 +582,14 @@
 
       </div>
 
-      <div class="callout callout-blue"><span class="callout-label">Tradeoffs.</span> Cursor is a full IDE: visual navigation, extensions, debugging, preview, git, all in one comfortable interface. That visual layer makes things easier to see but can also slow things down. Claude Code is the command line: faster to integrate, faster to automate, faster to connect to other tools, but less visual. Cursor is investing in agents and autonomy. Claude Code is investing in plugins, hooks, and an ecosystem. They&rsquo;re converging from different directions. Use whichever fits the task.</div>
-
-      <div class="callout callout-blue"><span class="callout-label">Bottom line:</span> You don&rsquo;t have to choose one. Many developers switch between them constantly. Some tasks are better suited to one, some to the other.</div>
+      <div class="callout callout-blue">
+        <div style="text-align: center;"><span class="callout-label">Tradeoffs.</span></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px;">
+          <div><strong>Cursor</strong> &mdash; an IDE company building for software engineers. Multi-model (Claude, GPT, Gemini, their own). But you&rsquo;re tied to their editor and ecosystem &mdash; if Cursor pivots or prices change, your workflows don&rsquo;t transfer.</div>
+          <div><strong>Claude Code</strong> &mdash; one product inside Anthropic, a much bigger AI company. Deep integration with Claude but locked to one model provider. Anthropic&rsquo;s priorities are broader than dev tools &mdash; Claude Code may not always be the focus.</div>
+        </div>
+        <div style="margin-top: 10px; text-align: center;">They&rsquo;re converging from different directions. You don&rsquo;t have to choose &mdash; many developers use both.</div>
+      </div>
 
       <!-- KEY CONCEPTS -->
       <div class="section-title">Key Concepts</div>
@@ -629,6 +634,14 @@
         <div class="card">
           <div class="card-header">
             <span class="card-label">Concept</span>
+            <span class="card-title">Cloud Instances</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">Claude Code runs in the cloud, not just your terminal. Start a session from the web at <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">claude.ai/code</a>, continue it from your phone, or pick it back up in your terminal. Your work follows you across devices.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Concept</span>
             <span class="card-title">Context Window</span>
           </div>
           <div class="card-desc" style="margin-bottom: 0;">Claude Code has a limit on how much it can &ldquo;see&rdquo; at once. Long conversations degrade quality (context rot). Start fresh chats for new tasks. Use <code>/compact</code> to summarize and free up space.</div>
@@ -646,26 +659,36 @@
       <table class="data-table">
         <thead>
           <tr>
-            <th style="width: 25%;">Mode</th>
-            <th style="width: 75%;">What It Does</th>
+            <th style="width: 20%;">Mode</th>
+            <th style="width: 25%;">CLI Flag</th>
+            <th style="width: 55%;">What It Does</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><strong>Default</strong></td>
+            <td><code>default</code></td>
             <td>Asks before file writes and most commands. Where everyone starts</td>
           </tr>
           <tr>
             <td><strong>Accept Edits</strong></td>
+            <td><code>acceptEdits</code></td>
             <td>Auto-approves file changes but still asks before running commands</td>
           </tr>
           <tr>
-            <td><strong>Plan Mode</strong></td>
+            <td><strong>Plan</strong></td>
+            <td><code>plan</code></td>
             <td>Claude describes what it would do without actually doing it. Good for reviewing strategy before committing</td>
           </tr>
           <tr>
-            <td><strong>Auto Mode</strong></td>
-            <td>Claude handles permissions on its own using an AI safety classifier. Two defensive layers filter out risky operations (destructive commands, secrets exposure, etc.) while allowing routine development work to flow without interruption</td>
+            <td><strong>Auto</strong></td>
+            <td><code>auto</code></td>
+            <td>Claude handles permissions on its own using an AI safety classifier. Two defensive layers filter out risky operations while allowing routine work to flow. <em>Requires Team, Enterprise, or API plan</em></td>
+          </tr>
+          <tr>
+            <td><strong>Bypass</strong></td>
+            <td><code>bypassPermissions</code></td>
+            <td>Skips all permission checks. Only use in isolated environments (containers, VMs) where Claude can&rsquo;t cause real damage</td>
           </tr>
         </tbody>
       </table>
@@ -1036,10 +1059,6 @@
           <tr>
             <td><a href="https://github.com/Pimzino/claude-code-spec-workflow" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Spec Workflow</a></td>
             <td class="subtle">Example of a structured Claude Code development workflow</td>
-          </tr>
-          <tr>
-            <td>Claude Code Mobile</td>
-            <td class="subtle">Continue conversations from your phone (iOS and Android)</td>
           </tr>
         </tbody>
       </table>
