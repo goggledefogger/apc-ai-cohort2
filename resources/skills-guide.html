@@ -630,11 +630,10 @@
             <span class="card-label">Setup</span>
             <span class="card-title">How Claude Code Skills Work</span>
           </div>
-          <div class="card-desc"><strong>Project skills:</strong> Save a markdown file in your project&rsquo;s commands folder:</div>
-          <div class="code-block">.claude/commands/skill-name.md</div>
-          <div class="card-desc"><strong>Global skills:</strong> Save to your home directory to use across all projects:</div>
-          <div class="code-block">~/.claude/commands/skill-name.md</div>
-          <div class="card-desc"><strong>Format:</strong> Plain markdown. You can include a <code>$ARGUMENTS</code> placeholder anywhere in the file, and Claude Code will replace it with whatever text you type after the command.</div>
+          <div class="card-desc"><strong>Location:</strong> Each skill lives in its own folder, with a <code>SKILL.md</code> file inside:</div>
+          <div class="code-block">.claude/skills/skill-name/SKILL.md</div>
+          <div class="card-desc"><strong>Global skills:</strong> Put them in <code>~/.claude/skills/</code> to make them available across all your projects.</div>
+          <div class="card-desc"><strong>Format:</strong> Markdown with a short YAML frontmatter block &mdash; a <code>name</code> and a <code>description</code>. The description is the important part: Claude matches on it to decide when to use the skill, so write it clearly.</div>
           <div class="callout callout-blue"><span class="callout-label">Source:</span> docs.anthropic.com/en/docs/claude-code/skills</div>
         </div>
 
@@ -643,20 +642,56 @@
             <span class="card-label">Usage</span>
             <span class="card-title">Invoking Claude Code Skills</span>
           </div>
-          <div class="card-desc"><strong>Invoke:</strong> Type <code>/skill-name</code> in Claude Code. If your skill uses <code>$ARGUMENTS</code>, add your input after the command:</div>
-          <div class="code-block">/review-code src/components/Header.tsx</div>
-          <div class="card-desc">Claude Code replaces <code>$ARGUMENTS</code> with <code>src/components/Header.tsx</code> and runs the skill.</div>
-          <div class="card-desc" style="margin-top: 10px;"><strong>Example skill file</strong> (<code>.claude/commands/review-code.md</code>):</div>
-          <div class="code-block">Review the following file for accessibility issues,
-performance problems, and security concerns.
+          <div class="card-desc"><strong>Automatic:</strong> Claude invokes a skill on its own when your request matches the description. You do not type <code>/skill-name</code> &mdash; just describe the task normally and Claude reaches for the right skill.</div>
+          <div class="card-desc"><strong>By name:</strong> If Claude does not pick it up on its own, you can ask directly &mdash; &ldquo;use the review-code skill on this file.&rdquo;</div>
+          <div class="card-desc" style="margin-top: 10px;"><strong>Example skill file</strong> (<code>.claude/skills/review-code/SKILL.md</code>):</div>
+          <div class="code-block">---
+name: review-code
+description: Review a file for accessibility, performance, and security issues. Use when the user asks for a code review or audit.
+---
 
-File: $ARGUMENTS
+Review the file the user points to for accessibility
+issues, performance problems, and security concerns.
 
-For each issue found, explain the problem and
-suggest a fix. Be specific and cite line numbers.</div>
+For each issue, explain the problem and suggest a fix.
+Be specific and cite line numbers.</div>
         </div>
 
       </div>
+
+      <!-- SKILL VS SLASH COMMAND VS PLUGIN -->
+      <div class="section-title">Skill vs Slash Command vs Plugin</div>
+
+      <div class="intro">
+        These three terms get conflated all the time in Claude Code. A plugin is the wrapper. Skills and slash commands are two of the things a plugin can ship. BMAD is a plugin &mdash; that is why you see both <code>/bmad-create-prd</code> (a slash command you type) and auto-invoked skills coming from it.
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 18%;">Term</th>
+            <th style="width: 41%;">What it is</th>
+            <th style="width: 41%;">How it runs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Skill</strong></td>
+            <td>Instructions Claude uses for a task</td>
+            <td>Auto-invoked when the description matches your request</td>
+          </tr>
+          <tr>
+            <td><strong>Slash command</strong></td>
+            <td>A shortcut you type, like <code>/commit</code></td>
+            <td>You type <code>/name</code> in the CLI; the file&rsquo;s body becomes the prompt</td>
+          </tr>
+          <tr>
+            <td><strong>Plugin</strong></td>
+            <td>A bundle that ships skills, slash commands, and other pieces together</td>
+            <td>Installed from a marketplace</td>
+          </tr>
+        </tbody>
+      </table>
 
       <!-- EXAMPLE SKILLS -->
       <div class="section-title">Example Skills</div>
@@ -728,7 +763,7 @@ suggest a fix. Be specific and cite line numbers.</div>
           <span class="card-title">From Personal Skills to Professional Agents</span>
         </div>
         <div class="card-desc">If a skill is a recipe card, then BMAD agents are an entire cookbook written by a professional chef. Each BMAD agent is a specialist with deep domain expertise &mdash; a product manager, a tech lead, an architect &mdash; packaged as a skill that knows exactly how to do its job.</div>
-        <div class="card-desc">The commands you have already used &mdash; <code>/bmad-brainstorming</code>, <code>/bmad-create-prd</code>, <code>/bmad-create-architecture</code> &mdash; are slash-command skills under the hood. They follow the exact same pattern: a text file with instructions that the AI follows when invoked.</div>
+        <div class="card-desc">The commands you have already used &mdash; <code>/bmad-brainstorming</code>, <code>/bmad-create-prd</code>, <code>/bmad-create-architecture</code> &mdash; are slash commands: text files of instructions Claude follows when you type them. BMAD also ships skills that Claude reaches for automatically. Both are delivered together as part of the BMAD plugin.</div>
         <ul class="card-bullets">
           <li><strong>Your skills:</strong> personal, written by you, focused on your specific workflow</li>
           <li><strong>BMAD skills:</strong> professional-grade, written by experts, battle-tested across many projects</li>

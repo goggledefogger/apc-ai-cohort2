@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google AI Studio Guide — BMAD Mastery Program</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #16163f;
+      --navy-light: #1e1e52;
+      --orange: #f15a24;
+      --green: #10b981;
+      --blue: #2DA3CB;
+      --text: #111118;
+      --text-secondary: #555568;
+      --border: #e2e2e8;
+      --bg-subtle: #f7f7f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background: #e4e4ea;
+      font-size: 9.5pt;
+    }
+
+    .document {
+      max-width: 8.5in;
+      margin: 0 auto;
+      background: white;
+      position: relative;
+    }
+
+    .top-bar {
+      height: 8px;
+      background: var(--navy);
+    }
+
+    .content {
+      padding: 0.4in 0.6in 0.5in;
+    }
+
+    /* --- TYPOGRAPHY --- */
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      margin-top: 28px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 4px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    /* --- HEADER --- */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .header-title {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+
+    .header-tagline {
+      font-size: 9pt;
+      font-weight: 500;
+      color: var(--orange);
+      letter-spacing: 0.2px;
+    }
+
+    .header-right {
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .header-meta {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* --- INTRO --- */
+
+    .intro {
+      font-size: 9pt;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      padding: 10px 14px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border-left: 3px solid var(--navy);
+    }
+
+    /* --- TABLES --- */
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      margin-bottom: 8px;
+      font-size: 7.5pt;
+    }
+
+    .data-table thead {
+      background: var(--navy);
+    }
+
+    .data-table th {
+      color: white;
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 7px 12px;
+      text-align: left;
+    }
+
+    .data-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.4;
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: var(--bg-subtle);
+    }
+
+    .data-table .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+    }
+
+    /* --- CARDS --- */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 14px 16px 12px;
+    }
+
+    .card.elevated {
+      border-left: 3px solid var(--orange);
+      background: linear-gradient(135deg, rgba(241, 90, 36, 0.03) 0%, transparent 60%);
+    }
+
+    .card.highlight {
+      border-left: 3px solid var(--blue);
+      background: linear-gradient(135deg, rgba(45, 163, 203, 0.03) 0%, transparent 60%);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-label {
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .card.elevated .card-label {
+      color: var(--orange);
+    }
+
+    .card.highlight .card-label {
+      color: var(--blue);
+    }
+
+    .card-title {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .card-desc {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .card-bullets {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .card-bullets li {
+      font-size: 7.5pt;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      padding-left: 10px;
+      position: relative;
+      margin-bottom: 1px;
+    }
+
+    .card-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5.5px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .callout {
+      font-size: 7pt;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 4px;
+      padding: 3px 8px;
+      background: rgba(241, 90, 36, 0.06);
+      border-radius: 2px;
+      line-height: 1.4;
+    }
+
+    .callout-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-blue {
+      color: var(--blue);
+      background: rgba(45, 163, 203, 0.06);
+    }
+
+    /* --- CODE --- */
+
+    .code-block {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 8pt;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 8px 12px;
+      margin: 6px 0 8px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 7.5pt;
+      background: var(--bg-subtle);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* --- FLOW --- */
+
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 16px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--navy);
+      background: white;
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .flow-arrow {
+      font-size: 10pt;
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* --- CHECKLIST --- */
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 24px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+    }
+
+    /* --- NUMBERED LIST --- */
+
+    .numbered-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px;
+      counter-reset: step-counter;
+    }
+
+    .numbered-list li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 28px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      counter-increment: step-counter;
+    }
+
+    .numbered-list li:last-child {
+      border-bottom: none;
+    }
+
+    .numbered-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 18px;
+      height: 18px;
+      background: var(--navy);
+      color: white;
+      font-size: 7pt;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .numbered-list li .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* --- FOOTER --- */
+
+    .footer {
+      background: var(--navy);
+      padding: 10px 18px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .footer-left {
+      color: white;
+    }
+
+    .footer-names {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1px;
+    }
+
+    .footer-details {
+      font-size: 7pt;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.5;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-tag {
+      font-size: 6.5pt;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 2px;
+    }
+
+    /* --- PRINT --- */
+
+    @media print {
+      body {
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    @media screen {
+      .document {
+        box-shadow: 0 2px 32px rgba(0, 0, 0, 0.12);
+        margin: 24px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="document">
+
+    <div class="top-bar"></div>
+
+    <div class="content">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-left">
+          <h1 class="header-title">Google AI Studio Guide</h1>
+          <div class="header-subtitle">BMAD Mastery Program</div>
+          <div class="header-tagline">Cohort 2 &nbsp;|&nbsp; March 2026</div>
+        </div>
+        <div class="header-right">
+          <div class="header-meta">Student Resource</div>
+        </div>
+      </header>
+
+      <!-- INTRO -->
+      <div class="intro">
+        Google AI Studio is a free, web-based workspace for prototyping with Google&rsquo;s Gemini models. No installation, no credit card &mdash; sign in with a Google account and start prompting. It gives you direct access to frontier AI models with features like multimodal input, code execution, and app building. Think of it as Google&rsquo;s version of a playground where you can test, build, and export to production.
+      </div>
+
+      <!-- WHAT IT IS -->
+      <div class="section-title">What AI Studio Is (and Isn&rsquo;t)</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">It Is</span>
+          </div>
+          <ul class="card-bullets">
+            <li>A free prototyping environment for Gemini models</li>
+            <li>An API playground where you can test prompts and export working code</li>
+            <li>A &ldquo;vibe coding&rdquo; tool that builds full apps from descriptions</li>
+            <li>A multimodal workspace: text, images, audio, video, PDFs</li>
+            <li>A way to generate images, video, music, and speech &mdash; all in one place</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">It Isn&rsquo;t</span>
+          </div>
+          <ul class="card-bullets">
+            <li>A code editor like Cursor or VS Code &mdash; it doesn&rsquo;t manage your project files</li>
+            <li>The same as Gemini chat (gemini.google.com) &mdash; AI Studio is the developer-facing tool</li>
+            <li>The same as Vertex AI &mdash; that&rsquo;s Google Cloud&rsquo;s enterprise version</li>
+            <li>A replacement for a full development environment</li>
+            <li>Private on the free tier &mdash; your prompts may be used to improve Google&rsquo;s models</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="callout"><span class="callout-label">URL:</span> <a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer" style="color: var(--orange);">aistudio.google.com</a> &mdash; sign in with any Google account to get started.</div>
+
+      <!-- GETTING STARTED -->
+      <div class="section-title">Getting Started</div>
+
+      <div class="flow">
+        <span class="flow-step">Sign in with Google</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Pick a mode</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Write a prompt</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Iterate</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Get Code / Deploy</span>
+      </div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Mode</span>
+            <span class="card-title">Chat</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">Conversational prompting. Ask questions, iterate on responses, test system instructions. Where most people start. Good for exploring what a model can do before building anything.</div>
+        </div>
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Mode</span>
+            <span class="card-title">Build (&ldquo;Vibe Coding&rdquo;)</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">Describe an app in plain language and Gemini generates a working application. Preview it live, then deploy to Google Cloud Run with one click. No coding required to get a prototype running.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Mode</span>
+            <span class="card-title">Stream Realtime</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">Share your screen, camera, or both and have a live voice conversation with the model about what it sees. Useful for walking through a UI, getting feedback on a design, or explaining a concept hands-free.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Feature</span>
+            <span class="card-title">Compare Mode</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">Test the same prompt across multiple Gemini models side by side. Helpful for understanding which model handles your use case best before committing to one.</div>
+        </div>
+
+      </div>
+
+      <!-- MODELS -->
+      <div class="section-title">Available Models</div>
+
+      <div class="intro">
+        AI Studio gives you access to multiple Gemini models. Each has different strengths, speeds, and pricing. The model picker in the top-left lets you switch between them.
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Model</th>
+            <th style="width: 35%;">Best For</th>
+            <th style="width: 20%;">Speed / Cost</th>
+            <th style="width: 20%;">Free Tier?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Gemini 2.5 Pro</strong></td>
+            <td class="subtle">Complex reasoning, coding, analysis. 1M token context window (largest available)</td>
+            <td class="subtle">Slower, most capable</td>
+            <td class="subtle">Yes (rate-limited)</td>
+          </tr>
+          <tr>
+            <td><strong>Gemini 2.5 Flash</strong></td>
+            <td class="subtle">Best balance of speed and quality. Good default for most tasks</td>
+            <td class="subtle">Fast, very capable</td>
+            <td class="subtle">Yes</td>
+          </tr>
+          <tr>
+            <td><strong>Gemini 2.5 Flash Lite</strong></td>
+            <td class="subtle">Quick answers, high-volume tasks, low-cost automation</td>
+            <td class="subtle">Fastest, cheapest</td>
+            <td class="subtle">Yes</td>
+          </tr>
+          <tr>
+            <td><strong>Gemini 3 Flash</strong></td>
+            <td class="subtle">Next-gen performance. Benchmarks near 2.5 Pro but much faster</td>
+            <td class="subtle">Fast, frontier-class</td>
+            <td class="subtle">Yes (preview)</td>
+          </tr>
+          <tr>
+            <td><strong>Gemini 3.1 Pro</strong></td>
+            <td class="subtle">Most advanced model. Agentic coding and complex tasks</td>
+            <td class="subtle">Slowest, most powerful</td>
+            <td class="subtle">No (paid only)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-blue"><span class="callout-label">1 million tokens</span> is roughly 1,500 pages of text or 30,000 lines of code. That&rsquo;s significantly more context than most other AI tools. You can paste entire codebases, long documents, or hours of transcripts and ask questions about them.</div>
+
+      <!-- KEY FEATURES -->
+      <div class="section-title">Key Features</div>
+
+      <div class="card-grid">
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Feature</span>
+            <span class="card-title">System Instructions</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">Set the model&rsquo;s persona, tone, and rules before the conversation starts. These persist across the entire chat. Example: &ldquo;You are a friendly tutor. Explain concepts using everyday analogies. Keep responses under 200 words.&rdquo;</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Feature</span>
+            <span class="card-title">Multimodal Input</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">Upload images, audio, video, PDFs, and documents alongside your text prompts. Ask about what&rsquo;s in a photo, transcribe audio, analyze a video, or extract data from a PDF. Gemini handles them natively &mdash; no plugins needed.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Feature</span>
+            <span class="card-title">Grounding with Google Search</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">Toggle this on and the model pulls live information from the web before responding. Useful when you need current data, recent news, or facts the model might not know from training alone. Free tier includes 5,000 grounded prompts per month.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Feature</span>
+            <span class="card-title">Structured Output</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">Define a JSON schema and the model responds in that exact format. Useful for automation, data extraction, or any task where you need predictable, parseable output rather than free-form text.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Feature</span>
+            <span class="card-title">Code Execution</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">The model can write and run Python code in a sandboxed environment. It uses this to solve math problems, process data, create charts, and verify its own work. You see both the code and the output.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Feature</span>
+            <span class="card-title">Get Code</span>
+          </div>
+          <div class="card-desc" style="margin-bottom: 0;">Once your prompt works, click &ldquo;Get Code&rdquo; to export it as working API code in Python, JavaScript, or other languages. Takes you from prototype to production without rewriting anything.</div>
+        </div>
+
+      </div>
+
+      <div class="callout"><span class="callout-label">One limitation:</span> You can&rsquo;t enable Grounding with Google Search and Structured Output at the same time. Disable one before enabling the other.</div>
+
+      <!-- MEDIA GENERATION -->
+      <div class="section-title">Media Generation</div>
+
+      <div class="intro">
+        AI Studio isn&rsquo;t just for text. It includes built-in tools for generating images, video, speech, and music &mdash; all from the same interface.
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 20%;">Type</th>
+            <th style="width: 25%;">Model</th>
+            <th style="width: 55%;">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Images</strong></td>
+            <td>Imagen 4, Gemini image models</td>
+            <td class="subtle">Text-to-image generation and image editing. Gemini&rsquo;s native image generation can also create images with readable text in them</td>
+          </tr>
+          <tr>
+            <td><strong>Video</strong></td>
+            <td>Veo 3.1</td>
+            <td class="subtle">Generate video clips from text descriptions. Useful for prototyping visual concepts</td>
+          </tr>
+          <tr>
+            <td><strong>Speech</strong></td>
+            <td>Gemini TTS models</td>
+            <td class="subtle">Text-to-speech with natural-sounding voices. Available in Pro and Flash variants</td>
+          </tr>
+          <tr>
+            <td><strong>Music</strong></td>
+            <td>Lyria</td>
+            <td class="subtle">Generate music clips and soundscapes from text descriptions</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-blue"><span class="callout-label">Most media generation is paid.</span> Image, video, and music generation typically require billing enabled. Text-to-speech has some free-tier access. The text-based Gemini models remain the core free offering.</div>
+
+      <!-- WHAT'S NEW -->
+      <div class="section-title">What&rsquo;s New (Early 2026)</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">March 2026</span>
+            <span class="card-title">Major UI Overhaul</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Unified Playground &mdash; one surface for text, media generation, and live models (no more tab-switching)</li>
+            <li>Gemini 3.1 Pro Preview &mdash; most advanced model yet, optimized for agentic coding</li>
+            <li>Gemini 3.1 Flash Live &mdash; real-time voice with lower latency</li>
+            <li>Redesigned developer workspace with streamlined navigation</li>
+          </ul>
+        </div>
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Jan 2026</span>
+            <span class="card-title">Gemini 3 + Billing Changes</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Gemini 3 Flash released &mdash; near-Pro performance at Flash speed</li>
+            <li>AI Studio billing separated from Google Cloud &mdash; simpler payment, less confusion</li>
+            <li>Project-level spend caps introduced</li>
+            <li>Agentic Vision via API &mdash; model actively explores visual inputs</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="callout"><span class="callout-label">The pace is fast.</span> Google has shipped major updates monthly in 2026. Features and model names change frequently. When in doubt, check the model picker in AI Studio for what&rsquo;s currently available.</div>
+
+      <!-- PRICING -->
+      <div class="section-title">Pricing &amp; Free Tier</div>
+
+      <div class="card-grid">
+
+        <div class="card highlight">
+          <div class="card-header">
+            <span class="card-label">Free</span>
+            <span class="card-title">What You Get for $0</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Access to Gemini 2.5 Pro, 2.5 Flash, 2.5 Flash Lite, and 3 Flash</li>
+            <li>No credit card, no waiting &mdash; sign in and start</li>
+            <li>Rate-limited: roughly 5&ndash;15 requests per minute depending on model</li>
+            <li>5,000 Google Search grounded prompts per month</li>
+            <li>Full multimodal input (images, audio, video, PDFs)</li>
+            <li>Code execution, system instructions, structured output</li>
+          </ul>
+          <div class="callout"><span class="callout-label">Tradeoff:</span> Free-tier data may be used by Google to improve their models. Enable paid billing for data privacy.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Paid</span>
+            <span class="card-title">When You Need More</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Pay-per-use API pricing (no monthly subscription required)</li>
+            <li>Gemini 2.5 Flash: ~$0.30 per million input tokens &mdash; very affordable</li>
+            <li>Gemini 2.5 Pro: ~$1.25&ndash;$2.50 per million input tokens</li>
+            <li>Higher rate limits and guaranteed availability</li>
+            <li>Data privacy &mdash; your prompts are not used for training</li>
+            <li>Access to paid-only models like Gemini 3.1 Pro</li>
+            <li>AI Pro subscription ($19.99/mo) for higher limits and Gemini 3 Pro access</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- COMPARISON -->
+      <div class="section-title">AI Studio vs ChatGPT vs Claude</div>
+
+      <div class="intro">
+        These are different tools with different strengths. This isn&rsquo;t about which is &ldquo;best&rdquo; &mdash; it&rsquo;s about which fits what you&rsquo;re doing.
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 20%;">Dimension</th>
+            <th style="width: 27%;">AI Studio</th>
+            <th style="width: 27%;">ChatGPT</th>
+            <th style="width: 26%;">Claude</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Free tier</strong></td>
+            <td class="subtle">Most generous. API-level access to frontier models at no cost</td>
+            <td class="subtle">Limited. GPT-4o mini with usage caps</td>
+            <td class="subtle">Limited. Claude Sonnet with usage caps</td>
+          </tr>
+          <tr>
+            <td><strong>Context size</strong></td>
+            <td class="subtle">1M tokens (largest)</td>
+            <td class="subtle">128K tokens</td>
+            <td class="subtle">200K tokens</td>
+          </tr>
+          <tr>
+            <td><strong>Multimodal</strong></td>
+            <td class="subtle">Text, images, audio, video, PDFs &mdash; most comprehensive</td>
+            <td class="subtle">Text, images, audio, code</td>
+            <td class="subtle">Text, images, code</td>
+          </tr>
+          <tr>
+            <td><strong>Media generation</strong></td>
+            <td class="subtle">Images, video, music, speech &mdash; all built in</td>
+            <td class="subtle">Images (DALL-E). No video or music</td>
+            <td class="subtle">No built-in generation</td>
+          </tr>
+          <tr>
+            <td><strong>App building</strong></td>
+            <td class="subtle">Vibe coding + one-click Cloud Run deploy</td>
+            <td class="subtle">Canvas for code</td>
+            <td class="subtle">Artifacts for code</td>
+          </tr>
+          <tr>
+            <td><strong>Code export</strong></td>
+            <td class="subtle">One-click export to Python/JS API code</td>
+            <td class="subtle">API playground is separate</td>
+            <td class="subtle">API playground is separate</td>
+          </tr>
+          <tr>
+            <td><strong>Standout strength</strong></td>
+            <td class="subtle">Multimodal breadth, free tier, Google ecosystem</td>
+            <td class="subtle">Polished chat experience, creative tasks</td>
+            <td class="subtle">Deep analysis, instruction-following, writing quality</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-blue">
+        <div style="text-align: center;"><span class="callout-label">Tradeoffs, not rankings.</span></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 8px;">
+          <div><strong>AI Studio</strong> &mdash; best free tier and multimodal breadth. But the interface is more developer-oriented, the chat experience is less polished, and free-tier data privacy is a real consideration.</div>
+          <div><strong>ChatGPT</strong> &mdash; most mature consumer experience with plugins and browsing. But the free tier is limited and the API playground is separate from the chat product.</div>
+          <div><strong>Claude</strong> &mdash; strongest for careful analysis, following complex instructions, and writing. But no built-in media generation and a smaller context window than Gemini.</div>
+        </div>
+      </div>
+
+      <!-- TIPS -->
+      <div class="section-title">Tips That Matter</div>
+
+      <ol class="numbered-list">
+        <li><strong>Start in Chat mode.</strong> Spend time understanding how Gemini responds before jumping into Build mode. Get a feel for the model first.
+          <span class="subtle">Chat mode is low-stakes and teaches you prompting patterns that transfer everywhere.</span>
+        </li>
+        <li><strong>Write system instructions early.</strong> They shape how the model responds to everything. Set tone, persona, and constraints before you start prompting.
+          <span class="subtle">Example: &ldquo;Respond in plain language. If you&rsquo;re unsure about something, say so.&rdquo;</span>
+        </li>
+        <li><strong>Use Google Search grounding for current information.</strong> The model&rsquo;s training data has a cutoff. Toggle on grounding when you need today&rsquo;s facts, prices, or news.
+          <span class="subtle">5,000 free grounded prompts per month is plenty for learning and prototyping.</span>
+        </li>
+        <li><strong>Adjust thinking level.</strong> Set to High for complex reasoning or coding, Low for quick answers. This controls how much the model reasons before responding.
+          <span class="subtle">Higher thinking = better results on hard problems, but slower and more tokens used.</span>
+        </li>
+        <li><strong>Use &ldquo;Get Code&rdquo; to export.</strong> Once a prompt works well in AI Studio, export it as Python or JavaScript code you can use in your own projects.
+          <span class="subtle">This bridges the gap between prototyping and production.</span>
+        </li>
+        <li><strong>Start new chats for new tasks.</strong> Long conversations degrade quality as the context fills up. Fresh contexts give better results.
+          <span class="subtle">Same principle as Claude Code &mdash; context rot is real across all AI tools.</span>
+        </li>
+        <li><strong>Try Compare mode.</strong> Test the same prompt across models to see which handles your use case best. Quick way to learn model strengths.
+          <span class="subtle">Especially useful when deciding between Flash (fast) and Pro (capable) for a specific task.</span>
+        </li>
+        <li><strong>Be aware of the free tier data tradeoff.</strong> Google may use your free-tier interactions to improve their models. Don&rsquo;t put sensitive or private data into the free tier.
+          <span class="subtle">Enable paid billing if you need data privacy guarantees.</span>
+        </li>
+      </ol>
+
+      <!-- RESOURCES -->
+      <div class="section-title">Resources</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 35%;">Resource</th>
+            <th style="width: 65%;">What It Is</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer" style="color: var(--blue); font-weight: 600;">Google AI Studio</a></td>
+            <td class="subtle">The tool itself. Sign in and start</td>
+          </tr>
+          <tr>
+            <td><a href="https://ai.google.dev/gemini-api/docs/ai-studio-quickstart" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">AI Studio Quickstart</a></td>
+            <td class="subtle">Official getting-started guide from Google</td>
+          </tr>
+          <tr>
+            <td><a href="https://ai.google.dev/gemini-api/docs/models" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Gemini Models Reference</a></td>
+            <td class="subtle">Complete list of available models with specs</td>
+          </tr>
+          <tr>
+            <td><a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Pricing Details</a></td>
+            <td class="subtle">Current pricing for all models and features</td>
+          </tr>
+          <tr>
+            <td><a href="https://ai.google.dev/gemini-api/docs" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">Gemini API Docs</a></td>
+            <td class="subtle">Full API documentation for when you&rsquo;re ready to build</td>
+          </tr>
+          <tr>
+            <td><a href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank" rel="noopener noreferrer" style="color: var(--blue);">API Changelog</a></td>
+            <td class="subtle">What&rsquo;s changed recently &mdash; new models, features, and updates</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout"><span class="callout-label">Start simple.</span> Sign in, open Chat mode, write a prompt. Everything else &mdash; Build mode, media generation, API export &mdash; is there when you need it.</div>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-left">
+          <div class="footer-names">Danny Bauman &nbsp;&bull;&nbsp; Dan Hahn, M.S.</div>
+          <div class="footer-details">Student resource &nbsp;&bull;&nbsp; BMAD Mastery Program</div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-tag">BMAD Mastery Program &mdash; Cohort 2</div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

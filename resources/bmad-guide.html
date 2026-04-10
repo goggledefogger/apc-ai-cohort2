@@ -713,7 +713,6 @@
             <tbody>
               <tr><td><code>/bmad-create-prd</code></td><td class="subtle">Product Requirements Document</td></tr>
               <tr><td><code>/bmad-create-ux-design</code></td><td class="subtle">Interface design (optional)</td></tr>
-              <tr><td><code>/bmad-quick-dev</code></td><td class="subtle">Planning + implementation in one step</td></tr>
             </tbody>
           </table>
         </div>
@@ -751,7 +750,19 @@
 
       </div>
 
-      <div class="callout callout-blue"><span class="callout-label">Shortcuts:</span> Quick project: Analyst &rarr; PM &rarr; Developer (skip architecture). Rapid solo: just <code>/bmad-quick-dev</code>. Full process: all four phases.</div>
+      <div class="card" style="border-left: 3px solid var(--green); margin-bottom: 10px;">
+        <div class="card-header">
+          <span class="card-label" style="color: var(--green);">Alternative: Quick Cycle</span>
+          <span class="card-title">Spec a Feature and Build It</span>
+        </div>
+        <table class="data-table" style="margin-bottom: 4px;">
+          <tbody>
+            <tr style="background: rgba(16, 185, 129, 0.06);"><td><code>/bmad-quick-dev</code></td><td class="subtle">Asks clarifying questions, plans the approach, then builds it</td></tr>
+          </tbody>
+        </table>
+        <div class="card-desc">Skip sprint planning and stories. Good for individual features, quick wins, and iterative work. This is the main cycle for building once you know what you want.</div>
+      </div>
+
 
       <!-- NAVIGATING -->
       <div class="section-title">Navigating Between Steps</div>
@@ -903,7 +914,7 @@ Each workflow should be run in a fresh context window for best results.</div>
           </tr>
           <tr>
             <td><code>/bmad-quick-dev</code></td>
-            <td>Quick Flow &mdash; planning + implementation in one step</td>
+            <td>Quick cycle step 2 &mdash; builds from the spec</td>
           </tr>
           <tr>
             <td colspan="2" style="background: var(--bg-subtle); font-size: 6.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy);">Agent Slash Commands (load an agent&rsquo;s menu)</td>
@@ -953,7 +964,7 @@ Each workflow should be run in a fresh context window for best results.</div>
         </li>
         <li><strong>You can skip roles.</strong> Not every project needs the full team. A quick feature might just need the Developer. A complex project needs the full flow. Match the process to the problem.</li>
         <li><strong>Name your artifacts well.</strong> The AI reads file names. <code>PRD.md</code> is better than <code>document1.md</code>. <code>architecture.md</code> is better than <code>plan.md</code>.</li>
-        <li><strong>Quick Flow for quick wins.</strong> When you know exactly what you want and don&rsquo;t need planning ceremony, Use <code>/bmad-quick-dev</code>. Solo rapid development without the team overhead.</li>
+        <li><strong>Quick Flow for quick wins.</strong> When you know what you want to build, use <code>/bmad-quick-dev</code>. It asks clarifying questions, plans the approach, then builds &mdash; all in one flow without the full team ceremony.</li>
         <li><strong>bmad-help is your compass.</strong> Lost? Don&rsquo;t remember commands? <code>/bmad-help</code> inspects your project and tells you exactly what to do next.</li>
         <li><strong>Initialize Git before installing.</strong> BMAD uses Git to track project state and changes. Run <code>git init</code> in your project folder before <code>npx bmad-method install</code>.</li>
         <li><strong>Customize after install.</strong> Settings live in <code>_bmad/_config/config.yaml</code>. You can adjust your name, language, output preferences, and agent behavior after installation.</li>
