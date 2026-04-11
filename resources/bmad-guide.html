@@ -602,6 +602,9 @@
           <div class="card-desc" style="margin-top: 10px; margin-bottom: 4px;"><strong>Verify it worked:</strong></div>
           <div class="code-block">/bmad-help</div>
           <div class="card-desc">It tells you what to do next. This is your starting point.</div>
+          <div class="card-desc" style="margin-top: 12px; margin-bottom: 4px;"><strong>Update later:</strong> BMAD ships changes often &mdash; re-run this from your project directory to pull the latest version while keeping your existing module and tool selections.</div>
+          <div class="code-block">npx bmad-method install --directory . --action quick-update</div>
+          <div class="card-desc" style="margin-top: 6px; font-size: 0.85em;">Use <code>--action update</code> instead if you want to change modules or tools (you&rsquo;ll re-pick them). See the <a href="https://docs.bmad-method.org/how-to/non-interactive-installation/#quick-update-preserve-settings" target="_blank" rel="noopener">BMAD docs</a> for all update options.</div>
         </div>
 
       </div>
@@ -942,7 +945,7 @@ Each workflow should be run in a fresh context window for best results.</div>
       <div class="section-title">Where Things Live</div>
 
       <ul class="card-bullets" style="margin-bottom: 8px;">
-        <li><code>_bmad/</code> &mdash; The framework itself. Don&rsquo;t edit manually. Updated via <code>npx bmad-method install --action quick-update</code></li>
+        <li><code>_bmad/</code> &mdash; The framework itself. Don&rsquo;t edit manually. Updated via <code>npx bmad-method install --directory . --action quick-update</code></li>
         <li><code>_bmad-output/planning-artifacts/</code> &mdash; PRDs, architecture docs, brainstorming notes. Your project&rsquo;s brain.</li>
         <li><code>_bmad-output/implementation-artifacts/</code> &mdash; Sprint plans, code specs. Your project&rsquo;s to-do list.</li>
       </ul>
