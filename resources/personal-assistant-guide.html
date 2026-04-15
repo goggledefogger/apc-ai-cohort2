@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Assistant Guide — BMAD Mastery Program</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #16163f;
+      --navy-light: #1e1e52;
+      --orange: #f15a24;
+      --green: #10b981;
+      --blue: #2DA3CB;
+      --text: #111118;
+      --text-secondary: #555568;
+      --border: #e2e2e8;
+      --bg-subtle: #f7f7f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background: #e4e4ea;
+      font-size: 9.5pt;
+    }
+
+    .document {
+      max-width: 8.5in;
+      margin: 0 auto;
+      background: white;
+      position: relative;
+    }
+
+    .top-bar {
+      height: 8px;
+      background: var(--navy);
+    }
+
+    .content {
+      padding: 0.4in 0.6in 0.5in;
+    }
+
+    /* --- TYPOGRAPHY --- */
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      margin-top: 28px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 4px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    /* --- HEADER --- */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .header-title {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+
+    .header-tagline {
+      font-size: 9pt;
+      font-weight: 500;
+      color: var(--orange);
+      letter-spacing: 0.2px;
+    }
+
+    .header-right {
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .header-meta {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* --- INTRO --- */
+
+    .intro {
+      font-size: 9pt;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      padding: 10px 14px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border-left: 3px solid var(--navy);
+    }
+
+    /* --- TABLES --- */
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      margin-bottom: 8px;
+      font-size: 7.5pt;
+    }
+
+    .data-table thead {
+      background: var(--navy);
+    }
+
+    .data-table th {
+      color: white;
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 7px 12px;
+      text-align: left;
+    }
+
+    .data-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.4;
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: var(--bg-subtle);
+    }
+
+    .data-table .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+    }
+
+    /* --- CARDS --- */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 14px 16px 12px;
+    }
+
+    .card.elevated {
+      border-left: 3px solid var(--orange);
+      background: linear-gradient(135deg, rgba(241, 90, 36, 0.03) 0%, transparent 60%);
+    }
+
+    .card.highlight {
+      border-left: 3px solid var(--blue);
+      background: linear-gradient(135deg, rgba(45, 163, 203, 0.03) 0%, transparent 60%);
+    }
+
+    .card.success {
+      border-left: 3px solid var(--green);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.03) 0%, transparent 60%);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-label {
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .card.elevated .card-label {
+      color: var(--orange);
+    }
+
+    .card.highlight .card-label {
+      color: var(--blue);
+    }
+
+    .card.success .card-label {
+      color: var(--green);
+    }
+
+    .card-title {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .card-desc {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .card-bullets {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .card-bullets li {
+      font-size: 7.5pt;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      padding-left: 10px;
+      position: relative;
+      margin-bottom: 1px;
+    }
+
+    .card-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5.5px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .callout {
+      font-size: 7pt;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 4px;
+      padding: 3px 8px;
+      background: rgba(241, 90, 36, 0.06);
+      border-radius: 2px;
+      line-height: 1.4;
+    }
+
+    .callout-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-blue {
+      color: var(--blue);
+      background: rgba(45, 163, 203, 0.06);
+    }
+
+    .callout-green {
+      color: var(--green);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    /* --- CODE --- */
+
+    .code-block {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 8pt;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 8px 12px;
+      margin: 6px 0 8px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 7.5pt;
+      background: var(--bg-subtle);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* --- FLOW --- */
+
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 16px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--navy);
+      background: white;
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .flow-arrow {
+      font-size: 10pt;
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* --- CHECKLIST --- */
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 24px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+    }
+
+    /* --- NUMBERED LIST --- */
+
+    .numbered-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px;
+      counter-reset: step-counter;
+    }
+
+    .numbered-list li {
+      font-size: 8pt;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 5px 0 5px 28px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      counter-increment: step-counter;
+    }
+
+    .numbered-list li:last-child {
+      border-bottom: none;
+    }
+
+    .numbered-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 18px;
+      height: 18px;
+      background: var(--navy);
+      color: white;
+      font-size: 7pt;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .numbered-list li .subtle {
+      font-size: 7pt;
+      color: var(--text-secondary);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* --- FOOTER --- */
+
+    .footer {
+      background: var(--navy);
+      padding: 10px 18px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .footer-left {
+      color: white;
+    }
+
+    .footer-names {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1px;
+    }
+
+    .footer-details {
+      font-size: 7pt;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.5;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-tag {
+      font-size: 6.5pt;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 2px;
+    }
+
+    /* --- PRINT --- */
+
+    @media print {
+      body {
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    @media screen {
+      .document {
+        box-shadow: 0 2px 32px rgba(0, 0, 0, 0.12);
+        margin: 24px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="document">
+
+    <div class="top-bar"></div>
+
+    <div class="content">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-left">
+          <h1 class="header-title">Personal Assistant Guide</h1>
+          <div class="header-subtitle">Build an AI that knows you &mdash; from OpenClaw to Hermes and beyond</div>
+          <div class="header-tagline">Cohort 2 &nbsp;|&nbsp; April 2026</div>
+        </div>
+        <div class="header-right">
+          <div class="header-meta">Student Resource</div>
+        </div>
+      </header>
+
+      <!-- INTRO -->
+      <div class="intro">
+        A personal AI assistant is an always-on agent that knows your preferences, manages your routines, and works on tasks while you sleep. It runs on your own hardware (a Raspberry Pi, an old laptop, a $5 VPS), connects to you through Telegram, WhatsApp, Slack, or another messaging app, and gets smarter over time. This guide covers the landscape &mdash; starting with OpenClaw (where Danny started), why practitioners migrate to Hermes, the knowledge patterns that make assistants actually useful, and the broader ecosystem of tools worth knowing about.
+      </div>
+
+      <!-- THE PHILOSOPHY -->
+      <div class="section-title">The Mindset Shift</div>
+
+      <div class="card elevated">
+        <div class="card-header">
+          <span class="card-label">Philosophy</span>
+          <span class="card-title">Chief Steering Officer</span>
+        </div>
+        <div class="card-desc">The biggest change is not technical &mdash; it is how you work. Instead of typing prompts and telling the AI what to do step-by-step, your job becomes setting direction, reviewing output, and removing blockers. The AI researches, codes, and monitors 24/7 &mdash; even overnight &mdash; while you approve or redirect.</div>
+        <div class="card-desc">Think of it as shifting from doing the work to managing a very capable (but literal) employee. You scale from what one person can accomplish in a day to what an army of agents can handle in parallel.</div>
+      </div>
+
+      <!-- THE PROGRESSION -->
+      <div class="section-title">The Progression</div>
+
+      <div class="flow">
+        <span class="flow-step">Cursor / Claude Code</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">OpenClaw</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Hermes</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Whatever&rsquo;s Next</span>
+      </div>
+
+      <div class="card-grid">
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Stage 1</span>
+            <span class="card-title">IDE Assistants</span>
+          </div>
+          <div class="card-desc">Cursor and Claude Code live inside your editor. You drive, the AI assists. Great for building software, but you have to be at your desk with the project open.</div>
+          <ul class="card-bullets">
+            <li>You are in the loop for every action</li>
+            <li>Context is one project at a time</li>
+            <li>No memory between sessions (unless you set up CLAUDE.md)</li>
+          </ul>
+        </div>
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Stage 2</span>
+            <span class="card-title">Personal Assistant</span>
+          </div>
+          <div class="card-desc">An always-on agent that lives outside your editor. It knows your household, your schedule, your preferences. You message it from your phone and it works while you are away.</div>
+          <ul class="card-bullets">
+            <li>Runs 24/7 on your own hardware</li>
+            <li>Handles tasks across domains (home, work, media, errands)</li>
+            <li>Remembers past conversations and learns from them</li>
+            <li>Schedules recurring tasks and delivers results to your phone</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="callout"><span class="callout-label">Key shift:</span> An IDE assistant helps you build things. A personal assistant helps you live your life. Different problem, different architecture.</div>
+
+      <!-- OPENCLAW -->
+      <div class="section-title">OpenClaw</div>
+
+      <div class="card elevated">
+        <div class="card-header">
+          <span class="card-label">Platform</span>
+          <span class="card-title">Where Most People Start</span>
+        </div>
+        <div class="card-desc">OpenClaw is an open-source, highly extensible personal AI assistant framework that runs locally rather than in a walled-garden cloud. It operates continuously in the background with full system access &mdash; reading files, executing scripts, controlling your browser &mdash; and you interact with it through Telegram, WhatsApp, Discord, or Slack from your phone.</div>
+        <ul class="card-bullets">
+          <li><strong>Architecture:</strong> session-based with a scheduled &ldquo;heartbeat&rdquo; cron job that lets the agent wake up, execute tasks, and proactively reach out without waiting for a prompt</li>
+          <li><strong>Skills:</strong> governed by <code>AGENTS.md</code>, the core operational rulebook that dictates task execution, message patterns, cron standards, and error protocols</li>
+          <li><strong>Model tiering:</strong> power users run free local models via Ollama or LM Studio (like Nomic embeddings) for memory search on-device, routing heavy reasoning to frontier models via API</li>
+          <li><strong>Runs on:</strong> Raspberry Pi, Docker, cloud VMs &mdash; anywhere you can run Node</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-bottom: 8px;">
+        <div class="card-header">
+          <span class="card-label">Strengths</span>
+          <span class="card-title">What OpenClaw Does Well</span>
+        </div>
+        <ul class="card-bullets">
+          <li><strong>Unattended background automation:</strong> schedule web research, analytics scraping, finance audits, and morning briefings that run while you sleep</li>
+          <li><strong>Gluing together disconnected systems:</strong> read a Slack thread, search a knowledge base, create a ticket, draft an outline, update a CRM &mdash; all autonomously</li>
+          <li>Large community and ecosystem &mdash; easy to find examples, kits, and help</li>
+          <li>Straightforward Docker Compose setup; good for learning agent architecture</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-bottom: 8px;">
+        <div class="card-header">
+          <span class="card-label">Limitations</span>
+          <span class="card-title">Where OpenClaw Struggles</span>
+        </div>
+        <div class="card-desc">These are real problems you hit after running OpenClaw for weeks, not theoretical concerns:</div>
+        <ul class="card-bullets">
+          <li><strong>Skill routing is fragile.</strong> AGENTS.md routing tables rely on the LLM to match requests to skills. Compliance runs 20&ndash;50% on some models. You end up writing hooks that inject skill files every turn as a workaround</li>
+          <li><strong>Context compaction breaks on non-Anthropic models.</strong> On Gemini, compaction silently fails (compactionCount stays at zero). Your only option is a watchdog that hard-resets sessions at a token threshold, losing conversation state</li>
+          <li><strong>Prompt drift across model families.</strong> OpenClaw was optimized for Claude. Running on GPT or Gemini requires &ldquo;dual prompt stacks&rdquo; &mdash; separate configurations per model family, with nightly sync scripts to keep them aligned</li>
+          <li><strong>No cross-session search.</strong> Past conversations are opaque. You have to write custom scripts to search message history</li>
+          <li><strong>Watchdog sprawl.</strong> Crontab entries, health-check scripts, loop watchers, error-reply services &mdash; each one a separate thing to maintain (~5 scripts just to keep things running)</li>
+          <li><strong>Silent provider failover.</strong> When a provider goes down and OpenClaw fails over, it stays on the fallback silently until you manually reset the session config</li>
+          <li><strong>Skill self-improvement is possible but not native.</strong> Recent versions allow agents to write skill files, but there is no built-in learning loop &mdash; you configure this yourself rather than getting it out of the box</li>
+          <li><strong>Security risk:</strong> full local access means prompt injection from a web search or inbound email could execute harmful code. Mitigating this requires quarantining untrusted text, sandbox scanning, and deterministic redaction</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-blue"><span class="callout-label">Perspective:</span> OpenClaw is a great learning platform. These limitations surface after you get serious about reliability and daily use. If you are just exploring the concept, it is a fine place to start &mdash; and the community will help you.</div>
+
+      <!-- HERMES -->
+      <div class="section-title">Hermes</div>
+
+      <div class="card success">
+        <div class="card-header">
+          <span class="card-label">Platform</span>
+          <span class="card-title">Built for the Problems OpenClaw Exposed</span>
+        </div>
+        <div class="card-desc">Hermes is a self-improving AI agent built by Nous Research. It operates from a single gateway process, interfaces through Telegram, Discord, Slack, WhatsApp, Signal, and a terminal UI, and runs on anything from a $5 VPS to a local machine. Unlike OpenClaw, it has a built-in closed learning loop &mdash; it gets better every time it completes a task.</div>
+        <div class="card-desc">Hermes includes a migration wizard (<code>hermes setup</code>) that auto-detects your <code>~/.openclaw</code> directory and imports your SOUL.md, MEMORY.md, skills, command allowlists, and API keys into <code>~/.hermes/skills/openclaw-imports/</code>.</div>
+        <ul class="card-bullets">
+          <li><strong>Architecture:</strong> model-agnostic with explicit provider resolution (no silent failover)</li>
+          <li><strong>Skills:</strong> LLM-powered matching with progressive disclosure + slash commands. Compatible with the agentskills.io open standard</li>
+          <li><strong>Memory:</strong> FTS5 full-text search with LLM summarization across all sessions, plus Honcho dialectic user modeling</li>
+          <li><strong>Scheduling:</strong> native cron with per-job skill loading, per-user delivery targets, and anti-recursion safety</li>
+          <li><strong>Self-improvement:</strong> after completing complex tasks, the agent packages the workflow into a new skill that improves with use</li>
+          <li><strong>Compute:</strong> six terminal backends (local, Docker, SSH, Daytona, Singularity, Modal) &mdash; heavy tasks run in cloud VMs instead of competing for Pi RAM</li>
+        </ul>
+      </div>
+
+      <!-- WHAT HERMES SOLVES -->
+      <div class="section-title">What Hermes Fixes</div>
+
+      <div class="card-desc" style="margin-bottom: 10px;">Six problems that required fragile workarounds in OpenClaw, solved natively in Hermes:</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 18%;">Problem</th>
+            <th style="width: 41%;">OpenClaw Workaround</th>
+            <th style="width: 41%;">Hermes Solution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Skill Routing</strong></td>
+            <td class="subtle">AGENTS.md routing tables with 20&ndash;50% compliance. Bootstrap hooks injecting skill files every turn</td>
+            <td class="subtle">LLM-powered skill matching + progressive disclosure + slash commands. No routing table maintenance</td>
+          </tr>
+          <tr>
+            <td><strong>Context Management</strong></td>
+            <td class="subtle">Compaction broken on Gemini. Watchdog hard-resets sessions at 100K tokens, losing state</td>
+            <td class="subtle">Model-agnostic compression at 50% threshold with configurable retention. Works across providers</td>
+          </tr>
+          <tr>
+            <td><strong>Session Search</strong></td>
+            <td class="subtle">Custom Python scripts to search past conversations</td>
+            <td class="subtle">Built-in FTS5 full-text search with LLM summarization across all sessions</td>
+          </tr>
+          <tr>
+            <td><strong>Scheduling</strong></td>
+            <td class="subtle">System crontab + health-check watchdog + loop watchdog + thinking-only checker + error-auto-reply service (~5 scripts)</td>
+            <td class="subtle">Built-in cron scheduler with per-job skill loading, delivery targets, and anti-recursion safety</td>
+          </tr>
+          <tr>
+            <td><strong>Provider Health</strong></td>
+            <td class="subtle">Silent failover locks session to fallback model until manual sessions.json reset</td>
+            <td class="subtle">Explicit provider resolution. No sticky model locking</td>
+          </tr>
+          <tr>
+            <td><strong>Skill Evolution</strong></td>
+            <td class="subtle">Agents can write skill files, but no built-in learning loop. You configure self-improvement yourself</td>
+            <td class="subtle">Built-in closed learning loop. Agents create, patch, and evolve their own skills from experience automatically</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- NEW CAPABILITIES -->
+      <div class="section-title">New Capabilities in Hermes</div>
+
+      <div class="card-grid">
+
+        <div class="card success">
+          <div class="card-header">
+            <span class="card-label">Compute</span>
+            <span class="card-title">Serverless Sub-Agents</span>
+          </div>
+          <div class="card-desc">Heavy research tasks run in cloud VMs (Modal, Daytona) that hibernate when idle and wake instantly. OpenClaw sub-agents all ran in-process, competing for your Pi&rsquo;s RAM.</div>
+        </div>
+
+        <div class="card success">
+          <div class="card-header">
+            <span class="card-label">Knowledge</span>
+            <span class="card-title">Local RAG Search</span>
+          </div>
+          <div class="card-desc">Local embedding model (MiniLM, 22M params) with hybrid search over your knowledge base. Zero-cost semantic search on a Pi. OpenClaw&rsquo;s vector search required Anthropic&rsquo;s embedding API.</div>
+        </div>
+
+        <div class="card highlight">
+          <div class="card-header">
+            <span class="card-label">Messaging</span>
+            <span class="card-title">Per-User DM Topics</span>
+          </div>
+          <div class="card-desc">Telegram threads organized by domain (Media, Pets, Yard) with auto-loaded skills per topic. Ask about plants in the Yard thread and the gardening skill loads automatically. Multiple family members share one agent with profile isolation.</div>
+        </div>
+
+        <div class="card highlight">
+          <div class="card-header">
+            <span class="card-label">Operations</span>
+            <span class="card-title">Profile Export/Import</span>
+          </div>
+          <div class="card-desc"><code>hermes profile export</code> snapshots your entire assistant &mdash; skills, memory, config &mdash; in one command. Backup, migrate, or clone your setup. Replaces custom backup scripts.</div>
+        </div>
+
+      </div>
+
+      <div class="callout callout-green"><span class="callout-label">Net effect:</span> Delete ~10 watchdog/workaround scripts. Gain native cron, memory, skill routing, context compression. Unlock serverless offloading, local RAG, per-user topics. Maintenance burden drops significantly.</div>
+
+      <!-- KNOWLEDGE PATTERNS -->
+      <div class="section-title">Knowledge Patterns</div>
+
+      <div class="intro">
+        The difference between a chatbot and a personal assistant is how well it knows you. These two patterns determine whether your assistant starts every conversation from scratch or picks up where it left off.
+      </div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Pattern</span>
+            <span class="card-title">Personal Context Portfolio</span>
+          </div>
+          <div class="card-desc">A structured set of ten markdown files that serves as an operating manual for any AI agent. Instead of repeating who you are every session, you hand the agent a portfolio and it already knows your role, preferences, and projects.</div>
+          <ul class="card-bullets">
+            <li><code>identity.md</code> &mdash; one-page summary of who you are</li>
+            <li><code>role-and-responsibilities.md</code> &mdash; what your actual weekly work looks like</li>
+            <li><code>current-projects.md</code> &mdash; active workstreams and definitions of &ldquo;done&rdquo;</li>
+            <li><code>communication-style.md</code> &mdash; how you prefer things written</li>
+            <li><code>preferences-and-constraints.md</code> &mdash; hard rules agents must respect</li>
+            <li><code>domain-knowledge.md</code> &mdash; specialized knowledge a general AI would not have</li>
+            <li><code>decision-log.md</code> &mdash; real examples of how you make decisions</li>
+          </ul>
+          <div class="callout"><span class="callout-label">Key idea:</span> Markdown-first, modular, portable across any AI system. Build it once, carry it everywhere.</div>
+        </div>
+
+        <div class="card highlight">
+          <div class="card-header">
+            <span class="card-label">Pattern</span>
+            <span class="card-title">LLM Wiki</span>
+          </div>
+          <div class="card-desc">Instead of retrieving fragments from a vector database, the agent actively maintains a structured, interlinked collection of markdown files &mdash; writing summaries, updating cross-references, flagging contradictions, and logging changes.</div>
+          <ul class="card-bullets">
+            <li><strong>Three layers:</strong> raw sources (immutable originals), the wiki (LLM-generated summaries and syntheses), and the schema (rules for how the LLM maintains it)</li>
+            <li><code>index.md</code> catalogs all content; <code>log.md</code> is an append-only change record</li>
+            <li>The wiki compounds over time &mdash; the more you use it, the more valuable it becomes</li>
+            <li>Works locally, no API costs for the knowledge base itself</li>
+          </ul>
+          <div class="callout callout-blue"><span class="callout-label">Why not just RAG?</span> RAG retrieves fragments. An LLM Wiki synthesizes knowledge. The agent understands relationships between facts, not just individual matches.</div>
+        </div>
+
+      </div>
+
+      <!-- PLATFORM PORTABILITY -->
+      <div class="section-title">Platform Portability</div>
+
+      <div class="card elevated">
+        <div class="card-header">
+          <span class="card-label">Principle</span>
+          <span class="card-title">Don&rsquo;t Get Locked In</span>
+        </div>
+        <div class="card-desc">Hermes supports standard plugins, the agentskills.io standard, and Model Context Protocol (MCP). If a better framework appears in six months, you swap the adapter instead of rebuilding from scratch.</div>
+        <div class="card-desc">This is the most important lesson from the OpenClaw-to-Hermes migration: <strong>your custom infrastructure should survive a platform change.</strong> Media pipelines, dashboards, Docker stacks, helper scripts &mdash; all of that carries over. The platform is the orchestration layer, not the whole system.</div>
+      </div>
+
+      <div class="callout callout-green"><span class="callout-label">What stays the same in a migration:</span> Your custom tools, media pipelines, dashboards, Docker services, and integrations. The platform gives them a better orchestration layer &mdash; it does not replace them.</div>
+
+      <!-- THE BROADER LANDSCAPE -->
+      <div class="section-title">The Broader Landscape</div>
+
+      <div class="intro">
+        OpenClaw and Hermes are not the only options. The personal assistant space is evolving fast. Here are the other frameworks and tools worth knowing about.
+      </div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Framework</span>
+            <span class="card-title">NemoClaw</span>
+          </div>
+          <div class="card-desc">NVIDIA-backed, open-source reference stack that runs OpenClaw agents inside the NVIDIA OpenShell runtime with enterprise-grade security. Adds layered protection, capability drops, and strict network policies to sandbox the agent. Solves OpenClaw&rsquo;s prompt injection risk with guided onboarding and hardened blueprints.</div>
+        </div>
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Framework</span>
+            <span class="card-title">Phantom</span>
+          </div>
+          <div class="card-desc">Open-source, autonomous AI co-worker with root access to its own dedicated VM (Docker, databases, shell). Entirely self-evolving: after every conversation, Phantom reflects, proposes config changes, validates them with LLM judges, and rewrites itself. Exposes 17+ tools as an MCP server so other agents and IDEs can connect to it.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Platform</span>
+            <span class="card-title">agentOS</span>
+          </div>
+          <div class="card-desc">A runtime for complex, stateful agent workloads &mdash; from personal assistants to enterprise fleets. Supports programming agents with git/shell, background agents that persist state across crashes, multi-agent systems with shared file systems and messaging, and human-in-the-loop workflow automation.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Registry</span>
+            <span class="card-title">Journey Kits</span>
+          </div>
+          <div class="card-desc">Think npm for AI agents. Instead of prompting from scratch, point your agent at a Journey Kit and it downloads a complete workflow: skills, tools, database schemas, service integrations, and logged learnings. Designed for teams &mdash; agents share context without leaking private data.</div>
+        </div>
+
+      </div>
+
+      <div class="card" style="margin-bottom: 8px;">
+        <div class="card-header">
+          <span class="card-label">Tool</span>
+          <span class="card-title">Littlebird</span>
+        </div>
+        <div class="card-desc">A desktop AI application that acts as continuous memory by privately reading your active screen and transcribing meetings. It already knows what you are working on across all your apps without manual integrations or catch-up prompts. Features include recall chat (&ldquo;what was that link from this morning?&rdquo;), automated meeting notes, and proactive routines. Privacy-first: ignores minimized/private windows, enterprise encryption, never trains on your data.</div>
+      </div>
+
+      <!-- ANATOMY -->
+      <div class="section-title">Anatomy of a Personal Assistant</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">1</span>
+            <span class="card-title">Brain (LLM)</span>
+          </div>
+          <div class="card-desc">The language model that reasons and generates responses. Your assistant should work with multiple providers (Anthropic, Google, OpenAI) so you are not dependent on one company&rsquo;s uptime or pricing. Use model tiering: run cheap local models through Ollama or LM Studio for embeddings and simple tasks, route heavy reasoning to frontier models via API.</div>
+        </div>
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">2</span>
+            <span class="card-title">Hands (Tools)</span>
+          </div>
+          <div class="card-desc">APIs, file system access, web browsing, smart home controls, messaging &mdash; anything the assistant can act on. MCP servers are the standard way to connect new tools. Journey Kits bundle tools with workflows.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">3</span>
+            <span class="card-title">Memory</span>
+          </div>
+          <div class="card-desc">How the assistant remembers. The best systems combine conversation history, semantic search (local RAG), the LLM Wiki pattern, and a Personal Context Portfolio. Without searchable cross-session memory, it is a chatbot with extra steps.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">4</span>
+            <span class="card-title">Skills</span>
+          </div>
+          <div class="card-desc">Reusable instructions for specific domains. Static skills are recipe cards you maintain. Self-improving skills are apprentices that get better every time they do the job. Look for platforms where the agent can write its own.</div>
+        </div>
+
+      </div>
+
+      <div class="card" style="margin-bottom: 8px;">
+        <div class="card-header">
+          <span class="card-label">5</span>
+          <span class="card-title">Scheduling</span>
+        </div>
+        <div class="card-desc">Recurring tasks that run without you. Morning briefings, plant care reminders, news digests, system health checks. This is the moment it stops being a chatbot and starts being an assistant &mdash; it does useful work while you are asleep.</div>
+      </div>
+
+      <!-- WHAT PEOPLE BUILD -->
+      <div class="section-title">What People Build</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Domain</th>
+            <th style="width: 75%;">Example Tasks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Home</strong></td>
+            <td class="subtle">Research materials for house projects, coordinate contractors, track maintenance schedules, manage smart home routines</td>
+          </tr>
+          <tr>
+            <td><strong>Media</strong></td>
+            <td class="subtle">Manage a Plex/Jellyfin library, transcode files, organize metadata, suggest what to watch</td>
+          </tr>
+          <tr>
+            <td><strong>Garden</strong></td>
+            <td class="subtle">Plant care guides, watering schedules, soil and fertilizer research, seasonal planting calendars</td>
+          </tr>
+          <tr>
+            <td><strong>Pets</strong></td>
+            <td class="subtle">Feeding logs, vet appointment reminders, medication schedules, breed-specific care research</td>
+          </tr>
+          <tr>
+            <td><strong>Finance</strong></td>
+            <td class="subtle">Track spending categories, summarize statements, flag unusual charges, audit budgets overnight</td>
+          </tr>
+          <tr>
+            <td><strong>Work</strong></td>
+            <td class="subtle">Morning briefings, meeting prep, research summaries, CRM updates, draft emails for review</td>
+          </tr>
+          <tr>
+            <td><strong>Knowledge</strong></td>
+            <td class="subtle">Maintain an LLM Wiki that compounds over time, auto-summarize new sources, cross-reference across domains</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout"><span class="callout-label">Start small:</span> Pick one domain that would save you real time every week. Get that working reliably before expanding. A personal assistant that does one thing well is more useful than one that does ten things unreliably.</div>
+
+      <!-- CHOOSING HARDWARE -->
+      <div class="section-title">Choosing Your Hardware</div>
+
+      <div class="intro">
+        Your assistant needs a machine that stays on 24/7, runs Docker, and has enough RAM for the agent process plus any local models you want to run. Here is how the options compare.
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 18%;">Option</th>
+            <th style="width: 10%;">Cost</th>
+            <th style="width: 36%;">Good For</th>
+            <th style="width: 36%;">Watch Out</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Raspberry Pi 3</strong></td>
+            <td class="subtle">~$35</td>
+            <td class="subtle">Cheapest entry point. Runs the agent process and API calls fine. Good for learning the basics without spending money</td>
+            <td class="subtle">1 GB RAM is tight. Cannot run local models or heavy sub-agents. SD card can corrupt over time &mdash; use an SSD if you get serious</td>
+          </tr>
+          <tr>
+            <td><strong>Raspberry Pi 4</strong></td>
+            <td class="subtle">~$55&ndash;75</td>
+            <td class="subtle">The workhorse. 4&ndash;8 GB RAM handles the agent, small embedding models (MiniLM, Nomic), and a few Docker containers comfortably. Quiet, low power (~5W), runs headless in a closet</td>
+            <td class="subtle">Cannot run large local models (7B+ parameter). Heavy research tasks should offload to cloud sub-agents (Modal, Daytona). Still uses SD card by default &mdash; boot from USB SSD for reliability</td>
+          </tr>
+          <tr>
+            <td><strong>Raspberry Pi 5</strong></td>
+            <td class="subtle">~$80&ndash;100</td>
+            <td class="subtle">Best Pi for the job. 8 GB RAM, faster CPU, native PCIe for NVMe SSD. Runs Ollama with small models (3B params) at usable speed. The sweet spot if you are buying new hardware specifically for this</td>
+            <td class="subtle">Still limited to small models locally. Larger models (7B+) will be slow or not fit in RAM. Same offloading advice applies for heavy tasks</td>
+          </tr>
+          <tr>
+            <td><strong>Old Laptop</strong></td>
+            <td class="subtle">$0 (reuse)</td>
+            <td class="subtle">Free if you have one sitting around. More RAM than a Pi (8&ndash;16 GB typical), built-in battery as UPS, built-in screen for debugging. Can run 7B models via Ollama at acceptable speed</td>
+            <td class="subtle">Uses more power (~30&ndash;60W), fans may be noisy, takes up desk space. Laptops were not designed to run 24/7 &mdash; keep it ventilated and expect the battery to degrade</td>
+          </tr>
+          <tr>
+            <td><strong>$5/mo VPS</strong></td>
+            <td class="subtle">$5&ndash;12/mo</td>
+            <td class="subtle">No hardware to manage. Always online, accessible from anywhere, easy to snapshot and restore. Good if you do not want to maintain physical hardware or worry about power outages and home networking. Hetzner Cloud (hetzner.com/cloud) is a solid, affordable option</td>
+            <td class="subtle">Typically 1&ndash;2 GB RAM on cheap tiers &mdash; enough for the agent, not enough for local models. Your data lives on someone else&rsquo;s server. Latency to local network devices (smart home, NAS) is harder</td>
+          </tr>
+          <tr>
+            <td><strong>Mac Mini</strong></td>
+            <td class="subtle">~$500&ndash;800</td>
+            <td class="subtle">The power option. Apple Silicon (M-series) runs local models fast with unified memory. 16&ndash;24 GB RAM handles 13B+ models via Ollama natively. Silent, tiny, low power (~10W idle). If you want serious local inference without a GPU rig, this is the best consumer hardware for it</td>
+            <td class="subtle">Overkill if you are just running an agent + API calls. The price only makes sense if you plan to run substantial local models or multiple agents. Still benefits from cloud offloading for the heaviest tasks</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout"><span class="callout-label">Recommendation:</span> Start with whatever you already have. A Pi 4/5 or old laptop is enough to learn everything. Upgrade to a Mac Mini only if you find yourself wanting serious local model inference. Use a VPS if you want zero hardware maintenance.</div>
+
+      <!-- GETTING STARTED -->
+      <div class="section-title">Getting Started</div>
+
+      <ol class="numbered-list">
+        <li><strong>Pick your hardware.</strong> See the comparison above. Anything that can run Docker and stay on 24/7 works.
+          <span class="subtle">Start with what you have. You can always upgrade later &mdash; your skills and config are portable.</span>
+        </li>
+        <li><strong>Choose a platform.</strong> Start with OpenClaw if you want the largest community. Start with Hermes if you want fewer workarounds from day one. Either way, you will learn the same fundamentals.
+          <span class="subtle">The platform matters less than the skills and integrations you build on top of it.</span>
+        </li>
+        <li><strong>Set up a messaging interface.</strong> Telegram (via BotFather), WhatsApp, or Slack. This is how you will talk to your assistant from your phone.
+          <span class="subtle">Telegram is the most popular choice &mdash; it supports group topics for domain separation, multi-user DMs, and has the best bot API. WhatsApp and Slack also work well depending on where you already live.</span>
+        </li>
+        <li><strong>Connect one LLM provider.</strong> Start with Google Gemini 2.5 Flash &mdash; best combination of power and value, with a free tier. See the &ldquo;Choosing Your LLM&rdquo; section for details and upgrade paths.
+          <span class="subtle">You can add more providers later for redundancy. Do not over-optimize your model choice on day one.</span>
+        </li>
+        <li><strong>Build your Personal Context Portfolio.</strong> Start with <code>identity.md</code> and <code>preferences-and-constraints.md</code>. Add files as the assistant needs them.
+          <span class="subtle">This is how the assistant stops being generic and starts being yours.</span>
+        </li>
+        <li><strong>Build your first skill.</strong> Pick something small and specific &mdash; a morning weather briefing, a grocery list manager, a plant watering reminder.
+          <span class="subtle">One useful skill that runs every day teaches you more than ten skills you never finish.</span>
+        </li>
+        <li><strong>Add scheduling.</strong> Set up a recurring task so the assistant does something useful without you asking.
+          <span class="subtle">This is the moment it stops being a chatbot and starts being an assistant.</span>
+        </li>
+      </ol>
+
+      <!-- THE DEVELOPMENT LOOP -->
+      <div class="section-title">The Development Loop</div>
+
+      <div class="card elevated">
+        <div class="card-header">
+          <span class="card-label">Key Insight</span>
+          <span class="card-title">Use Your IDE AI to Build the Assistant</span>
+        </div>
+        <div class="card-desc">It is tempting to set up a personal assistant and then only interact with it through Telegram or WhatsApp &mdash; messaging it tasks and seeing what comes back. That works once the assistant is mature, but early on you are missing half the picture.</div>
+        <div class="card-desc">The better approach: use <strong>Claude Code or Cursor, connected to your assistant&rsquo;s machine via SSH</strong>, as your development companion. Now you have two layers working together:</div>
+        <ul class="card-bullets">
+          <li><strong>Messaging (Telegram, WhatsApp, Slack):</strong> test the assistant the way a real user would. Send it a request, see if it responds correctly, check if the skill routes properly</li>
+          <li><strong>IDE via SSH:</strong> look behind the scenes at what actually happened. Read the logs. Inspect the files the agent created. Check if the skill wrote to the right place. See why a cron job failed</li>
+        </ul>
+        <div class="card-desc" style="margin-top: 8px;">This means your IDE AI is helping you <strong>build and debug the personal assistant</strong> &mdash; not just the assistant doing work for you. You can ask Claude Code to SSH into the Pi, read the agent&rsquo;s logs, diagnose why a skill misfired, write a fix, test it by sending a message through Telegram, then verify the fix by checking the logs again. The full loop.</div>
+      </div>
+
+      <div class="flow">
+        <span class="flow-step">Message via Telegram</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Assistant responds</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">SSH in via Claude Code</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Inspect what happened</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Fix and improve</span>
+      </div>
+
+      <div class="callout"><span class="callout-label">Why this matters:</span> Messaging alone shows you the output. The IDE shows you the process. Learning to read the logs and understand what the agent actually did &mdash; versus what it said it did &mdash; is the fastest way to build a reliable assistant.</div>
+
+      <!-- TRUST FRAMEWORK -->
+      <div class="section-title">Trust Framework</div>
+
+      <div class="intro">
+        A personal assistant has access to your life. Deciding what it can do autonomously vs. what requires your approval is the most important design decision you will make.
+      </div>
+
+      <div class="card-grid">
+
+        <div class="card success">
+          <div class="card-header">
+            <span class="card-label">Higher Trust</span>
+            <span class="card-title">Let It Run</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Research tasks with no side effects (look up plant care, compare products)</li>
+            <li>Organizing and summarizing information you already have</li>
+            <li>Recurring reports and briefings</li>
+            <li>Managing lists, reminders, and your LLM Wiki</li>
+          </ul>
+        </div>
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Lower Trust</span>
+            <span class="card-title">Review Before Acting</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Anything that sends a message to another person</li>
+            <li>Purchases or financial transactions</li>
+            <li>Modifying shared systems (calendars, smart home)</li>
+            <li>Tasks where being wrong has real consequences</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="callout"><span class="callout-label">Rule of thumb:</span> If the worst-case outcome of a mistake is &ldquo;I have to redo it,&rdquo; let the assistant run autonomously. If the worst case is embarrassment, lost money, or broken relationships, keep a human in the loop.</div>
+
+      <!-- SECURITY -->
+      <div class="section-title">Security and Safety</div>
+
+      <div class="intro">
+        A personal assistant has full access to your local machine &mdash; files, shell, browser. That power makes it useful, but it also makes prompt injection a real threat. If the agent reads a malicious web page or inbound email, it could be tricked into executing harmful commands on your system.
+      </div>
+
+      <div class="card-grid">
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Framing</span>
+            <span class="card-title">The Lethal Trifecta</span>
+          </div>
+          <div class="card-desc">Any agent that combines all three of these is a serious risk, regardless of framework:</div>
+          <ol class="numbered-list">
+            <li><strong>Broad local access.</strong> The agent can read and write files, run shell commands, and control your browser.</li>
+            <li><strong>External communication.</strong> It can browse the web, send email, or make API calls outbound.</li>
+            <li><strong>Untrusted third-party skills.</strong> You installed community-contributed skills without reading them.</li>
+          </ol>
+          <div class="card-desc">When all three overlap, a single malicious skill or prompt injection can exfiltrate your data. Community skill marketplaces (ClawHub being the largest) are a real supply-chain risk &mdash; skills pulled from public listings should be audited before install, not trusted by default.</div>
+        </div>
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Defense</span>
+            <span class="card-title">Multi-Layer Protection</span>
+          </div>
+          <div class="card-desc">Robust setups use a pipeline when ingesting untrusted content from the web or email:</div>
+          <ol class="numbered-list">
+            <li><strong>Quarantine.</strong> Downloaded content goes into an isolated sandbox. Deterministic code strips common injection markers (&ldquo;ignore previous instructions&rdquo;)
+              <span class="subtle">The content never touches your main agent until it passes inspection.</span>
+            </li>
+            <li><strong>Frontier scan.</strong> A secondary model reviews the quarantined content for hidden malice &mdash; running in isolation with no system access. Worst case: the scanner reveals its own instructions, but it cannot harm your machine
+              <span class="subtle">Think of it as a bomb-disposal robot: it can get tricked, but it is not holding the keys to your house.</span>
+            </li>
+            <li><strong>Deterministic redaction.</strong> Before any outbound message or API call, hardcoded rules strip PII, API keys, and financial data. Pre-commit hooks block key patterns from ever hitting repos or logs
+              <span class="subtle">This layer is not AI-powered on purpose. Deterministic rules do not hallucinate.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Enterprise</span>
+            <span class="card-title">NemoClaw Security Model</span>
+          </div>
+          <div class="card-desc">For production-grade protection, NVIDIA&rsquo;s NemoClaw runs OpenClaw inside the OpenShell runtime with:</div>
+          <ul class="card-bullets">
+            <li>Strict container security with capability drops and process limits</li>
+            <li>Network policies with operator approval flows and egress control &mdash; the agent is physically blocked from sending data to unauthorized servers</li>
+            <li>Messaging gateway isolated from the sandbox agent process</li>
+            <li>Guided onboarding wizard that configures security policies before the agent ever runs</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="callout"><span class="callout-label">Practical advice:</span> You do not need NemoClaw to be safe. Start with the basics: do not give the agent access to your primary email or financial accounts until you trust the setup. Use a dedicated Google account for automation. Add redaction rules before you add web browsing.</div>
+
+      <div class="card elevated" style="margin-top: 20px;">
+        <div class="card-header">
+          <span class="card-label">Progression</span>
+          <span class="card-title">Graduate Permissions in Stages</span>
+        </div>
+        <div class="card-desc">Don't hand your agent the full toolkit on day one. Add permissions one service at a time, and escalate each service through a predictable ladder. Every stage is a chance to notice something weird before it becomes a problem.</div>
+        <ol class="numbered-list">
+          <li><strong>Stage 1 &mdash; One service, read-only.</strong> Pick one integration (calendar, email, your notes vault). Give the agent read-only credentials. Watch what it does with that access for a week before adding anything else.</li>
+          <li><strong>Stage 2 &mdash; Writes with confirmation.</strong> Keep the same single service. Enable writes, but require the agent to ask you before every write. Telegram-style "reply YES to send" is enough. You're building a sense for what kinds of writes it wants to make.</li>
+          <li><strong>Stage 3 &mdash; Strategic writes, narrow approval rules.</strong> Replace blanket confirmation with per-category rules. "Auto-approve calendar events under 30 minutes on my work calendar. Ask for anything else." The rules are yours to design &mdash; they come from what you saw in Stage 2.</li>
+          <li><strong>Stage 4 &mdash; Add the next service.</strong> New integration starts back at Stage 1. Never two new services at the same time. If something goes wrong, you know which one caused it.</li>
+        </ol>
+        <div class="callout callout-blue"><span class="callout-label">Why this works:</span> Agents don't fail randomly &mdash; they fail in patterns. Stage 2 is where you discover those patterns cheaply, before they're doing real things on your behalf. Stage 3 is where your review effort drops to near-zero because you've taught the rules.</div>
+      </div>
+
+      <div class="card" style="margin-top: 20px;">
+        <div class="card-header">
+          <span class="card-label">Credentials</span>
+          <span class="card-title">Give Your Agent Its Own Identity</span>
+        </div>
+        <div class="card-desc">The single highest-leverage security move is treating your agent like a separate employee with its own credentials, not a second you. Three concrete pieces:</div>
+        <ul class="card-bullets">
+          <li><strong>Dedicated email.</strong> A purpose-built agent email service like <a href="https://www.agentmail.to" target="_blank" rel="noopener">agentmail.to</a> gives your agent its own inbox with structured subject routing and API access designed for machine use. Alternative: a dedicated Google account reserved for automation. Either way, never point it at your personal inbox.</li>
+          <li><strong>Its own 1Password vault.</strong> Create a vault that only holds credentials your agent needs. Share it with no one. Scope secrets narrowly &mdash; if the agent only needs a Telegram token, do not give it your AWS root keys.</li>
+          <li><strong>Accessed via the <a href="https://developer.1password.com/docs/cli" target="_blank" rel="noopener">1Password CLI</a> (<code>op</code>).</strong> Secrets never sit in plaintext <code>.env</code> files. The agent calls <code>op read</code> at runtime and the CLI injects the secret into the process environment. If the agent is compromised, rotating a secret is one vault update instead of a repo rewrite.</li>
+        </ul>
+        <div class="callout callout-blue"><span class="callout-label">Why this matters:</span> The Replit, EchoLeak, and ClawHub incidents all share a root cause &mdash; the compromised agent had credentials it should never have been given. Scoped credentials turn a catastrophic breach into a rotatable inconvenience.</div>
+      </div>
+
+      <!-- MANAGING COSTS -->
+      <div class="section-title">Managing Costs</div>
+
+      <div class="intro">
+        An always-on agent that calls frontier models on every cron job will burn through your API budget fast. Token management is not optional &mdash; it is part of the design. And tokens are only half the bill: the other half is the power your hardware draws sitting idle all day waiting for something to do.
+      </div>
+
+      <div class="callout"><span class="callout-label">Vampire power:</span> a 24/7 local agent on a laptop or Mac Mini draws real electricity even when it is doing nothing. For hobby use, a low-power Raspberry Pi 5 is dramatically cheaper to run than an always-on laptop. For heavy workloads, the greener move is to keep the gateway on the Pi but offload research bursts to serverless backends (Modal, Daytona, RunPod) that sleep when idle &mdash; you only pay for compute when the agent is actually thinking.</div>
+
+      <div class="card-grid">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Strategy</span>
+            <span class="card-title">Model Tiering</span>
+          </div>
+          <div class="card-desc">Not every task needs an expensive model. Layer your costs:</div>
+          <ul class="card-bullets">
+            <li><strong>Free / local:</strong> Ollama or LM Studio running Nomic embeddings for memory indexing and retrieval. Zero API cost</li>
+            <li><strong>Cheap:</strong> Lightweight models for basic tool parsing, simple logic, and routine tasks</li>
+            <li><strong>Frontier:</strong> Claude Opus, GPT-4, or Gemini Pro reserved exclusively for deep reasoning, writing, and complex tool use</li>
+          </ul>
+          <div class="callout callout-blue"><span class="callout-label">Rule:</span> If the task does not require reasoning, do not pay for a reasoning model.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Strategy</span>
+            <span class="card-title">Context Hygiene</span>
+          </div>
+          <div class="card-desc">The fastest way to blow your budget is a bloated context window sending irrelevant tokens on every call:</div>
+          <ul class="card-bullets">
+            <li><strong>Domain topics:</strong> Telegram topics, Slack channels, or WhatsApp threads per domain. The agent only loads context for that thread, not everything</li>
+            <li><strong>Automated pruning:</strong> A cron job that audits loaded files, trims duplicates, and clears prompt drift (~10% reduction every few days)</li>
+            <li><strong>Space your cron jobs:</strong> Do not run five background tasks simultaneously. Stagger them overnight &mdash; analytics at 1 AM, CRM at 2 AM, briefing at 3:20 AM</li>
+            <li><strong>Monitor usage:</strong> Check context capacity regularly (<code>/status</code> or <code>/usage</code>). Clear context or increase message expiration rates before hitting limits</li>
+            <li><strong>Prompt caching:</strong> Use provider APIs that cache repeated context to reduce costs on stable system prompts</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- CHOOSING YOUR LLM -->
+      <div class="section-title">Choosing Your LLM</div>
+
+      <div class="intro">
+        Just pick one provider and start. You can add more later. The best starting point for most people is <strong>Google Gemini 2.5 Flash</strong> &mdash; it is capable, fast, has a generous free tier, and costs very little when you do pay. As your assistant gets more complex, you can tier up to more powerful models or add alternatives.
+      </div>
+
+      <div class="card elevated" style="margin-bottom: 14px;">
+        <div class="card-header">
+          <span class="card-label">Start Here</span>
+          <span class="card-title">Gemini 2.5 Flash (Google)</span>
+        </div>
+        <div class="card-desc">The best combination of power and value for getting started. Free tier available on Google AI Studio. When you pay, it is 8&ndash;10x cheaper and 3x faster than Pro models. 1M token context window. Native function calling support.</div>
+        <div class="card-desc">You will hit its limits fairly quickly with complex agent workflows &mdash; multi-step reasoning, long tool chains, and nuanced decisions can stumble. That is normal. When it happens, you have two paths: upgrade to a more powerful (and more expensive) model, or explore high-value alternatives.</div>
+        <div class="callout callout-blue"><span class="callout-label">Upgrade path:</span> Gemini 2.5 Pro for harder reasoning tasks ($1.25/M input, $10/M output). Same API, just change the model name.</div>
+      </div>
+
+      <div class="card-desc" style="margin-bottom: 10px;">Once you outgrow Flash, here are the options &mdash; split between cloud APIs and local models you run yourself:</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Model</th>
+            <th style="width: 12%;">Type</th>
+            <th style="width: 66%;">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Gemini 2.5 Pro</strong></td>
+            <td class="subtle">Cloud API</td>
+            <td class="subtle">More capable reasoning, same Google API. Reserve for complex tasks. 200K context. ~$1.25/M input</td>
+          </tr>
+          <tr>
+            <td><strong>Claude Sonnet / Opus</strong></td>
+            <td class="subtle">Cloud API</td>
+            <td class="subtle">Anthropic&rsquo;s models. Best instruction-following and writing quality. Opus for deep reasoning, Sonnet for daily use. More expensive but very reliable for agents</td>
+          </tr>
+          <tr>
+            <td><strong>MiniMax M2.5</strong></td>
+            <td class="subtle">Cloud API</td>
+            <td class="subtle">Purpose-built for agent tool-calling. Very capable at complex tool parsing. $0.15/M input. Anthropic-compatible API. Popular with OpenClaw power users as a daily driver</td>
+          </tr>
+          <tr>
+            <td><strong>Kimi K2 / K2.5</strong></td>
+            <td class="subtle">Cloud API</td>
+            <td class="subtle">Moonshot AI. K2.5 adds vision + &ldquo;Agent Swarm&rdquo; mode (up to 100 parallel sub-agents). OpenAI-compatible API. Strong tool-calling. Open weights available</td>
+          </tr>
+          <tr>
+            <td><strong>GLM-4.7</strong></td>
+            <td class="subtle">Both</td>
+            <td class="subtle">Zhipu AI. Native tool calling with &ldquo;think before acting&rdquo; mode. Available on Ollama (<code>ollama pull glm-4.7</code>). Flash variant for lighter hardware. API at open.bigmodel.cn</td>
+          </tr>
+          <tr>
+            <td><strong>Qwen 3.5</strong></td>
+            <td class="subtle">Local (Ollama)</td>
+            <td class="subtle">Alibaba. <strong>Native tool calling built in</strong> &mdash; specifically trained for function calling and MCP. Sizes from 0.8B to 35B. The 0.8B and 2B sizes run on a Raspberry Pi. Strong choice for local agent tasks</td>
+          </tr>
+          <tr>
+            <td><strong>Gemma 4</strong></td>
+            <td class="subtle">Local (Ollama)</td>
+            <td class="subtle">Google&rsquo;s open model. The 26B MoE variant only activates 3.8B params &mdash; efficient on limited hardware. Multimodal (text + image). Good general model but not specifically trained for tool calling like Qwen</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card-grid" style="margin-top: 14px;">
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">Recommendation</span>
+            <span class="card-title">Cloud API Tier</span>
+          </div>
+          <div class="card-desc"><strong>Start:</strong> Gemini 2.5 Flash for everything. Free tier, generous limits.</div>
+          <div class="card-desc"><strong>Add when needed:</strong> Claude Sonnet or MiniMax M2.5 for tasks where Flash stumbles. Route hard reasoning to Gemini 2.5 Pro or Claude Opus.</div>
+          <div class="card-desc"><strong>Access 200+ models:</strong> OpenRouter gives you one API key for almost everything. Hermes supports it natively.</div>
+        </div>
+
+        <div class="card success">
+          <div class="card-header">
+            <span class="card-label">Recommendation</span>
+            <span class="card-title">Local Model Tier</span>
+          </div>
+          <div class="card-desc"><strong>Embeddings (any hardware):</strong> Nomic via Ollama. Zero-cost memory indexing and semantic search.</div>
+          <div class="card-desc"><strong>Agent tasks on a Pi:</strong> Qwen 3.5 0.8B or 2B &mdash; native tool calling, small enough for limited RAM.</div>
+          <div class="card-desc"><strong>Agent tasks on a Mac Mini:</strong> Qwen 3.5 9B, GLM-4.7, or Gemma 4 26B MoE. Bigger models, better results.</div>
+          <div class="card-desc"><strong>Exploring:</strong> Gemma 4 for a general-purpose local model. Not agent-optimized but very capable.</div>
+        </div>
+
+      </div>
+
+      <div class="callout"><span class="callout-label">Key principle:</span> Do not over-optimize your model choice on day one. Start with Gemini 2.5 Flash, build your assistant, and upgrade the model when you hit a wall. The model is the easiest thing to swap later.</div>
+
+      <!-- LEARNING PATHS -->
+      <div class="section-title">Learning Paths</div>
+
+      <div class="card-grid">
+
+        <div class="card highlight">
+          <div class="card-header">
+            <span class="card-label">Community</span>
+            <span class="card-title">Claw Camp</span>
+          </div>
+          <div class="card-desc">A self-directed program focused on building personal AI assistants with OpenClaw. Participants build individual agents and agent teams, check in via a dedicated platform, and share their builds with the community. The direct descendant of the AIDB New Year&rsquo;s bootcamp (7,000+ participants, thousands of submissions).</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Secure</span>
+            <span class="card-title">NemoClaw Guided Onboarding</span>
+          </div>
+          <div class="card-desc">NVIDIA&rsquo;s interactive installer walks you through creating a secure sandbox, configuring model inference, and applying security policies before spinning up your first agent. Good if security is your top concern from day one.</div>
+        </div>
+
+      </div>
+
+      <div class="card" style="margin-bottom: 8px;">
+        <div class="card-header">
+          <span class="card-label">Migration</span>
+          <span class="card-title">Hermes OpenClaw Migration</span>
+        </div>
+        <div class="card-desc">If you are already running OpenClaw, Hermes offers an interactive migration skill (<code>openclaw-migration</code>) that imports your memory, personality files, and custom skills into the new architecture. Includes dry-run previews so you can see what will change before committing.</div>
+      </div>
+
+      <!-- LESSONS -->
+      <div class="section-title">Lessons from Production</div>
+
+      <ol class="numbered-list">
+        <li><strong>Your custom infrastructure outlives any platform.</strong> Build pipelines, dashboards, and tools as independent services. The platform is the orchestration layer, not the foundation.
+          <span class="subtle">When you migrate (and you will), everything you built independently carries over unchanged.</span>
+        </li>
+        <li><strong>Watchdog sprawl is a signal, not a solution.</strong> If you are maintaining five scripts to keep one system running, the platform is not solving your problem. Look for one that builds those capabilities in.
+          <span class="subtle">Deleting workaround scripts is the best kind of progress.</span>
+        </li>
+        <li><strong>Self-improving skills change everything.</strong> A static skill is a recipe card. A self-improving skill is an apprentice that gets better every time it does the job.
+          <span class="subtle">This is the difference between maintaining an assistant and growing one.</span>
+        </li>
+        <li><strong>Cross-session memory matters more than you think.</strong> An assistant that forgets last week&rsquo;s conversation is a chatbot with extra steps. Searchable history with summarization is what makes it feel like it actually knows you.
+          <span class="subtle">If you cannot search past conversations, the assistant is not learning.</span>
+        </li>
+        <li><strong>Test provider redundancy early.</strong> Your assistant will go down at the worst time if it only works with one LLM. Set up failover before you need it, and make sure failover is explicit, not silent.
+          <span class="subtle">Silent failover is worse than loud failure. You want to know when quality drops.</span>
+        </li>
+        <li><strong>Per-domain topics keep context clean.</strong> Mixing gardening questions with media management in one thread degrades both. Separate threads or topics (Telegram topics, Slack channels) with auto-loaded skills keep the assistant focused.
+          <span class="subtle">This is the personal-assistant equivalent of &ldquo;one skill, one job.&rdquo;</span>
+        </li>
+        <li><strong>Start with the Personal Context Portfolio, not the code.</strong> The fastest way to make any assistant useful is teaching it who you are. Technical sophistication without personal context produces generic results.
+          <span class="subtle">identity.md + preferences-and-constraints.md takes 20 minutes and transforms every interaction.</span>
+        </li>
+      </ol>
+
+      <!-- RESOURCES -->
+      <div class="section-title">Resources</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 30%;">Resource</th>
+            <th style="width: 70%;">What It Is</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OpenClaw</td>
+            <td class="subtle">Open-source agent framework. Largest community, good for learning fundamentals</td>
+          </tr>
+          <tr>
+            <td>Hermes (Nous Research)</td>
+            <td class="subtle">Self-improving personal assistant with native cron, memory, skill routing, and serverless sub-agents</td>
+          </tr>
+          <tr>
+            <td>NemoClaw (NVIDIA)</td>
+            <td class="subtle">Enterprise-security wrapper for OpenClaw agents running in NVIDIA OpenShell</td>
+          </tr>
+          <tr>
+            <td>Phantom</td>
+            <td class="subtle">Self-evolving AI co-worker with root access to its own VM. Exposes tools as MCP server</td>
+          </tr>
+          <tr>
+            <td>agentOS</td>
+            <td class="subtle">Runtime for stateful agent workloads: personal assistants, background agents, multi-agent teams</td>
+          </tr>
+          <tr>
+            <td>Journey Kits</td>
+            <td class="subtle">Package registry for end-to-end agent workflows. npm for AI agents</td>
+          </tr>
+          <tr>
+            <td>Littlebird</td>
+            <td class="subtle">Desktop app that reads your screen and meetings for continuous, private memory</td>
+          </tr>
+          <tr>
+            <td>Ollama</td>
+            <td class="subtle">Run local models from the command line. One-command install, easy model management, API-compatible. The standard way to serve models on a Pi or local machine. ollama.com</td>
+          </tr>
+          <tr>
+            <td>LM Studio</td>
+            <td class="subtle">GUI for running local models. Browse, download, and chat with models visually. Good for exploring what is available. lmstudio.ai</td>
+          </tr>
+          <tr>
+            <td>Messaging Interfaces</td>
+            <td class="subtle">Telegram (@BotFather), WhatsApp (via business API or bridges), Slack (bot apps). Most frameworks support all three. Pick whichever you already use daily</td>
+          </tr>
+          <tr>
+            <td>Modal / Daytona</td>
+            <td class="subtle">Serverless compute for offloading heavy tasks from your Pi to cloud VMs</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-left">
+          <div class="footer-names">Danny Bauman &nbsp;&bull;&nbsp; Dan Hahn, M.S.</div>
+          <div class="footer-details">Student resource &nbsp;&bull;&nbsp; BMAD Mastery Program</div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-tag">BMAD Mastery Program &mdash; Cohort 2</div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
