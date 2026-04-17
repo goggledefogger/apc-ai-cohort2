@@ -1195,6 +1195,24 @@
         <div class="callout callout-blue"><span class="callout-label">Why this matters:</span> The Replit, EchoLeak, and ClawHub incidents all share a root cause &mdash; the compromised agent had credentials it should never have been given. Scoped credentials turn a catastrophic breach into a rotatable inconvenience.</div>
       </div>
 
+      <div class="card" style="margin-top: 20px;">
+        <div class="card-header">
+          <span class="card-label">Pre-Launch</span>
+          <span class="card-title">Before Going Public, Rotate Everything</span>
+        </div>
+        <div class="card-desc">Hygiene is the goal &mdash; but reality is that credentials leak during development. You paste a key into an AI chat to debug something. You screenshot a <code>.env</code> while reporting a bug. You commit a config file before noticing the token inside. By the time you are ready to share your app with real people, assume at least one secret has touched an untrusted surface. The fix is simple: rotate everything.</div>
+        <div class="card-desc" style="margin-top: 10px;"><strong>What counts as "everything":</strong></div>
+        <ul class="card-bullets">
+          <li><strong>API keys</strong> &mdash; Anthropic, OpenAI, Google, Supabase, Vercel, Stripe, anything that charges per request or holds data</li>
+          <li><strong>Service passwords</strong> &mdash; database admin accounts, hosting dashboard logins, domain registrar access</li>
+          <li><strong>Agent credentials</strong> &mdash; the dedicated email account password, the Telegram bot token, any SSH keys on the agent's machine</li>
+          <li><strong>Framework secrets</strong> &mdash; Hermes / OpenClaw auth tokens, encryption keys for the memory store, provider API keys inside the agent's own config</li>
+          <li><strong>Shared vault access</strong> &mdash; 1Password vault passwords, recovery codes, anything a compromised session could have exfiltrated</li>
+        </ul>
+        <div class="card-desc" style="margin-top: 10px;"><strong>The routine:</strong> rotate, then run one more full security audit with fresh eyes (or a fresh AI chat that hasn't seen the old values). Keep the new secrets in 1Password and the CLI-injection pattern from the previous card, so the next rotation is one vault update instead of a rewrite.</div>
+        <div class="callout callout-blue"><span class="callout-label">Prompt to run before launch:</span> <em>"Look through this whole project &mdash; code, commits, logs, and anything I've pasted into you previously &mdash; and flag every credential, API key, password, or secret that might have been exposed. I want to rotate all of them before this goes public. List them by surface so I can work through them."</em></div>
+      </div>
+
       <!-- MANAGING COSTS -->
       <div class="section-title">Managing Costs</div>
 
