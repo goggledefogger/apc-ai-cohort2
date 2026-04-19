@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hermes Setup Guide &mdash; BMAD Mastery Program</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #16163f;
+      --navy-light: #1e1e52;
+      --orange: #f15a24;
+      --green: #10b981;
+      --blue: #2DA3CB;
+      --text: #111118;
+      --text-secondary: #555568;
+      --border: #e2e2e8;
+      --bg-subtle: #f7f7f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background: #e4e4ea;
+      font-size: 9.5pt;
+    }
+
+    .document {
+      max-width: 8.5in;
+      margin: 0 auto;
+      background: white;
+      position: relative;
+    }
+
+    .top-bar {
+      height: 8px;
+      background: var(--navy);
+    }
+
+    .content {
+      padding: 0.4in 0.6in 0.5in;
+    }
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      margin-top: 28px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 4px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .header-title {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+
+    .header-tagline {
+      font-size: 9pt;
+      font-weight: 500;
+      color: var(--orange);
+      letter-spacing: 0.2px;
+    }
+
+    .header-right {
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .header-meta {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .intro {
+      font-size: 9pt;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      padding: 10px 14px;
+      background: var(--bg-subtle);
+      border-radius: 3px;
+      border-left: 3px solid var(--navy);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 14px 16px 12px;
+    }
+
+    .card.elevated {
+      border-left: 3px solid var(--orange);
+      background: linear-gradient(135deg, rgba(241, 90, 36, 0.03) 0%, transparent 60%);
+    }
+
+    .card.highlight {
+      border-left: 3px solid var(--blue);
+      background: linear-gradient(135deg, rgba(45, 163, 203, 0.03) 0%, transparent 60%);
+    }
+
+    .card.success {
+      border-left: 3px solid var(--green);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.03) 0%, transparent 60%);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-label {
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .card.elevated .card-label {
+      color: var(--orange);
+    }
+
+    .card.highlight .card-label {
+      color: var(--blue);
+    }
+
+    .card.success .card-label {
+      color: var(--green);
+    }
+
+    .card-title {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .card-desc {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .card-bullets {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .card-bullets li {
+      font-size: 7.5pt;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      padding-left: 10px;
+      position: relative;
+      margin-bottom: 1px;
+    }
+
+    .card-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5.5px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .callout {
+      font-size: 7pt;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 4px;
+      padding: 3px 8px;
+      background: rgba(241, 90, 36, 0.06);
+      border-radius: 2px;
+      line-height: 1.4;
+    }
+
+    .callout-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-blue {
+      color: var(--blue);
+      background: rgba(45, 163, 203, 0.06);
+    }
+
+    .callout-green {
+      color: var(--green);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .callout-warn {
+      color: #b45309;
+      background: rgba(245, 158, 11, 0.08);
+      border-left: 3px solid #f59e0b;
+      padding: 8px 12px;
+      font-size: 8pt;
+      font-weight: 500;
+      margin: 8px 0;
+      border-radius: 2px;
+      line-height: 1.5;
+    }
+
+    .callout-warn strong {
+      font-weight: 700;
+    }
+
+    .code-block {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 8pt;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 8px 12px;
+      margin: 6px 0 8px;
+      color: var(--text);
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 7.5pt;
+      background: var(--bg-subtle);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    .screenshot {
+      margin: 10px 0 6px;
+    }
+
+    .screenshot img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .screenshot-caption {
+      font-size: 7pt;
+      color: var(--text-secondary);
+      font-style: italic;
+      margin-top: 4px;
+      padding: 0 2px;
+      line-height: 1.4;
+    }
+
+    .screenshot-seq {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 10px 0 6px;
+    }
+
+    .screenshot-seq .screenshot {
+      margin: 0;
+    }
+
+    .screenshot-seq img {
+      display: block;
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .numbered-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px;
+      counter-reset: step-counter;
+    }
+
+    .numbered-list li {
+      font-size: 8.5pt;
+      color: var(--text);
+      line-height: 1.55;
+      padding: 8px 0 8px 32px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      counter-increment: step-counter;
+    }
+
+    .numbered-list li:last-child {
+      border-bottom: none;
+    }
+
+    .numbered-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 20px;
+      height: 20px;
+      background: var(--navy);
+      color: white;
+      font-size: 8pt;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .numbered-list li .step-title {
+      font-weight: 700;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 9pt;
+    }
+
+    .numbered-list li .step-desc {
+      font-size: 8pt;
+      color: var(--text-secondary);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .footer {
+      background: var(--navy);
+      padding: 10px 18px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .footer-left {
+      color: white;
+    }
+
+    .footer-names {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1px;
+    }
+
+    .footer-details {
+      font-size: 7pt;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.5;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-tag {
+      font-size: 6.5pt;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 2px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      .document {
+        box-shadow: none;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="document">
+
+    <div class="top-bar"></div>
+
+    <div class="content">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-left">
+          <h1 class="header-title">Hermes Setup Guide</h1>
+          <div class="header-subtitle">From zero to "I can DM my agent" in ten minutes</div>
+          <div class="header-tagline">Cohort 2 &nbsp;|&nbsp; April 2026</div>
+        </div>
+        <div class="header-right">
+          <div class="header-meta">Student Resource<br>Verified against Hermes v0.10.0</div>
+        </div>
+      </header>
+
+      <!-- INTRO -->
+      <div class="intro">
+        A clean, Hermes-native path from zero to "I can DM my agent on Telegram." No firewalls, no custom systemd units, no provider-fallback config, no troubleshooting for bugs you haven't hit yet. Just Hermes the way it was designed to be installed. Built from the <code>yoga-bot</code> reference deploy we use in Session 11. If you want the hardened production version (IP-scoped firewall, non-root service user, Docker terminal backend, provider fallback chain, Claude Code delegation, the AQ-key gotcha, etc.), see "Graduate to the full guide" at the bottom.
+      </div>
+
+      <!-- WHAT YOU'LL HAVE / WHAT YOU NEED -->
+      <div class="section-title">Before You Start</div>
+
+      <div class="card-grid">
+
+        <div class="card success">
+          <div class="card-header">
+            <span class="card-label">What You'll Have</span>
+            <span class="card-title">At the end of this</span>
+          </div>
+          <div class="card-desc">A Hermes agent running as a systemd service on a $5 cloud VM. You can DM it from Telegram. It remembers what you tell it across sessions. Voice memos transcribe automatically. For scheduled tasks, you just ask it in chat.</div>
+        </div>
+
+        <div class="card elevated">
+          <div class="card-header">
+            <span class="card-label">What You Need</span>
+            <span class="card-title">Prerequisites</span>
+          </div>
+          <ul class="card-bullets">
+            <li>A $5/month Linux VPS (Linode, DigitalOcean, Hetzner, Vultr, Lightsail). Ubuntu 24.04 LTS is the tested baseline.</li>
+            <li>An SSH key on your laptop, added to the VPS at creation time. Run <code>ssh-keygen -t ed25519</code> if you don't have one.</li>
+            <li>One LLM API key: Anthropic (<code>sk-ant-</code>), OpenRouter (<code>sk-or-</code>), or Google AI Studio (<code>AIzaSy&hellip;</code> &mdash; not the newer <code>AQ.</code> keys, those are broken against Hermes as of v0.10.0).</li>
+            <li>Optional: a Telegram account if you want to DM the bot.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="callout-warn"><strong>Heads up on Google AI Studio keys:</strong> if the key starts with <code>AQ.</code>, use OpenRouter instead. Hermes v0.10.0 returns HTTP 400 "Multiple authentication credentials" against <code>AQ.</code>-prefix keys. Older <code>AIzaSy&hellip;</code> keys work fine. This is a known upstream bug, not something you configured wrong.</div>
+
+      <!-- THE 5 STEPS -->
+      <div class="section-title">The Five Steps</div>
+
+      <ol class="numbered-list">
+
+        <li>
+          <span class="step-title">SSH into your VPS</span>
+          <span class="step-desc">On your laptop:</span>
+          <div class="code-block">ssh root@&lt;your-vps-ip&gt;</div>
+        </li>
+
+        <li>
+          <span class="step-title">Install Hermes</span>
+          <span class="step-desc">On the VPS. This installs Hermes into <code>~/.hermes/</code>, puts the <code>hermes</code> command on your PATH, and syncs about 80 bundled community skills. Takes 2-3 minutes.</span>
+          <div class="code-block">curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
+source ~/.bashrc</div>
+          <span class="step-desc">Verify:</span>
+          <div class="code-block">hermes --version
+hermes doctor</div>
+          <span class="step-desc"><code>doctor</code> should be mostly green. Warnings about "provider auth not configured" are expected &mdash; you'll fix those next.</span>
+        </li>
+
+        <li>
+          <span class="step-title">Configure</span>
+          <span class="step-desc">Pick <strong>Quick setup</strong> when prompted. The wizard asks about your inference provider (paste your API key), default model (accept the suggestion unless you have a reason not to), and messaging platform (say yes to Telegram if you want to DM the bot).</span>
+          <div class="code-block">hermes setup</div>
+
+          <span class="step-desc"><strong>3a.</strong> The wizard opens with a Quick vs Full choice. Pick Quick &mdash; you can always run <code>hermes setup</code> again later to expand.</span>
+          <div class="screenshot">
+            <img src="../assets/images/hermes-guide/hermes-setup-1.jpg" alt="Hermes setup wizard: Quick vs Full setup choice">
+            <div class="screenshot-caption">Wizard intro &mdash; Quick vs Full setup.</div>
+          </div>
+
+          <span class="step-desc"><strong>3b.</strong> Pick your inference provider. Use whichever matches the API key you have.</span>
+          <div class="screenshot">
+            <img src="../assets/images/hermes-guide/hermes-setup-2.jpg" alt="Hermes setup wizard: inference provider picker listing 30+ supported providers">
+            <div class="screenshot-caption">Provider picker &mdash; 30+ supported providers. Anthropic, OpenRouter, and Google AI Studio are the easiest starting points.</div>
+          </div>
+
+          <span class="step-desc"><strong>3c.</strong> The wizard asks if you want to wire up a messaging platform. Say yes if you want to DM the bot from your phone.</span>
+          <div class="screenshot">
+            <img src="../assets/images/hermes-guide/hermes-setup-3.jpg" alt="Hermes setup wizard: messaging platform yes/no prompt">
+            <div class="screenshot-caption">"Connect a messaging platform?" &mdash; say yes for Telegram.</div>
+          </div>
+
+          <span class="step-desc"><strong>3d.</strong> Hermes supports 18 messaging platforms. Telegram is the fastest path &mdash; no approval process, works globally, free.</span>
+          <div class="screenshot">
+            <img src="../assets/images/hermes-guide/hermes-setup-4.jpg" alt="Hermes setup wizard: messaging platform checklist listing 18 options including Telegram, Discord, Slack, WhatsApp, Signal, iMessage">
+            <div class="screenshot-caption">Messaging checklist &mdash; Telegram, Discord, Slack, Signal, WhatsApp, iMessage, and more.</div>
+          </div>
+
+          <span class="step-desc">If you said yes to Telegram: on Telegram, search for <strong>@BotFather</strong>, send <code>/newbot</code>, pick a name and a username (ends in <code>bot</code>). BotFather gives you an HTTP API token &mdash; paste it into the wizard. Then search for <strong>@userinfobot</strong> on Telegram, send <code>/start</code>, and paste the numeric user ID it replies with into the wizard.</span>
+        </li>
+
+        <li>
+          <span class="step-title">Install as a system service</span>
+          <span class="step-desc">So Hermes stays running across reboots and restarts itself if anything goes wrong:</span>
+          <div class="code-block">sudo hermes gateway install --system
+sudo systemctl start hermes-gateway
+sudo systemctl status hermes-gateway --no-pager</div>
+          <span class="step-desc">The last line should show <code>active (running)</code>.</span>
+        </li>
+
+        <li>
+          <span class="step-title">Test it</span>
+          <span class="step-desc"><strong>If you wired Telegram:</strong> send your bot any message. It should reply within a few seconds.</span>
+          <div class="screenshot">
+            <img src="../assets/images/hermes-guide/telegram.jpg" alt="First round-trip DM with a Hermes yoga-bot on Telegram Desktop: /start, hi, the /sethome prompt, and the bot's warm Hi Roy! reply">
+            <div class="screenshot-caption">First round-trip with the yoga-bot reference deploy &mdash; <code>/start</code>, a "hi", the <code>/sethome</code> prompt, and a personalized reply.</div>
+          </div>
+          <span class="step-desc"><strong>If you skipped Telegram:</strong> run <code>hermes</code> on the VPS &mdash; you're in a chat with your agent. Type something, press Enter. Type <code>/help</code> to see the slash commands.</span>
+          <span class="step-desc">To make this chat the home for scheduled messages (cron results, cross-platform summaries), send <code>/sethome</code> to the bot on Telegram, or run <code>/sethome</code> in the CLI.</span>
+        </li>
+
+      </ol>
+
+      <!-- WHAT TO DO NEXT -->
+      <div class="section-title">What To Do Next</div>
+
+      <div class="intro" style="border-left-color: var(--green); background: rgba(16, 185, 129, 0.04);">
+        Hermes is running. From here the useful moves are all <em>inside</em> the agent, not the shell.
+      </div>
+
+      <div class="screenshot">
+        <img src="../assets/images/hermes-guide/hermes-5.jpg" alt="The yoga-bot USER.md seed template showing eight one-line fields for practice identity, body, motivation, voice, and goals">
+        <div class="screenshot-caption">An example <code>USER.md</code> seed &mdash; eight one-line fields. Hand-edit it, or let the agent capture it from your chat.</div>
+      </div>
+
+      <div class="card-grid">
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Seed Memory</span>
+            <span class="card-title">Tell it about you</span>
+          </div>
+          <div class="card-desc">DM the bot something like "Hi, I'm Alex, I'm a [role], I work in [domain], I prefer [tone]." Its memory tool quietly captures this into <code>~/.hermes/memories/USER.md</code> so every future session knows you.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Customize the Voice</span>
+            <span class="card-title">Edit SOUL.md</span>
+          </div>
+          <div class="card-desc">Edit <code>~/.hermes/SOUL.md</code> in a text editor. Replace the default template with a short description of who you want the agent to be. Changes take effect on the next message &mdash; no restart needed.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Schedule Something</span>
+            <span class="card-title">Just ask in chat</span>
+          </div>
+          <div class="card-desc">DM the bot: "Every weekday at 8am, check Hacker News for anything interesting and summarize three stories." It wires up the cron itself. No systemd. No <code>crontab -e</code>.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">Try a Skill</span>
+            <span class="card-title">/skills</span>
+          </div>
+          <div class="card-desc">Type <code>/skills</code> in the chat to see what's installed. <code>/skills browse</code> opens the Skills Hub to install more. Skills live at <code>~/.hermes/skills/</code> &mdash; plain markdown, hand-editable.</div>
+        </div>
+
+      </div>
+
+      <!-- CLAUDE CODE DELEGATION -->
+      <div class="section-title">Delegate Coding to Claude Code (Optional)</div>
+
+      <div class="card highlight">
+        <div class="card-header">
+          <span class="card-label">Optional, recommended</span>
+          <span class="card-title">Ride your Claude Pro/Max subscription</span>
+        </div>
+        <div class="card-desc">If you have a Claude Pro or Max subscription, install the <code>claude</code> CLI on the VPS and run <code>claude auth login --claudeai</code>. Hermes routes heavy coding tasks to it via the bundled <code>claude-code</code> skill, using your subscription instead of API credits.</div>
+        <div class="card-desc">This is permitted under Anthropic's policy because the Claude Code CLI handles its own auth. It also means your agent can do real coding work overnight &mdash; generate multi-week plans, refactor a project, write new skills &mdash; without racking up separate API bills.</div>
+      </div>
+
+      <!-- WHEN TO GRADUATE -->
+      <div class="section-title">Graduate to the Full Guide</div>
+
+      <div class="intro" style="border-left-color: var(--orange);">
+        This quickstart is deliberately minimal. You'll want the full production guide when any of these become real for you.
+      </div>
+
+      <ul class="card-bullets" style="margin-bottom: 10px;">
+        <li>You want the VPS itself hardened &mdash; firewall scoped to your IP, non-root service user, Docker terminal backend so shell commands run in ephemeral containers, auto-security-upgrades.</li>
+        <li>Your LLM provider rate-limits you and you want a fallback model wired in.</li>
+        <li>You want to run local inference via Ollama as a fallback or primary.</li>
+        <li>You want to expose an HTTP endpoint from the VPS and need a static-token auth gate.</li>
+        <li>You hit a specific bug (AQ-prefix Gemini keys, Ollama context-window trap, systemd crash loop) and need the documented workaround.</li>
+        <li>You want to understand the cost envelope or plan for migrating providers later.</li>
+      </ul>
+
+      <div class="screenshot">
+        <img src="../assets/images/hermes-guide/hermes-1.jpg" alt="Post-automation inventory from the yoga-bot reference deploy showing Linode node, IP, firewall, Docker backend, Claude CLI, hardening settings, and staged systemd unit">
+        <div class="screenshot-caption">What the full production deploy looks like when everything is in place &mdash; firewall, Docker backend, Claude CLI delegation, staged systemd unit. The quickstart above handles the "it runs" layer. The full guide adds the rest.</div>
+      </div>
+
+      <div class="callout callout-blue"><span class="callout-label">Ask in class:</span> Danny maintains the full production guide (firewall, Docker backend, fallback chains, key rotation, troubleshooting appendix) alongside this one. If you're ready for it, ask during Session 11 or post in Magic Brooms &mdash; it's a companion doc to this quickstart.</div>
+
+      <!-- TEACHING NOTE -->
+      <div class="section-title">Teaching Note</div>
+
+      <div class="card">
+        <div class="card-desc">This is the cleanest Hermes install the project supports as of v0.10.0. If you're showing someone what Hermes looks like, show them this. The production guide is for when the thing is important enough to harden &mdash; not for when you're still deciding whether you like it.</div>
+        <div class="card-desc">Nothing in the full guide <em>contradicts</em> this quickstart. It just adds rigor you may not need on day one. You can run the quickstart first and layer the hardening on later without reinstalling.</div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-left">
+          <div class="footer-names">Danny Bauman &nbsp;&bull;&nbsp; Dan Hahn, M.S.</div>
+          <div class="footer-details">Student resource &nbsp;&bull;&nbsp; BMAD Mastery Program</div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-tag">BMAD Mastery Program &mdash; Cohort 2</div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
