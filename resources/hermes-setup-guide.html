@@ -306,9 +306,22 @@
       display: block;
       width: 100%;
       max-width: 100%;
+      height: auto;
       border: 1px solid var(--border);
       border-radius: 3px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Portrait-oriented screenshots (mobile chat, wizard panels) scale down
+       so they don't dominate the page at full document width. */
+    .screenshot.portrait {
+      text-align: center;
+    }
+
+    .screenshot.portrait img {
+      width: auto;
+      max-width: min(55%, 320px);
+      margin: 0 auto;
     }
 
     .screenshot-caption {
@@ -318,6 +331,7 @@
       margin-top: 4px;
       padding: 0 2px;
       line-height: 1.4;
+      text-align: center;
     }
 
     .screenshot-seq {
@@ -466,7 +480,7 @@
 
       <!-- INTRO -->
       <div class="intro">
-        A clean, Hermes-native path from zero to "I can DM my agent on Telegram." No firewalls, no custom systemd units, no provider-fallback config, no troubleshooting for bugs you haven't hit yet. Just Hermes the way it was designed to be installed. Built from the <code>yoga-bot</code> reference deploy we use in Session 11.
+        Hermes is a personal AI agent that lives on a $5 cloud server and talks to you through Telegram (or a terminal). It remembers you across sessions, writes its own skills as it learns from real use, and shows up first thing in the morning when you ask it to. This guide walks you through setting one up in about ten minutes &mdash; the same path we took for the <code>yoga-bot</code> reference deploy in Session 11.
       </div>
 
       <div class="intro" style="border-left-color: var(--blue); background: rgba(45, 163, 203, 0.04);">
@@ -578,8 +592,8 @@ sudo systemctl status hermes-gateway --no-pager</div>
         <li>
           <span class="step-title">Test it</span>
           <span class="step-desc"><strong>If you wired Telegram:</strong> send your bot any message. It should reply within a few seconds.</span>
-          <div class="screenshot">
-            <img src="../assets/images/hermes-guide/telegram.jpg" alt="First round-trip DM with a Hermes yoga-bot on Telegram Desktop: /start, hi, the /sethome prompt, and the bot's warm Hi Roy! reply">
+          <div class="screenshot portrait">
+            <img src="../assets/images/hermes-guide/telegram.jpg" alt="First round-trip DM with a Hermes yoga-bot on Telegram: /start, hi, the /sethome prompt, and the bot's warm Hi Roy! reply">
             <div class="screenshot-caption">First round-trip with the yoga-bot reference deploy &mdash; <code>/start</code>, a "hi", the <code>/sethome</code> prompt, and a personalized reply.</div>
           </div>
           <span class="step-desc"><strong>If you skipped Telegram:</strong> run <code>hermes</code> on the VPS &mdash; you're in a chat with your agent. Type something, press Enter. Type <code>/help</code> to see the slash commands.</span>
@@ -701,12 +715,12 @@ sudo systemctl status hermes-gateway --no-pager</div>
 https://www.aportlandcareer.com/ai-course/resources/hermes-setup-guide.html
 
 Pre-answered choices (fill these in before sending):
-- VPS provider: [Linode | DigitalOcean | Hetzner | Vultr | Lightsail]
+- VPS provider: [Linode | DigitalOcean | Hetzner]
 - VPS region: [closest to me]
 - Hardware tier: $5/month nanode-equivalent (Hermes orchestration only, no local models)
 - OS: Ubuntu 24.04 LTS
 - SSH key: ~/.ssh/id_ed25519.pub on my laptop
-- LLM provider: [Anthropic | OpenRouter | Google AI Studio with AIzaSy key]
+- LLM provider: [Anthropic | OpenRouter | Google Gemini with AIzaSy key]
 - Messaging: [Telegram | skip]
 
 Workflow:
@@ -716,15 +730,7 @@ Workflow:
 4. After everything is live, verify with `hermes doctor` and a test message.
 5. Record a `session-log.md` in the working directory of what you did, decisions, and gotchas.
 
-If you hit a Google AI Studio AQ.-prefix key bug (HTTP 400 "Multiple authentication credentials"), switch to OpenRouter automatically and tell me why.</div>
-      </div>
-
-      <!-- TEACHING NOTE -->
-      <div class="section-title">Teaching Note</div>
-
-      <div class="card">
-        <div class="card-desc">This is the cleanest Hermes install the project supports as of v0.10.0. If you're showing someone what Hermes looks like, show them this. The production guide is for when the thing is important enough to harden &mdash; not for when you're still deciding whether you like it.</div>
-        <div class="card-desc">Nothing in the full guide <em>contradicts</em> this quickstart. It just adds rigor you may not need on day one. You can run the quickstart first and layer the hardening on later without reinstalling.</div>
+If you hit a Google AI Studio AQ.-prefix key bug (HTTP 400 "Multiple authentication credentials"), switch to Anthropic automatically and tell me why.</div>
       </div>
 
       <!-- FOOTER -->
