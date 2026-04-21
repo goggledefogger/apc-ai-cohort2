@@ -466,7 +466,11 @@
 
       <!-- INTRO -->
       <div class="intro">
-        A clean, Hermes-native path from zero to "I can DM my agent on Telegram." No firewalls, no custom systemd units, no provider-fallback config, no troubleshooting for bugs you haven't hit yet. Just Hermes the way it was designed to be installed. Built from the <code>yoga-bot</code> reference deploy we use in Session 11. If you want the hardened production version (IP-scoped firewall, non-root service user, Docker terminal backend, provider fallback chain, Claude Code delegation, the AQ-key gotcha, etc.), see "Graduate to the full guide" at the bottom.
+        A clean, Hermes-native path from zero to "I can DM my agent on Telegram." No firewalls, no custom systemd units, no provider-fallback config, no troubleshooting for bugs you haven't hit yet. Just Hermes the way it was designed to be installed. Built from the <code>yoga-bot</code> reference deploy we use in Session 11.
+      </div>
+
+      <div class="intro" style="border-left-color: var(--blue); background: rgba(45, 163, 203, 0.04);">
+        <strong>Two ways to use this guide.</strong> Read it top-to-bottom and run each step yourself. Or skip to <em>"Delegate to Claude Code"</em> at the bottom and paste the starter prompt &mdash; the AI will drive, you'll approve at checkpoints.
       </div>
 
       <!-- WHAT YOU'LL HAVE / WHAT YOU NEED -->
@@ -476,28 +480,37 @@
 
         <div class="card success">
           <div class="card-header">
-            <span class="card-label">What You'll Have</span>
-            <span class="card-title">At the end of this</span>
+            <span class="card-label">Outcome</span>
+            <span class="card-title">What you'll have</span>
           </div>
-          <div class="card-desc">A Hermes agent running as a systemd service on a $5 cloud VM. You can DM it from Telegram. It remembers what you tell it across sessions. Voice memos transcribe automatically. For scheduled tasks, you just ask it in chat.</div>
+          <ul class="card-bullets">
+            <li>A Hermes agent running as a systemd service on a $5 cloud VM.</li>
+            <li>You can DM it from Telegram.</li>
+            <li>It remembers what you tell it across sessions.</li>
+            <li>Voice memos transcribe automatically.</li>
+            <li>Need a scheduled task? Just ask it in chat.</li>
+          </ul>
         </div>
 
         <div class="card elevated">
           <div class="card-header">
-            <span class="card-label">What You Need</span>
-            <span class="card-title">Prerequisites</span>
+            <span class="card-label">Prep</span>
+            <span class="card-title">What you need</span>
           </div>
           <ul class="card-bullets">
-            <li>A $5/month Linux VPS (Linode, DigitalOcean, Hetzner, Vultr, Lightsail). Ubuntu 24.04 LTS is the tested baseline.</li>
-            <li>An SSH key on your laptop, added to the VPS at creation time. Run <code>ssh-keygen -t ed25519</code> if you don't have one.</li>
-            <li>One LLM API key: Anthropic (<code>sk-ant-</code>), OpenRouter (<code>sk-or-</code>), or Google AI Studio (<code>AIzaSy&hellip;</code> &mdash; not the newer <code>AQ.</code> keys, those are broken against Hermes as of v0.10.0).</li>
-            <li>Optional: a Telegram account if you want to DM the bot.</li>
+            <li><strong>A $5/month Linux VPS.</strong> Linode, DigitalOcean, Hetzner all work well. Ubuntu 24.04 LTS is a good baseline Linux OS to use.</li>
+            <li><strong>An SSH key on your laptop</strong>, added to the VPS at creation time. Run <code>ssh-keygen -t ed25519</code> if you don't already have one.</li>
+            <li><strong>One LLM API key.</strong> Anthropic (<code>sk-ant-</code>), OpenRouter (<code>sk-or-</code>), or Google AI Studio (<code>AIzaSy&hellip;</code>). Avoid new <code>AQ.</code>-prefix AI Studio keys &mdash; see the warning below.</li>
+            <li><strong>A Telegram account</strong> (optional) if you want to DM the bot from your phone.</li>
           </ul>
         </div>
 
       </div>
 
-      <div class="callout-warn"><strong>Heads up on Google AI Studio keys:</strong> if the key starts with <code>AQ.</code>, use OpenRouter instead. Hermes v0.10.0 returns HTTP 400 "Multiple authentication credentials" against <code>AQ.</code>-prefix keys. Older <code>AIzaSy&hellip;</code> keys work fine. This is a known upstream bug, not something you configured wrong.</div>
+      <div class="callout-warn">
+        <strong>Heads up on Google AI Studio keys.</strong><br>
+        New <code>AQ.</code>-prefix keys return HTTP 400 "Multiple authentication credentials" against Hermes v0.10.0 &mdash; use OpenRouter instead. Older <code>AIzaSy&hellip;</code> keys still work fine. Known upstream bug, not a config error on your end.
+      </div>
 
       <!-- THE 5 STEPS -->
       <div class="section-title">The Five Steps</div>
@@ -591,34 +604,46 @@ sudo systemctl status hermes-gateway --no-pager</div>
 
         <div class="card">
           <div class="card-header">
-            <span class="card-label">Seed Memory</span>
+            <span class="card-label">Seed</span>
             <span class="card-title">Tell it about you</span>
           </div>
-          <div class="card-desc">DM the bot something like "Hi, I'm Alex, I'm a [role], I work in [domain], I prefer [tone]." Its memory tool quietly captures this into <code>~/.hermes/memories/USER.md</code> so every future session knows you.</div>
+          <div class="card-desc">DM the bot something like this:</div>
+          <div class="code-block">Hi, I'm Alex, I'm a [role], I work in [domain], I prefer [tone].</div>
+          <div class="card-desc">Its memory tool captures this into <code>~/.hermes/memories/USER.md</code>. Every future session knows you.</div>
         </div>
 
         <div class="card">
           <div class="card-header">
-            <span class="card-label">Customize the Voice</span>
+            <span class="card-label">Voice</span>
             <span class="card-title">Edit SOUL.md</span>
           </div>
-          <div class="card-desc">Edit <code>~/.hermes/SOUL.md</code> in a text editor. Replace the default template with a short description of who you want the agent to be. Changes take effect on the next message &mdash; no restart needed.</div>
+          <ul class="card-bullets">
+            <li>Open <code>~/.hermes/SOUL.md</code> in a text editor.</li>
+            <li>Replace the default template with a short description of who you want the agent to be.</li>
+            <li>Changes take effect on the next message &mdash; no restart needed.</li>
+          </ul>
         </div>
 
         <div class="card">
           <div class="card-header">
-            <span class="card-label">Schedule Something</span>
+            <span class="card-label">Schedule</span>
             <span class="card-title">Just ask in chat</span>
           </div>
-          <div class="card-desc">DM the bot: "Every weekday at 8am, check Hacker News for anything interesting and summarize three stories." It wires up the cron itself. No systemd. No <code>crontab -e</code>.</div>
+          <div class="card-desc">DM the bot:</div>
+          <div class="code-block">Every weekday at 8am, check Hacker News for anything interesting and summarize three stories.</div>
+          <div class="card-desc">It wires up the cron itself. No <code>systemd</code>. No <code>crontab -e</code>.</div>
         </div>
 
         <div class="card">
           <div class="card-header">
-            <span class="card-label">Try a Skill</span>
-            <span class="card-title">/skills</span>
+            <span class="card-label">Skills</span>
+            <span class="card-title">Browse what's installed</span>
           </div>
-          <div class="card-desc">Type <code>/skills</code> in the chat to see what's installed. <code>/skills browse</code> opens the Skills Hub to install more. Skills live at <code>~/.hermes/skills/</code> &mdash; plain markdown, hand-editable.</div>
+          <ul class="card-bullets">
+            <li>Type <code>/skills</code> in chat &mdash; lists what's already installed.</li>
+            <li>Type <code>/skills browse</code> &mdash; opens the Skills Hub to install more.</li>
+            <li>Skills live at <code>~/.hermes/skills/</code> &mdash; plain markdown, hand-editable.</li>
+          </ul>
         </div>
 
       </div>
@@ -628,11 +653,13 @@ sudo systemctl status hermes-gateway --no-pager</div>
 
       <div class="card highlight">
         <div class="card-header">
-          <span class="card-label">Optional, recommended</span>
+          <span class="card-label">Optional</span>
           <span class="card-title">Ride your Claude Pro/Max subscription</span>
         </div>
-        <div class="card-desc">If you have a Claude Pro or Max subscription, install the <code>claude</code> CLI on the VPS and run <code>claude auth login --claudeai</code>. Hermes routes heavy coding tasks to it via the bundled <code>claude-code</code> skill, using your subscription instead of API credits.</div>
-        <div class="card-desc">This is permitted under Anthropic's policy because the Claude Code CLI handles its own auth. It also means your agent can do real coding work overnight &mdash; generate multi-week plans, refactor a project, write new skills &mdash; without racking up separate API bills.</div>
+        <div class="card-desc">If you have a Claude Pro or Max subscription, install the <code>claude</code> CLI on the VPS and log in:</div>
+        <div class="code-block">claude auth login --claudeai</div>
+        <div class="card-desc">Hermes routes heavy coding tasks through the bundled <code>claude-code</code> skill &mdash; using your subscription instead of API credits. Permitted under Anthropic's policy because the Claude Code CLI handles its own auth.</div>
+        <div class="card-desc">Practical payoff: your agent can do real coding work overnight &mdash; generate multi-week plans, refactor a project, write new skills &mdash; without racking up separate API bills.</div>
       </div>
 
       <!-- WHEN TO GRADUATE -->
@@ -643,12 +670,12 @@ sudo systemctl status hermes-gateway --no-pager</div>
       </div>
 
       <ul class="card-bullets" style="margin-bottom: 10px;">
-        <li>You want the VPS itself hardened &mdash; firewall scoped to your IP, non-root service user, Docker terminal backend so shell commands run in ephemeral containers, auto-security-upgrades.</li>
-        <li>Your LLM provider rate-limits you and you want a fallback model wired in.</li>
-        <li>You want to run local inference via Ollama as a fallback or primary.</li>
-        <li>You want to expose an HTTP endpoint from the VPS and need a static-token auth gate.</li>
-        <li>You hit a specific bug (AQ-prefix Gemini keys, Ollama context-window trap, systemd crash loop) and need the documented workaround.</li>
-        <li>You want to understand the cost envelope or plan for migrating providers later.</li>
+        <li><strong>You want the VPS hardened.</strong> Firewall scoped to your IP, non-root service user, Docker terminal backend, auto-security-upgrades.</li>
+        <li><strong>Your LLM provider rate-limits you.</strong> You want a fallback model wired in.</li>
+        <li><strong>You want local inference.</strong> Ollama as fallback or primary.</li>
+        <li><strong>You want to expose an HTTP endpoint</strong> from the VPS with a static-token auth gate.</li>
+        <li><strong>You hit a documented bug.</strong> AQ-prefix Gemini keys, Ollama context-window trap, systemd crash loop, etc.</li>
+        <li><strong>You want the cost envelope.</strong> Plan for migrating providers later.</li>
       </ul>
 
       <div class="screenshot">
@@ -657,6 +684,40 @@ sudo systemctl status hermes-gateway --no-pager</div>
       </div>
 
       <div class="callout callout-blue"><span class="callout-label">Ask in class:</span> Danny maintains the full production guide (firewall, Docker backend, fallback chains, key rotation, troubleshooting appendix) alongside this one. If you're ready for it, ask during Session 11 or post in Magic Brooms &mdash; it's a companion doc to this quickstart.</div>
+
+      <!-- DELEGATE TO CLAUDE CODE -->
+      <div class="section-title">Delegate to Claude Code</div>
+
+      <div class="intro" style="border-left-color: var(--blue); background: rgba(45, 163, 203, 0.04);">
+        Don't want to run every step yourself? Paste the prompt below into a Claude Code session. Fill in the bracketed placeholders first. Claude Code drives; you approve at the one billable checkpoint.
+      </div>
+
+      <div class="card highlight">
+        <div class="card-header">
+          <span class="card-label">Copy this</span>
+          <span class="card-title">Starter prompt for Claude Code</span>
+        </div>
+        <div class="code-block">Set up a Nous Research Hermes agent on a fresh $5/month Linux VPS, following the quickstart guide at:
+https://www.aportlandcareer.com/ai-course/resources/hermes-setup-guide.html
+
+Pre-answered choices (fill these in before sending):
+- VPS provider: [Linode | DigitalOcean | Hetzner | Vultr | Lightsail]
+- VPS region: [closest to me]
+- Hardware tier: $5/month nanode-equivalent (Hermes orchestration only, no local models)
+- OS: Ubuntu 24.04 LTS
+- SSH key: ~/.ssh/id_ed25519.pub on my laptop
+- LLM provider: [Anthropic | OpenRouter | Google AI Studio with AIzaSy key]
+- Messaging: [Telegram | skip]
+
+Workflow:
+1. Pause once before creating the billable VM to confirm specs.
+2. Execute end-to-end after that. Don't ask for confirmation on each sub-step.
+3. Pause whenever you need a secret (API key, Telegram bot token, Telegram user ID).
+4. After everything is live, verify with `hermes doctor` and a test message.
+5. Record a `session-log.md` in the working directory of what you did, decisions, and gotchas.
+
+If you hit a Google AI Studio AQ.-prefix key bug (HTTP 400 "Multiple authentication credentials"), switch to OpenRouter automatically and tell me why.</div>
+      </div>
 
       <!-- TEACHING NOTE -->
       <div class="section-title">Teaching Note</div>
