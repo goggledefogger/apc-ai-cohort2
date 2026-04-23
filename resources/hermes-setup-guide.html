@@ -299,14 +299,15 @@
     }
 
     .screenshot {
-      margin: 10px 0 6px;
+      margin: 14px 0 10px;
+      text-align: center;
     }
 
     .screenshot img {
       display: block;
-      width: 100%;
       max-width: 100%;
       height: auto;
+      margin: 0 auto;
       border: 1px solid var(--border);
       border-radius: 3px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -319,7 +320,6 @@
     }
 
     .screenshot.portrait img {
-      width: auto;
       max-width: min(55%, 320px);
       margin: 0 auto;
     }
@@ -555,25 +555,25 @@ hermes doctor</div>
 
           <span class="step-desc"><strong>3a.</strong> The wizard opens with a Quick vs Full choice. Pick Quick &mdash; you can always run <code>hermes setup</code> again later to expand.</span>
           <div class="screenshot">
-            <img src="../assets/images/hermes-guide/hermes-setup-1.jpg" alt="Hermes setup wizard: Quick vs Full setup choice">
+            <img src="../assets/images/hermes-guide/hermes-setup-1.jpg" width="341" alt="Hermes setup wizard: Quick vs Full setup choice">
             <div class="screenshot-caption">Wizard intro &mdash; Quick vs Full setup.</div>
           </div>
 
           <span class="step-desc"><strong>3b.</strong> Pick your inference provider. Use whichever matches the API key you have.</span>
           <div class="screenshot">
-            <img src="../assets/images/hermes-guide/hermes-setup-2.jpg" alt="Hermes setup wizard: inference provider picker listing 30+ supported providers">
+            <img src="../assets/images/hermes-guide/hermes-setup-2.jpg" width="485" alt="Hermes setup wizard: inference provider picker listing 30+ supported providers">
             <div class="screenshot-caption">Provider picker &mdash; 30+ supported providers. Anthropic, OpenRouter, and Google AI Studio are the easiest starting points.</div>
           </div>
 
           <span class="step-desc"><strong>3c.</strong> The wizard asks if you want to wire up a messaging platform. Say yes if you want to DM the bot from your phone.</span>
           <div class="screenshot">
-            <img src="../assets/images/hermes-guide/hermes-setup-3.jpg" alt="Hermes setup wizard: messaging platform yes/no prompt">
+            <img src="../assets/images/hermes-guide/hermes-setup-3.jpg" width="322" alt="Hermes setup wizard: messaging platform yes/no prompt">
             <div class="screenshot-caption">"Connect a messaging platform?" &mdash; say yes for Telegram.</div>
           </div>
 
           <span class="step-desc"><strong>3d.</strong> Hermes supports 18 messaging platforms. Telegram is the fastest path &mdash; no approval process, works globally, free.</span>
           <div class="screenshot">
-            <img src="../assets/images/hermes-guide/hermes-setup-4.jpg" alt="Hermes setup wizard: messaging platform checklist listing 18 options including Telegram, Discord, Slack, WhatsApp, Signal, iMessage">
+            <img src="../assets/images/hermes-guide/hermes-setup-4.jpg" width="316" alt="Hermes setup wizard: messaging platform checklist listing 18 options including Telegram, Discord, Slack, WhatsApp, Signal, iMessage">
             <div class="screenshot-caption">Messaging checklist &mdash; Telegram, Discord, Slack, Signal, WhatsApp, iMessage, and more.</div>
           </div>
 
@@ -593,7 +593,7 @@ sudo systemctl status hermes-gateway --no-pager</div>
           <span class="step-title">Test it</span>
           <span class="step-desc"><strong>If you wired Telegram:</strong> send your bot any message. It should reply within a few seconds.</span>
           <div class="screenshot portrait">
-            <img src="../assets/images/hermes-guide/telegram.jpg" alt="First round-trip DM with a Hermes yoga-bot on Telegram: /start, hi, the /sethome prompt, and the bot's warm Hi Roy! reply">
+            <img src="../assets/images/hermes-guide/telegram.jpg" width="505" alt="First round-trip DM with a Hermes yoga-bot on Telegram: /start, hi, the /sethome prompt, and the bot's warm Hi Roy! reply">
             <div class="screenshot-caption">First round-trip with the yoga-bot reference deploy &mdash; <code>/start</code>, a "hi", the <code>/sethome</code> prompt, and a personalized reply.</div>
           </div>
           <span class="step-desc"><strong>If you skipped Telegram:</strong> run <code>hermes</code> on the VPS &mdash; you're in a chat with your agent. Type something, press Enter. Type <code>/help</code> to see the slash commands.</span>
@@ -610,7 +610,7 @@ sudo systemctl status hermes-gateway --no-pager</div>
       </div>
 
       <div class="screenshot">
-        <img src="../assets/images/hermes-guide/hermes-5.jpg" alt="The yoga-bot USER.md seed template showing eight one-line fields for practice identity, body, motivation, voice, and goals">
+        <img src="../assets/images/hermes-guide/hermes-5.jpg" width="813" alt="The yoga-bot USER.md seed template showing eight one-line fields for practice identity, body, motivation, voice, and goals">
         <div class="screenshot-caption">An example <code>USER.md</code> seed &mdash; eight one-line fields. Hand-edit it, or let the agent capture it from your chat.</div>
       </div>
 
@@ -693,7 +693,7 @@ sudo systemctl status hermes-gateway --no-pager</div>
       </ul>
 
       <div class="screenshot">
-        <img src="../assets/images/hermes-guide/hermes-1.jpg" alt="Post-automation inventory from the yoga-bot reference deploy showing Linode node, IP, firewall, Docker backend, Claude CLI, hardening settings, and staged systemd unit">
+        <img src="../assets/images/hermes-guide/hermes-1.jpg" width="817" alt="Post-automation inventory from the yoga-bot reference deploy showing Linode node, IP, firewall, Docker backend, Claude CLI, hardening settings, and staged systemd unit">
         <div class="screenshot-caption">What the full production deploy looks like when everything is in place &mdash; firewall, Docker backend, Claude CLI delegation, staged systemd unit. The quickstart above handles the "it runs" layer. The full guide adds the rest.</div>
       </div>
 
